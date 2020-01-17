@@ -1,0 +1,18 @@
+{
+  "name": "veganices",
+  "version": "1.0.0",
+  "description": "<img src=\"img/imagemGit.jpg\" width=\"100%\"/>",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass --watch ./assets/css/bootstrap/coresBootstrap.scss assets/css/bootstrap/coresBootstrap.css",
+    "sass.min": "node-sass --watch ./assets/css/bootstrap/coresBootstrap.scss ./assets/css/bootstrap/coresBootstrap.min.css --output-style compressed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  }
+}
