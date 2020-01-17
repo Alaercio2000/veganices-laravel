@@ -14,3 +14,6 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('/recipes', 'RecipesController@index');
+
+Route::get('/cadastro', 'CadastroController@index');
+
