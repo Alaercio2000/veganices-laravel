@@ -13,6 +13,4 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/cadastro', 'CadastroController@index');
-
-
+Route::get('/recipes', 'RecipesController@index');
