@@ -11,19 +11,9 @@
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', 'HomeController@index')->name('homeUrl');
-
-Route::get('/recipes', 'RecipesController@recipes')->name('recipesUrl');;
-Route::get('/recipes/item', 'RecipesController@item')->name('itemUrl');
-Route::get('/cadastro', 'CadastroController@index');
-
-
-=======
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::get('/recipes', 'RecipesController@index');
 
 Route::get('/cadastro', 'CadastroController@index');
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
 
