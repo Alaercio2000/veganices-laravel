@@ -50,28 +50,28 @@
                         <div id="navBar" class="nav collapse navbar-collapse">
                             <ul class="navbar-nav mr-auto">
                                 <a id="textMenu1"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Sobre</a>
                                 <a id="textMenu2"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Restaurantes</a>
                                 <a id="textMenu3"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Produtos</a>
                                 <a id="textMenu4"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Profissionais</a>
                                 <a id="textMenu5"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Blog</a>
                                 <a id="textMenu6"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Comunidade</a>
                                 <a id="textMenu7"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Acesse</a>
                                 <a id="textMenu8"
-                                    class="nav-link text-info font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Registre-se</a>
                             </ul>
                         </div>

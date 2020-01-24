@@ -22,3 +22,7 @@
 .nav-link {
     transition: 0.5s;
 }
+
+.bg-nav{
+    background-color: #FFFF52;
+}
