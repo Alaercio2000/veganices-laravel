@@ -2,12 +2,16 @@
 
 @section('title','item')
 
+@section('css')
+<link rel="stylesheet" href="{{asset('assets/css/recipes/item/item.css')}}">
+@endsection
+
 @section('content')
-  
+
   <div class="space">
   </div>
   <div class="banner">
-    <img class="bannerImg" src="{{asset('img/img-item/banner.jpg')}}" />
+    <img class="bannerImg" src="{{asset('assets/img/recipes/item/banner.jpg')}}" />
     <div class="container">
       <div class="row">
         <div class="input-group mb-3 searchInput">
@@ -40,13 +44,13 @@
             <div id="carouselExampleControls" class="carousel slide col-12 col-md-9" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{{asset('img/img-item/restaurante_1.png')}}" class="d-block w-100">
+                  <img src="{{asset('assets/img/recipes/item/restaurante_1.png')}}" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                  <img src="{{asset('img/img-item/restaurante_2.jpg')}}" class="d-block w-100">
+                  <img src="{{asset('assets/img/recipes/item/restaurante_2.jpg')}}" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                  <img src="{{asset('img/img-item/restaurante_3.png')}}" class="d-block w-100">
+                  <img src="{{asset('assets/img/recipes/item/restaurante_3.png')}}" class="d-block w-100">
                 </div>
               </div>
               <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -64,7 +68,7 @@
                   <div class="form-group">
                       <input type="text" class="form-control mb-3 mt-5" id="nome" aria-describedby="nome" placeholder="Nome">
                       <input type="text" class="form-control mb-3" id="sobrenome" aria-describedby="sobrenome" placeholder="Sobrenome">
-                      <input type="email" class="form-control mb-3" id="email" aria-describedby="emai" placeholder="Email">  
+                      <input type="email" class="form-control mb-3" id="email" aria-describedby="emai" placeholder="Email">
                       <input type="text" class="form-control mb-3" id="telefone" placeholder="Telefone">
                       <textarea class="form-control" id="telefone"> Comentário</textarea>
                   </div>
@@ -89,7 +93,7 @@
                 <div class="col-6 col-md-2">
                     <h4>Avaliações</h4>
                   <div class="card-body d-flex flex-column">
-                    <img class="restaurante" src="{{asset('img/img-item/perfil.jpg')}}" />
+                    <img class="restaurante" src="{{asset('assets/img/recipes/item/perfil.jpg')}}" />
                   </div>
                 </div>
                 <div class="col-6 col-md-6">
@@ -110,5 +114,5 @@
     </div>
   </div>
 
- 
+
 @endsection

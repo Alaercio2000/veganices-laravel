@@ -2,10 +2,11 @@
 
 @section('title','Home')
 
-@section('content')
-
+@section('css')
 <link rel="stylesheet" href="{{asset('assets/css/home/style.css')}}">
-<script defer src="{{asset('assets/js/home/script.js')}}"></script>
+@endsection
+
+@section('content')
 
 <div id="fundoBuscar" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -52,13 +53,15 @@
                 </div>
                 <div class="col-12 col-pq-6 col-md-3 text-center">
                     <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/diarioImagemTeste.jpg')}}" alt="Diario vegano">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/diarioImagemTeste.jpg')}}"
+                            alt="Diario vegano">
                     </a>
                     <h6 class="py-3">Organize seu diario vegano</h6>
                 </div>
                 <div class="col-12 col-pq-6 col-md-3 text-center">
                     <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/comunidadeImagemTeste.jpg')}}" alt="Comunidade">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/comunidadeImagemTeste.jpg')}}"
+                            alt="Comunidade">
                     </a>
                     <h6 class="py-3">Comunidade de veganos</h6>
                 </div>
@@ -82,8 +85,8 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
                     <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/restauranteImagemTeste.jpg')}}" class="card-img-top imagemCard"
-                            alt="Melhor Restaurante Mês">
+                        <img height="200" src="{{asset('assets/img/home/restauranteImagemTeste.jpg')}}"
+                            class="card-img-top imagemCard" alt="Melhor Restaurante Mês">
                         <div class="card-body">
                             <h5 class="card-title">Restaurantes</h5>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
@@ -111,8 +114,8 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
                     <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/postImagemTeste.jpg')}}" class="card-img-top imagemCard"
-                            alt="Melhor Postagem Mês">
+                        <img height="200" src="{{asset('assets/img/home/postImagemTeste.jpg')}}"
+                            class="card-img-top imagemCard" alt="Melhor Postagem Mês">
                         <div class="card-body">
                             <h5 class="card-title">Postagens</h5>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
@@ -125,8 +128,8 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
                     <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/fazerCasa.jfif')}}" class="card-img-top imagemCard"
-                            alt="Melhor Receita Mês">
+                        <img height="200" src="{{asset('assets/img/home/fazerCasa.jfif')}}"
+                            class="card-img-top imagemCard" alt="Melhor Receita Mês">
                         <div class="card-body">
                             <h5 class="card-title">Receitas</h5>
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias

@@ -5,16 +5,12 @@
 
   @section('content')
 
-  <link rel="stylesheet" href="css/css-recipes/recipes.css">
+  <link rel="stylesheet" href="{{asset('assets/css/recipes/style.css')}}">
 
   <div class="space">
   </div>
   <div class="banner">
-<<<<<<< HEAD
-    <img class="bannerImg" src="{{asset('img/img-recipes/banner.jpg')}}" />
-=======
-    <img class="bannerImg" src="img/img-recipes/banner.jpg" />
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
+    <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
     <div class="container">
       <div class="row">
         <div class="input-group mb-3 searchInput">
@@ -65,7 +61,7 @@
 
           <form class="d-block d-md-none">
               <h4>Filtro</h4>
-  
+
               <div>
                 <label class="font-weight-bold">Setor</label>
                 <select class="form-control" name="setor">
@@ -101,11 +97,7 @@
           <div class="row ml-3">
             <div class="col-12 col-md-5">
               <div class="card-body d-flex flex-column">
-<<<<<<< HEAD
-                <img class="restaurante" src="{{asset('img/img-recipes/restaurante_2.jpg')}}" />
-=======
-                <img class="restaurante" src="img/img-recipes/restaurante_1.png" />
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
+                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
               </div>
             </div>
             <div class="col-12 col-md-7">
@@ -122,11 +114,7 @@
                 <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
                   finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.</p>
                 <div class="col-12 d-flex justify-content-end my-3">
-<<<<<<< HEAD
-                  <button type="button" class="btn btn-primary"><a class="text-info" href="{{route('itemUrl')}}">Entrar em contato</a></button>
-=======
-                  <button type="button" class="btn btn-primary"><a class="text-info" href="item.php">Entrar em contato</a></button>
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
+                    <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
                 </div>
               </div>
             </div>
@@ -134,11 +122,7 @@
           <div class="row border-top ml-3">
             <div class="col-12 col-md-5">
               <div class="card-body d-flex flex-column">
-<<<<<<< HEAD
-                <img class="restaurante" src="{{asset('img/img-recipes/restaurante_2.jpg')}}" />
-=======
-                <img class="restaurante" src="img/img-recipes/restaurante_2.jpg" />
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
+                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
               </div>
             </div>
             <div class="col-12 col-md-7">
@@ -155,7 +139,7 @@
                 <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
                   finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod. </p>
                 <div class="col-12 d-flex justify-content-end my-3">
-                  <button type="button" class="btn btn-primary">Entrar em contato</button>
+                  <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
                 </div>
               </div>
             </div>
@@ -163,11 +147,7 @@
           <div class="row border-top ml-3">
             <div class="col-12 col-md-5">
               <div class="card-body d-flex flex-column">
-<<<<<<< HEAD
-                <img class="restaurante" src="{{asset('img/img-recipes/restaurante_2.jpg')}}" />
-=======
-                <img class="restaurante" src="img/img-recipes/restaurante_3.png" />
->>>>>>> cce72095586c192eb833608e5be4bc80a83f1a59
+                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
               </div>
             </div>
             <div class="col-12 col-md-7">
@@ -184,7 +164,7 @@
                 <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
                   finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod. </p>
                 <div class="col-12 d-flex justify-content-end my-3">
-                  <button type="button" class="btn btn-primary">Entrar em contato</button>
+                    <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
                 </div>
               </div>
             </div>

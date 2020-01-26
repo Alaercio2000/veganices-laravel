@@ -13,7 +13,8 @@
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/recipes', 'RecipesController@index');
+Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
+Route::get('/recipes/item', 'RecipesController@item')->name('recipes.show');
 
-Route::get('/cadastro', 'CadastroController@index');
+Route::get('/register', 'RegisterController@index')->name('register.index');
 

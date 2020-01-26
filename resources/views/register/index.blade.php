@@ -2,12 +2,11 @@
 
 @section('title','Cadastro')
 
+@section('css')
+<link rel="stylesheet" href="{{asset('assets/css/register/style.css')}}">
+@endsection
+
 @section('content')
-
-    {{-- <link rel="stylesheet" href="/veganices/paginas/login/assets/css/forms.css"> --}}
-    <link rel="stylesheet" href="css/css-cadastro/cadastro.css">
-
-
 
 <main class="container text-center">
 
