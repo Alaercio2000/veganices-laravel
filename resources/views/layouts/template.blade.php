@@ -22,15 +22,17 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="{{asset('assets/css/template/style.css')}}">
+
     @yield('css')
+
     <script defer src="{{asset('assets/js/template/script.js')}}"></script>
 
 </head>
 
 <body>
 
-    <header class="fixed-top">
-        <div id="menuHeader" class="container-fluid">
+    <header id="menuHeader" class="fixed-top">
+        <div  class="container-fluid">
             <div class="row flex-row-reverse flex-md-row">
                 <div class="col-6 col-pq-5 col-sm-8 col-md-2 pr-1">
                 <a class="col" href="{{route('home.index')}}">
@@ -48,19 +50,22 @@
                                 </i>
                             </button>
                         </div>
-                        <div id="navBar" class="nav collapse navbar-collapse">
-                            <ul class="navbar-nav mr-auto">
+                        <div id="navBar" class="nav collapse navbar-collapse justify-content-end">
+                            <ul class="navbar-nav">
                                 <a id="textMenu1"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                            href="{{route('recipes.index')}}">Receitas</a>
+                                    class="nav-link text-light font-weight-bold py-4 pr-3"
+                                    href="{{route('home.index')}}">Home &nbsp; |</a>
                                 <a id="textMenu2"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                            href="{{route('community.index')}}">Comunidade</a>
+                                    class="nav-link text-light font-weight-bold py-4 pr-3"
+                                    href="{{route('recipes.index')}}">Receitas &nbsp; |</a>
                                 <a id="textMenu3"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Acesse</a>
+                                    class="nav-link text-light font-weight-bold py-4 pr-5"
+                                    href="{{route('community.index')}}">Comunidade &nbsp; |</a>
                                 <a id="textMenu4"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
+                                    class="nav-link text-light font-weight-bold pl-5 py-4"
+                                    href="#">Acesse</a>
+                                <a id="textMenu5"
+                                    class="nav-link text-light font-weight-bold py-4"
                                     href="#">Registre-se</a>
                             </ul>
                         </div>
@@ -82,13 +87,7 @@
                 </div>
                 <div class="col-6 d-none d-md-flex">
                     <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Sobre</a>
-                    <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Produtos</a>
-                    <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Profissionais</a>
-                    <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Blog</a>
+                        href="#">Receitas</a>
                     <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                         href="#">Comunidade</a>
                 </div>
