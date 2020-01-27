@@ -18,3 +18,5 @@ Route::get('/recipes/item', 'RecipesController@item')->name('recipes.show');
 
 Route::get('/register', 'RegisterController@index')->name('register.index');
 
+Route::get('/community','CommunityController@index')->name('community.index');
+

@@ -10,10 +10,6 @@ function menuScroll() {
     document.getElementById("textMenu2").classList.add("text-dark");
     document.getElementById("textMenu3").classList.add("text-dark");
     document.getElementById("textMenu4").classList.add("text-dark");
-    document.getElementById("textMenu5").classList.add("text-dark");
-    document.getElementById("textMenu6").classList.add("text-dark");
-    document.getElementById("textMenu7").classList.add("text-dark");
-    document.getElementById("textMenu8").classList.add("text-dark");
   } else {
     document.getElementById("menuHeader").removeAttribute("style");
     document.getElementById("iconeMenu").classList.remove("text-dark");
@@ -21,9 +17,5 @@ function menuScroll() {
     document.getElementById("textMenu2").classList.remove("text-dark");
     document.getElementById("textMenu3").classList.remove("text-dark");
     document.getElementById("textMenu4").classList.remove("text-dark");
-    document.getElementById("textMenu5").classList.remove("text-dark");
-    document.getElementById("textMenu6").classList.remove("text-dark");
-    document.getElementById("textMenu7").classList.remove("text-dark");
-    document.getElementById("textMenu8").classList.remove("text-dark");
   }
 }

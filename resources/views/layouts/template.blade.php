@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
+    <title>@yield('title') | Veganices</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -52,26 +52,14 @@
                             <ul class="navbar-nav mr-auto">
                                 <a id="textMenu1"
                                     class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Sobre</a>
+                            href="{{route('recipes.index')}}">Receitas</a>
                                 <a id="textMenu2"
                                     class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Restaurantes</a>
+                            href="{{route('community.index')}}">Comunidade</a>
                                 <a id="textMenu3"
                                     class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Produtos</a>
-                                <a id="textMenu4"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Profissionais</a>
-                                <a id="textMenu5"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Blog</a>
-                                <a id="textMenu6"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                                    href="#">Comunidade</a>
-                                <a id="textMenu7"
-                                    class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Acesse</a>
-                                <a id="textMenu8"
+                                <a id="textMenu4"
                                     class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
                                     href="#">Registre-se</a>
                             </ul>
