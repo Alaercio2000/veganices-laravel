@@ -18,15 +18,15 @@ class CreateRequestsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('recipe_id');
-            $table->float('price',12,2);
-            $table->unsignedInteger('status_id',2);
+            $table->unsignedInteger('status_id');
+            $table->float('price', 10, 2);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
-            $table->foreign('status_id')->references('id')->on('status_request')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('status_requests')->onDelete('cascade');
         });
     }
 
