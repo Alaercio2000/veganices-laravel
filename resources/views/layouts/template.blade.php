@@ -71,7 +71,7 @@
         <div class="row justify-content-end">
             <div id="modal-cadastro"
                 class="modal-cadastro text-center align-items-center col-12 col-md-5 col-lg-4 col-full-3 mr-3 d-none">
-                <form action="" method="POST">
+        <form action="" method="POST">
 
                     <div class="row d-flex flex-column my-3 align-items-center">
 
@@ -97,12 +97,17 @@
                         </div>
 
                         <div class="form-group col-10 my-2">
-                            <input type="email" class="form-control text-center" name="emailRegister" id="emailRegister"
+                            <input type="email" class="form-control text-center" name="email" id="email"
                                 placeholder="E-mail">
                         </div>
 
                         <div class="form-group col-10 my-2">
-                            <input type="password" class="form-control text-center" name="passwordRegister" id="passwordRegister"
+                            <input type="password" class="form-control text-center" name="password" id="password"
+                                placeholder="Senha">
+                        </div>
+
+                        <div class="form-group col-10 my-2">
+                            <input type="password" class="form-control text-center" name="password_confirmation" id="password_confirmation"
                                 placeholder="Senha">
                         </div>
 

@@ -16,7 +16,13 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
 Route::get('/recipes/item', 'RecipesController@item')->name('recipes.show');
 
-Route::get('/register', 'RegisterController@index')->name('register.index');
+Route::get('/community', 'CommunityController@index')->name('community.index');
 
-Route::get('/community','CommunityController@index')->name('community.index');
+Route::prefix('register')->group(function () {
 
+    Route::get('/', 'Auth\RegisterUserController@index')->name('register.index');
+    Route::post('/', 'Auth\RegisterUserController@register');
+
+    Route::get('provider', 'Auth\RegisterProviderController@index')->name('register.provider.index');
+    Route::post('provider', 'Auth\RegisterProviderController@register');
+});
