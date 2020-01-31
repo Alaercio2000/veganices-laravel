@@ -61,19 +61,16 @@ class RegisterUserController extends Controller
             'password_confirmation'
         ]);
 
-        dd($data);
         $validator = $this->validator($data);
 
 
         if ($validator->fails()) {
-            return redirect()->route('home.index')
+            return redirect()->route('register')
             ->withErrors($validator)
             ->withInput();
         }
 
         $user = $this->create($data);
-
-        Auth::login($user);
 
         return redirect()->route('home.index');
 

@@ -40,7 +40,7 @@
             </a>
         </div>
         @yield('description')
-        <div id="corpo" class="text-center col-md-6 offset-3 bg-light">
+        <div id="corpo" class="col-md-6 offset-3 bg-light">
             @yield('content')
         </div>
     </div>
