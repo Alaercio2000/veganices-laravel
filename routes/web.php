@@ -20,9 +20,12 @@ Route::get('/community', 'CommunityController@index')->name('community.index');
 
 Route::prefix('register')->group(function () {
 
-    Route::get('/', 'Auth\RegisterUserController@index')->name('register.index');
+    Route::get('/', 'Auth\RegisterUserController@index')->name('register');
     Route::post('/', 'Auth\RegisterUserController@register');
 
-    Route::get('provider', 'Auth\RegisterProviderController@index')->name('register.provider.index');
+    Route::get('provider', 'Auth\RegisterProviderController@index')->name('register.provider');
     Route::post('provider', 'Auth\RegisterProviderController@register');
 });
+
+Route::get('/login','Auth\LoginController@index')->name('login');
+Route::post('/login','Auth\LoginController@logar');
