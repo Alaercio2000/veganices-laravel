@@ -29,12 +29,12 @@
     <div class="form-group">
         <input class="btn btn-success w-100 mt-3" type="submit" value="Cadastrar">
     </div>
-
-    <h6 class="py-2 text-secondary">
-        Cadastro Profissional?
-        <a href="{{route('register.provider')}}"> Cadastrar-se</a>
-    </h6>
 </form>
+
+<h6 class="pl-3 pb-3 text-secondary">
+    Cadastro Profissional?
+    <a href="{{route('register.provider')}}"> Cadastrar-se</a>
+</h6>
 
 <div class="divider">
     <span> ou entre com</span>

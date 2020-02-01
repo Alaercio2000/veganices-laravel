@@ -41,7 +41,7 @@
                         <li class="list-group">
                             <a class="media d-flex flex-row-reverse mb-3 linkComunidadecor"
                                 style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/wonderwoman.jpg')}}')}}" alt="batman"
+                                <img src="{{asset('assets/img/community/wonderwoman.jpg')}}" alt="batman"
                                     class="img-thumbnail rounded  imgComunidadePessoas shadow">
                                 <div class="media-body align-self-center col-lg">
                                     <h6> <strong> Só comemmos frutas frescas da árvore dos Deuses </strong> </h6>

@@ -29,3 +29,5 @@ Route::prefix('register')->group(function () {
 
 Route::get('/login','Auth\LoginController@index')->name('login');
 Route::post('/login','Auth\LoginController@authenticade');
+
+Route::get('/logout','Auth\LoginController@logout')->name('logout');

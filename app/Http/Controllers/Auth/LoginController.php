@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -29,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -64,7 +65,7 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt($data, $remember)) {
-            return redirect()->route('admin');
+            return redirect()->route('home.index');
         } else {
             $validator->errors()->add('password', 'E-mail e/ou senha errados');
             return redirect()->route('login')

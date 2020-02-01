@@ -15,9 +15,3 @@ function menuScroll() {
       });
   }
 }
-
-// fixar footer
-let bodyFull = document.body.offsetHeight;
-if (bodyFull < 1200) {
-    document.getElementById('rodape').classList.add('fixed-bottom');
-}

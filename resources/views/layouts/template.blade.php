@@ -33,7 +33,7 @@
             <div class="row flex-row-reverse flex-md-row">
                 <div class="col-5 col-sm-4 col-md-2">
                     <a class="col" href="{{route('home.index')}}">
-                        <img class="p-2 p-pq-1" height="90" src="{{asset('assets/img/template/logo.png')}}" alt="Logo">
+                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}" alt="Logo">
                     </a>
                 </div>
                 <div class="col">
@@ -49,20 +49,33 @@
                         </div>
                         <div id="navBar" class="nav collapse navbar-collapse justify-content-md-end">
                             <ul class="navbar-nav">
-                                <a class="nav-link navItem text-light font-weight-bold py-3 py-md-4 pr-3"
-                                    href="{{route('home.index')}}">Home &nbsp;<span class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold py-3 py-md-4 pr-3"
-                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold py-3 py-md-4 pr-5"
-                                    href="{{route('community.index')}}">Comunidade &nbsp;<span class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold pl-lg-5 py-3 py-md-4"
-                            href="{{route('login')}}">Acesse</a>
-                                <a class="nav-link navItem text-light font-weight-bold py-3 py-md-4"
-                            href="{{route('register')}}">Registre-se</a>
+                                <a class="nav-link navItem text-light font-weight-bold mr-3"
+                                    href="{{route('home.index')}}">Home &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                <a class="nav-link navItem text-light font-weight-bold mr-3"
+                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                <a class="nav-link navItem text-light font-weight-bold"
+                                    href="{{route('community.index')}}">Comunidade &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
                             </ul>
                         </div>
                     </nav>
                 </div>
+                @if (Auth::guest())
+                <a class="nav-link navItem text-light font-weight-bold pt-3" href="{{route('login')}}">Acesse</a>
+                <a class="nav-link navItem text-light font-weight-bold pt-3"
+                    href="{{route('register')}}">Registre-se</a>
+                @else
+                <a id="button-perfil" href="#" class="pt-3 px-4">
+                    <img id="img-perfil" src="{{asset('assets/img/template/sem-foto.png')}}" class="mr-2"
+                        alt="imagem perfil">
+                    <span class="font-weight-bold navItem text-light">
+                        {{Auth::user()->name}}
+                    </span>
+                </a>
+                <a href="{{route('logout')}}" class="pt-3 px-4 text-light navItem font-weight-bold nav-link">Sair</a>
+                @endif
             </div>
         </div>
     </header>
@@ -79,9 +92,9 @@
                 </div>
                 <div class="col-6 d-none d-md-flex">
                     <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Receitas</a>
+                        href="{{route('recipes.index')}}">Receitas</a>
                     <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
-                        href="#">Comunidade</a>
+                        href={{route('community.index')}}>Comunidade</a>
                 </div>
                 <div class="col-6 col-md-4">
                     <h6 class="font-weight-bold pl-4 pt-2">Redes Sociais</h6>

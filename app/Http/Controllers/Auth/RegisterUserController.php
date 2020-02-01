@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterUserController extends Controller
 {
@@ -30,7 +31,7 @@ class RegisterUserController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -71,6 +72,8 @@ class RegisterUserController extends Controller
         }
 
         $user = $this->create($data);
+
+        Auth::login($user);
 
         return redirect()->route('home.index');
 

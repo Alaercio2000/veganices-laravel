@@ -1,6 +1,6 @@
 #menuHeader {
     transition: 0.6s;
-    background-color: rgb(100, 100, 100, .3);
+    background-color: rgb(100, 100, 100, .4);
 }
 
 #iconeMenu {
@@ -21,6 +21,26 @@
 
 .nav-link {
     transition: 0.5s;
+}
+
+/* Perfil do Usuário */
+
+#img-perfil{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#button-perfil{
+    text-decoration: none;
+    transition: 0.6s;
+}
+#button-perfil span{
+    transition: 0.6s;
+}
+
+#button-perfil:hover{
+    background-color: rgb(100, 100, 100, .4);
 }
 
 /* Modal */

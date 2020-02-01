@@ -14,11 +14,17 @@
     <div class="form-group">
         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
             placeholder="Email" value="{{old('email')}}">
+        <div class="invalid-feedback">
+            Email invalido
+        </div>
     </div>
     <h6 class="font-weight-normal text-right pr-2"><a href="#">Esqueceu a senha?</a></h6>
     <div class="form-group">
-        <input type="password" class="form-control @error('email') is-invalid @enderror" name="password" id="password"
-            placeholder="Senha">
+        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+            id="password" placeholder="Senha">
+            <div class="invalid-feedback">
+               Email e/ou senhas inválidos
+            </div>
     </div>
     <div class="form-group" class="text-left">
         <input id="remember" type="checkbox" name="remember" class="ml-1">
