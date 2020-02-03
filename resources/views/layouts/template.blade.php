@@ -1,3 +1,9 @@
+<?php
+    $srcImg = 'sem-foto.png';
+if (Auth::user()->avatar){
+    $srcImg = Auth::user()->avatar;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -67,18 +73,60 @@
                 <a class="nav-link navItem text-light font-weight-bold pt-3"
                     href="{{route('register')}}">Registre-se</a>
                 @else
-                <a id="button-perfil" href="#" class="pt-3 px-4">
-                    <img id="img-perfil" src="{{asset('assets/img/template/sem-foto.png')}}" class="mr-2"
+                <button class="btn btn-link" id="button-perfil" data-target="#modal-user" data-toggle="modal"
+                    class="pt-3 px-4">
+                    <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-2"
                         alt="imagem perfil">
                     <span class="font-weight-bold navItem text-light">
                         {{Auth::user()->name}}
                     </span>
-                </a>
+                </button>
                 <a href="{{route('logout')}}" class="pt-3 px-4 text-light navItem font-weight-bold nav-link">Sair</a>
                 @endif
             </div>
         </div>
     </header>
+
+    <div class="modal fade" id="modal-user" tabindex="-1" role="dialog" aria-labelledby="modal-user-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="fundo-modal"
+                        style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
+                        class="widget-user-header bg-aqua-active w-100">
+                        <div id="div-user" class="d-flex justify-content-center mt-4">
+                            <img id="img-user" class="img-thumbnail img-fluid"
+                                src="{{asset('media/img/'.$srcImg)}}" width="128" alt="Foto do usuário">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="pb-3">
+                        <div class="pb-2">
+                            Informações do perfil
+                        </div>
+                        <div>
+                            Nome : {{Auth::user()->name}}<br>
+                            E-mail : {{Auth::user()->email}}<br>
+                        </div>
+                    </div>
+                    <div>
+                        Endereços
+                        <div class="pb-3">
+                            ...
+                        </div>
+                        <button class="btn btn-info">Adicionar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-warning">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     @yield('content')
 
