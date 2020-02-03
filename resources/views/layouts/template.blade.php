@@ -38,8 +38,8 @@ if (!Auth::guest()) {
 
     <header id="menuHeader" class="fixed-top">
         <div class="container-fluid">
-            <div class="d-flex justify-content-between">
-                <div class="col-6 col-sm-5 col-md-2 order-2 order-md-1">
+            <div class="d-flex">
+                <div class="{{(Auth::guest())?'col-7 col-sm-7':'col-6 col-sm-5'}} col-md-2 order-2 order-md-1">
                     <a href="{{route('home.index')}}">
                         <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}"
                             alt="Logo">
@@ -64,19 +64,20 @@ if (!Auth::guest()) {
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('recipes.index')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
+                                @if (Auth::guest())
+                                    <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1" href="{{route('login')}}">Acesse</a>
+                                    <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 mr-n4"
+                                        href="{{route('register')}}">Registre-se</a>
+                                @endif
                             </ul>
                         </div>
                     </nav>
                 </div>
-                <div class="order-3 px-1 px-md-3">
-                    @if (Auth::guest())
-                    <a class="nav-link navItem text-light font-weight-bold py-2 mt-1" href="{{route('login')}}">Acesse</a>
-                    <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
-                        href="{{route('register')}}">Registre-se</a>
-                    @else
+                <div class="order-3">
+                    @if(!Auth::guest())
                     <button class="btn btn-link py-3 px-3 px-md-0 mr-0" id="button-perfil" data-target="#modal-user" data-toggle="modal">
                         <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
