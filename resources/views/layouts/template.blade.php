@@ -1,7 +1,9 @@
 <?php
     $srcImg = 'sem-foto.png';
-if (Auth::user()->avatar){
-    $srcImg = Auth::user()->avatar;
+if (!Auth::guest()) {
+    if (Auth::user()->avatar){
+        $srcImg = Auth::user()->avatar;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -75,8 +77,7 @@ if (Auth::user()->avatar){
                 @else
                 <button class="btn btn-link" id="button-perfil" data-target="#modal-user" data-toggle="modal"
                     class="pt-3 px-4">
-                    <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-2"
-                        alt="imagem perfil">
+                    <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-2" alt="imagem perfil">
                     <span class="font-weight-bold navItem text-light">
                         {{Auth::user()->name}}
                     </span>
@@ -86,7 +87,7 @@ if (Auth::user()->avatar){
             </div>
         </div>
     </header>
-
+    @if(!Auth::guest())
     <div class="modal fade" id="modal-user" tabindex="-1" role="dialog" aria-labelledby="modal-user-label"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -96,8 +97,8 @@ if (Auth::user()->avatar){
                         style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
                         class="widget-user-header bg-aqua-active w-100">
                         <div id="div-user" class="d-flex justify-content-center mt-4">
-                            <img id="img-user" class="img-thumbnail img-fluid"
-                                src="{{asset('media/img/'.$srcImg)}}" width="128" alt="Foto do usuário">
+                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('media/img/'.$srcImg)}}"
+                                width="128" alt="Foto do usuário">
                         </div>
                     </div>
                 </div>
@@ -126,7 +127,7 @@ if (Auth::user()->avatar){
             </div>
         </div>
     </div>
-
+    @endif
 
     @yield('content')
 
