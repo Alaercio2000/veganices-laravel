@@ -43,66 +43,16 @@
     background-color: rgb(100, 100, 100, .4);
 }
 
-/* Modal */
-
-.modals {
-    top: 0px;
-    right: 0px;
-    z-index: 999999999;
+#fundo-modal{
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.modal-cadastro {
-    position: fixed;
-    background-color: #FFFFFF;
-    color: #000000;
-    margin-top: 89px;
-    height: 100%;
-    box-shadow: -1px 4px 5px 2px #ccc;
-    opacity: 91%;
-    z-index: 99999999;
+#img-user{
+    border-radius: 50%;
 }
 
-.modal-login {
-    position: fixed;
-    background-color: #FFFFFF;
-    color: #000000;
-    margin-top: 89px;
-    height: 100%;
-    box-shadow: -1px 4px 5px 2px #ccc;
-    opacity: 91%;
-    z-index: 99999999;
-}
-
-.close-modal {
-    font-weight: bolder;
-    align-self: flex-end;
-    margin-right: 30px;
-    background-color: #fff;
-    width: 25px;
-    border-radius: 14px;
-    box-shadow: 0px 0px 5px 2px #ccc;
-    cursor: pointer;
-}
-
-.close-modal:hover {
-    box-shadow: 0px 0px 4px 1px #ccc;
-}
-
-@media (max-width: 926px){
-    .modal-cadastro {
-        margin-top: 95px;
-    }
-
-    .modal-login{
-        margin-top: 95px;
-    }
-}
-
-/* Form */
-
-.form-control {
-    border: none;
-    border-radius: 0px;
-    border-bottom: 1px solid #D6D2D2;
-
+#div-user{
+    line-height: 200px;
 }

@@ -15,3 +15,13 @@ function menuScroll() {
       });
   }
 }
+
+// let modalUser = document.getElementById('modal-user');
+
+// function showModalUser(){
+//     if(modalUser.classList.contains('d-none')){
+//         modalUser.classList.remove('d-none');
+//     }else{
+//         modalUser.classList.add('d-none');
+//     }
+// }
