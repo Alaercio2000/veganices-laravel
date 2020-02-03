@@ -38,18 +38,19 @@ if (!Auth::guest()) {
 
     <header id="menuHeader" class="fixed-top">
         <div class="container-fluid">
-            <div class="row flex-row-reverse flex-md-row">
-                <div class="col-5 col-sm-4 col-md-2">
-                    <a class="col" href="{{route('home.index')}}">
-                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}" alt="Logo">
+            <div class="d-flex justify-content-between">
+                <div class="col-6 col-sm-5 col-md-2 order-2 order-md-1">
+                    <a href="{{route('home.index')}}">
+                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}"
+                            alt="Logo">
                     </a>
                 </div>
-                <div class="col">
+                <div class="col order-1 order-md-2">
                     <nav class="navbar navbar-expand-md">
                         <div>
-                            <button id="botaoMenu" class="navbar-toggler ml-n3" type="button" data-toggle="collapse"
-                                data-target="#navBar" aria-controls="navBar" aria-expanded="false"
-                                aria-label="Toggle navigation">
+                            <button id="botaoMenu" class="navbar-toggler ml-n5 ml-xl-n3" type="button"
+                                data-toggle="collapse" data-target="#navBar" aria-controls="navBar"
+                                aria-expanded="false" aria-label="Toggle navigation">
                                 <i id="iconeMenu" class="material-icons navItem">
                                     menu
                                 </i>
@@ -57,33 +58,35 @@ if (!Auth::guest()) {
                         </div>
                         <div id="navBar" class="nav collapse navbar-collapse justify-content-md-end">
                             <ul class="navbar-nav">
-                                <a class="nav-link navItem text-light font-weight-bold mr-3"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('home.index')}}">Home &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold mr-3"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('recipes.index')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                             </ul>
                         </div>
                     </nav>
                 </div>
-                @if (Auth::guest())
-                <a class="nav-link navItem text-light font-weight-bold pt-3" href="{{route('login')}}">Acesse</a>
-                <a class="nav-link navItem text-light font-weight-bold pt-3"
-                    href="{{route('register')}}">Registre-se</a>
-                @else
-                <button class="btn btn-link" id="button-perfil" data-target="#modal-user" data-toggle="modal"
-                    class="pt-3 px-4">
-                    <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-2" alt="imagem perfil">
-                    <span class="font-weight-bold navItem text-light">
-                        {{Auth::user()->name}}
-                    </span>
-                </button>
-                <a href="{{route('logout')}}" class="pt-3 px-4 text-light navItem font-weight-bold nav-link">Sair</a>
-                @endif
+                <div class="order-3 px-1 px-md-3">
+                    @if (Auth::guest())
+                    <a class="nav-link navItem text-light font-weight-bold py-2 mt-1" href="{{route('login')}}">Acesse</a>
+                    <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
+                        href="{{route('register')}}">Registre-se</a>
+                    @else
+                    <button class="btn btn-link py-3 px-3 px-md-0 mr-0" id="button-perfil" data-target="#modal-user" data-toggle="modal">
+                        <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
+                        <span class="font-weight-bold navItem text-light d-none d-sm-inline">
+                            {{Auth::user()->name}}
+                        </span>
+                    </button>
+                    <a href="{{route('logout')}}"
+                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-md-inline">Sair</a>
+                    @endif
+                </div>
             </div>
         </div>
     </header>
@@ -121,6 +124,7 @@ if (!Auth::guest()) {
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <a href="{{route('logout')}}" class="btn btn-info">Sair</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-warning">Editar</button>
                 </div>
@@ -156,7 +160,7 @@ if (!Auth::guest()) {
                 </div>
             </div>
             <div class="col-12">
-                <h6 class="py-2 font-weight-bold m-0">@Copyright 2019 BeeVegan</h6>
+                <h6 class="py-2 font-weight-bold m-0">@Copyright 2019-2020 Veganices</h6>
             </div>
         </div>
 
