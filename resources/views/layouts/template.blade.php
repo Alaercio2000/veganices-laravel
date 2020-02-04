@@ -41,8 +41,7 @@ if (!Auth::guest()) {
             <div class="d-flex">
                 <div class="{{(Auth::guest())?'col-7 col-sm-7':'col-6 col-sm-5'}} col-md-2 order-2 order-md-1">
                     <a href="{{route('home.index')}}">
-                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}"
-                            alt="Logo">
+                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}" alt="Logo">
                     </a>
                 </div>
                 <div class="col order-1 order-md-2">
@@ -68,9 +67,10 @@ if (!Auth::guest()) {
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @if (Auth::guest())
-                                    <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1" href="{{route('login')}}">Acesse</a>
-                                    <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 mr-n4"
-                                        href="{{route('register')}}">Registre-se</a>
+                                <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1"
+                                    href="{{route('login')}}">Acesse</a>
+                                <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 mr-n4"
+                                    href="{{route('register')}}">Registre-se</a>
                                 @endif
                             </ul>
                         </div>
@@ -78,7 +78,8 @@ if (!Auth::guest()) {
                 </div>
                 <div class="order-3">
                     @if(!Auth::guest())
-                    <button class="btn btn-link py-3 px-3 px-md-0 mr-0" id="button-perfil" data-target="#modal-user" data-toggle="modal">
+                    <button class="btn btn-link py-3 px-3 px-md-0 mr-0" id="button-perfil" data-target="#modal-user"
+                        data-toggle="modal">
                         <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
                             {{Auth::user()->name}}
@@ -108,26 +109,32 @@ if (!Auth::guest()) {
                 </div>
                 <div class="modal-body">
                     <div class="pb-3">
-                        <div class="pb-2">
-                            Informações do perfil
+                        <div class="pb-2 text-center">
+                            <h5>Informações do perfil</h5>
                         </div>
                         <div>
                             Nome : {{Auth::user()->name}}<br>
                             E-mail : {{Auth::user()->email}}<br>
                         </div>
+                        <div class="mt-3">
+                            <a href="#" class="mt-5">Editar informações</a>
+                        </div>
                     </div>
                     <div>
-                        Endereços
+                        <div class="pb-2 text-center">
+                            <h5>Endereços</h5>
+                        </div>
                         <div class="pb-3">
                             ...
                         </div>
-                        <button class="btn btn-info">Adicionar</button>
+                        <div class="mt-3">
+                            <a href="#" class="mt-5">Adicionar</a>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="{{route('logout')}}" class="btn btn-info">Sair</a>
+                <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-warning">Editar</button>
+                    <a href="{{route('logout')}}" class="btn btn-info">Sair</a>
                 </div>
             </div>
         </div>
