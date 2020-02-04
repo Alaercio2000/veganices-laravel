@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\Provider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -54,32 +54,60 @@ class RegisterProviderController extends Controller
         return view('register.provider.index');
     }
 
-    public function register(Request $request)
+    public function validatorCnpjAtivo(Request $request)
     {
-        $data = $request->only([
-            'name',
-            'email',
-            'password',
-            'password_confirmation',
-            'phone',
-            'cnpj'
-        ]);
-
-        $validator =$this->validate($request, [
+        $this->validate($request, [
             'cnpj' => 'required|cnpj',
         ]);
 
-        dd($validator);
+        $cnpj_debug = str_replace(['.', '-', '/'], '', $request->input('cnpj'));
+        $url = 'https://www.receitaws.com.br/v1/cnpj/' . $cnpj_debug;
+
+        $reply_url = json_decode(file_get_contents($url));
+
+        $name = $reply_url->nome;
+        $cnpj = $reply_url->cnpj;
+
+
+        if ($reply_url->situacao == "ATIVA") {
+            return view('register.provider.ativo', [
+                'name' => $name,
+                'cnpj' => $cnpj
+            ]);
+        }
+        return redirect()->route('register')
+            ->with('cnpj', 'CNPJ não está ativo');
+    }
+
+    public function registerIndex()
+    {
+        return view('register.provider.ativo');
+    }
+
+    public function register(Request $request)
+    {
+        $data = $request->only([
+            'cnpj',
+            'name',
+            'password',
+            'password_confirmation',
+            'phone'
+        ]);
+
+        echo ('<pre>');
+        print_r($data);
+        echo ('</pre>');
+        die();
     }
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return (Validator::make($data, [
             'name' => ['required', 'string', 'max:191'],
             'email' => ['required', 'string', 'email', 'max:191', 'unique:providers'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
-            'phone' => ['required']
-        ]);
+            'phone' => ['required', 'string', 'max:15', 'min:15']
+        ]));
     }
 
     /**
@@ -90,7 +118,7 @@ class RegisterProviderController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Provider::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

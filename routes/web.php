@@ -11,7 +11,7 @@
 |
 */
 
-Route::fallback(function(){
+Route::fallback(function () {
     return view("erro404");
 });
 
@@ -27,11 +27,15 @@ Route::prefix('register')->group(function () {
     Route::get('/', 'Auth\RegisterUserController@index')->name('register');
     Route::post('/', 'Auth\RegisterUserController@register');
 
-    Route::get('provider', 'Auth\RegisterProviderController@index')->name('register.provider');
-    Route::post('provider', 'Auth\RegisterProviderController@register');
+    Route::prefix('provider')->group(function () {
+        Route::get('/', 'Auth\RegisterProviderController@index')->name('register.provider');
+        Route::post('/', 'Auth\RegisterProviderController@validatorCnpjAtivo');
+
+        Route::post('ativo','Auth\RegisterProviderController@register')->name('register.ativo');
+    });
 });
 
-Route::get('/login','Auth\LoginController@index')->name('login');
-Route::post('/login','Auth\LoginController@authenticade');
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::post('/login', 'Auth\LoginController@authenticade');
 
-Route::get('/logout','Auth\LoginController@logout')->name('logout');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
