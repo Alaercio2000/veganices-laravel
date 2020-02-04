@@ -11,22 +11,22 @@
 <form method="POST" class="p-3">
     @csrf
     <div class="form-group">
-        <input type="text" name="name" id="name" class="form-control" placeholder="Nome da empresa">
+        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nome da empresa">
     </div>
     <div class="form-group">
-        <input type="email" name="email" id="email" class="form-control" placeholder="E-mail de acesso">
+        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="E-mail de acesso">
     </div>
     <div class="form-group">
-        <input type="password" name="password" id="password" class="form-control" placeholder="Senha">
+        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Senha">
     </div>
     <div class="form-group">
-        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Repita a senha">
+        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password') is-invalid @enderror" placeholder="Repita a senha">
     </div>
     <div class="form-group">
-        <input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="Digite o CNPJ">
+        <input type="text" name="cnpj" id="cnpj" class="form-control @error('cnpj') is-invalid @enderror" placeholder="Digite o CNPJ">
     </div>
     <div class="form-group">
-        <input type="text" name="phone" id="phone" class="form-control" placeholder="Telefone para contato">
+        <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Telefone para contato">
     </div>
     <div class="form-group">
         <input class="btn btn-success w-100 mt-3" type="submit" value="Cadastrar">

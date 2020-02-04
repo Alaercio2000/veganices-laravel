@@ -56,14 +56,29 @@ class RegisterProviderController extends Controller
 
     public function register(Request $request)
     {
+        $data = $request->only([
+            'name',
+            'email',
+            'password',
+            'password_confirmation',
+            'phone',
+            'cnpj'
+        ]);
+
+        $validator =$this->validate($request, [
+            'cnpj' => 'required|cnpj',
+        ]);
+
+        dd($validator);
     }
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:providers'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'phone' => ['required']
         ]);
     }
 
@@ -79,6 +94,8 @@ class RegisterProviderController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'cnpj' => $data['cnpj'],
+            'phone' => $data['phone'],
         ]);
     }
 }

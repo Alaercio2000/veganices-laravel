@@ -11,6 +11,10 @@
 |
 */
 
+Route::fallback(function(){
+    return view("erro404");
+});
+
 Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
