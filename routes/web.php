@@ -29,9 +29,7 @@ Route::prefix('register')->group(function () {
 
     Route::prefix('provider')->group(function () {
         Route::get('/', 'Auth\RegisterProviderController@index')->name('register.provider');
-        Route::post('/', 'Auth\RegisterProviderController@validatorCnpjAtivo');
-
-        Route::post('ativo','Auth\RegisterProviderController@register')->name('register.ativo');
+        Route::post('/','Auth\RegisterProviderController@register');
     });
 });
 
