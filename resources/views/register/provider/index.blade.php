@@ -16,17 +16,31 @@
 
 <form method="POST" class="p-3">
     @csrf
+
     <div class="form-group">
-        <input type="text" name="cnpj" id="cnpj" class="form-control @error('cnpj') is-invalid @enderror"
+        <input type="text" name="cnpj" id="cnpj"
+            class="form-control @error('cnpj') is-invalid @enderror @if(session('cnpj')) is-invalid @endif"
             placeholder="Digite o CNPJ" value="{{old('cnpj')}}">
         <div class="invalid-feedback">
             {{$errors->first('cnpj')}}
+            @if(session('cnpj'))
+            {{session('cnpj')}}
+            @endif
         </div>
     </div>
 
     <div class="form-group">
-        <input id="password" name="password" class="form-control @error('password') is-invalid @enderror" type="password"
-            placeholder="Senha">
+        <input type="text" name="email" id="email"
+            class="form-control @error('email') is-invalid @enderror"
+            placeholder="Digite o email de acesso" value="{{old('email')}}">
+        <div class="invalid-feedback">
+            {{$errors->first('email')}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input id="password" name="password" class="form-control @error('password') is-invalid @enderror"
+            type="password" placeholder="Senha">
         <div class="invalid-feedback">
             {{$errors->first('password')}}
         </div>
@@ -37,11 +51,23 @@
             class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Repita a senha">
     </div>
 
-    <div>
+    <div  class="form-group">
         <input id="phone" name="phone" class="form-control  @error('phone') is-invalid @enderror" type="text"
             value="{{old('phone')}}" placeholder="Celular para contato" maxlength="14">
         <div class="invalid-feedback">
             {{$errors->first('phone')}}
+        </div>
+    </div>
+
+    <div  class="form-group">
+        <input id="date_create" name="date_create"
+            class="form-control  @error('date_create') is-invalid @enderror @if(session('date_create')) is-invalid @endif"
+            type="text" value="{{old('date_create')}}" placeholder="Data de crição da empresa" maxlength="14">
+        <div class="invalid-feedback">
+            {{$errors->first('date_create')}}
+            @if(session('date_create'))
+            {{session('date_create')}}
+            @endif
         </div>
     </div>
 

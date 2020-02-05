@@ -15,14 +15,16 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->bigInteger('cnpj')->unique();
             $table->string('name');
-            $table->string('password');
             $table->string('avatar')->nullable();
-            $table->string('email_contact');
             $table->string('phone');
+            $table->string('date_create');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

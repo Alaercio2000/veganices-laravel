@@ -49,7 +49,7 @@ class LoginController extends Controller
 
     public function authenticade(Request $request)
     {
-        $validator = $this->validate($request , [
+        $this->validate($request , [
             'email' => 'required|string|email|max:191',
             'password' => 'required|string|min:4|max:191'
         ],[

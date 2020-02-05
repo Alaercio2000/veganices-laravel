@@ -17,10 +17,13 @@ class CreateAddressProvidersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('provider_id');
             $table->integer('cep');
-            $table->string('street');
+            $table->integer('uf');
+            $table->integer('county');
+            $table->string('neighborhood');
+            $table->integer('street');
             $table->integer('number');
-            $table->string('complement');
-            $table->string('reference_point');
+            $table->string('complement')->nullable();
+            $table->string('reference_point')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
