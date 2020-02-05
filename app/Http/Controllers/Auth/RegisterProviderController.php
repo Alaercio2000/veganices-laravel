@@ -54,10 +54,23 @@ class RegisterProviderController extends Controller
         return view('register.provider.index');
     }
 
-    public function validatorCnpjAtivo(Request $request)
+    public function register(Request $request)
     {
         $this->validate($request, [
-            'cnpj' => 'required|cnpj',
+            'cnpj' => 'required|cnpj|unique:providers',
+            'password' => 'required|string|min:4|confirmed',
+            'phone' => 'required|string|max:14|min:14'
+        ],
+        [
+            'cnpj.required'=>'Esse campo é obrigatório',
+            'cnpj.cnpj'=>'Digite um CNPJ válido',
+            'cnpj.unique:provider'=>'Já existir esse CNPJ',
+            'password.required'=>'Esse campo é obrigatório',
+            'password.min'=>'A senha deve ter :min ou mais caracteres',
+            'password.confirmed'=>'As senhas deve ser iguais',
+            'phone.required'=>'Esse campo é obrigatório',
+            'phone.max'=>'Digite um telefone válido',
+            'phone.min'=>'Digite um telefone válido'
         ]);
 
         $cnpj_debug = str_replace(['.', '-', '/'], '', $request->input('cnpj'));
@@ -66,48 +79,16 @@ class RegisterProviderController extends Controller
         $reply_url = json_decode(file_get_contents($url));
 
         $name = $reply_url->nome;
-        $cnpj = $reply_url->cnpj;
 
-
-        if ($reply_url->situacao == "ATIVA") {
-            return view('register.provider.ativo', [
-                'name' => $name,
-                'cnpj' => $cnpj
-            ]);
-        }
-        return redirect()->route('register')
-            ->with('cnpj', 'CNPJ não está ativo');
-    }
-
-    public function registerIndex()
-    {
-        return view('register.provider.ativo');
-    }
-
-    public function register(Request $request)
-    {
         $data = $request->only([
-            'cnpj',
-            'name',
             'password',
             'password_confirmation',
-            'phone'
+            'phone',
+            'cnpj'
         ]);
 
-        echo ('<pre>');
-        print_r($data);
-        echo ('</pre>');
+        echo ("Deu td certo rsrsrs");
         die();
-    }
-
-    protected function validator(array $data)
-    {
-        return (Validator::make($data, [
-            'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:providers'],
-            'password' => ['required', 'string', 'min:4', 'confirmed'],
-            'phone' => ['required', 'string', 'max:15', 'min:15']
-        ]));
     }
 
     /**

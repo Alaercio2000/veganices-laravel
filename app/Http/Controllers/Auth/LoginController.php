@@ -49,27 +49,29 @@ class LoginController extends Controller
 
     public function authenticade(Request $request)
     {
+        $validator = $this->validate($request , [
+            'email' => 'required|string|email|max:191',
+            'password' => 'required|string|min:4|max:191'
+        ],[
+            'email.required' => 'Esse campo é obrigatório',
+            'email.email' => 'Digite um email válido',
+            'email.max' => 'Máximo de :max caracteres',
+            'password.required' => 'Esse campo é obrigatório',
+            'password.min' => 'A senha deve ter :min ou mais caracteres',
+            'email.max' => 'Máximo de :max caracteres',
+        ]);
         $data = $request->only([
             'email',
             'password'
         ]);
 
-        $validator = $this->validator($data);
-
         $remember = $request->input('remember', false);
-
-        if ($validator->fails()) {
-            return redirect()->route('login')
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         if (Auth::attempt($data, $remember)) {
             return redirect()->route('home.index');
         } else {
-            $validator->errors()->add('password', 'E-mail e/ou senha errados');
             return redirect()->route('login')
-                ->withErrors($validator)
+                ->with('login','E-mail e/ou senha inválidos')
                 ->withInput();
         }
     }
@@ -78,13 +80,5 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:191'],
-            'password' => ['required', 'string', 'min:4', 'max:191']
-        ]);
     }
 }

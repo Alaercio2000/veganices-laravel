@@ -55,6 +55,21 @@ class RegisterUserController extends Controller
     }
 
     public function register(Request $request){
+        $this->validate($request ,[
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:users',
+            'password' => 'required|string|min:4|confirmed'
+        ],[
+            'name.required'=>'Esse campo é obrigatório',
+            'name.max'=>'Máximo de :max caracteres',
+            'email.unique:users'=>'Já existir esse email',
+            'email.required'=>'Esse campo é obrigatório',
+            'email.email'=>'Digite um email válido',
+            'email.max'=>'Máximo de :max caracteres',
+            'password.required'=>'Esse campo é obrigatório',
+            'password.min'=>'A senha deve ter :min ou mais caracteres',
+            'password.confirmed'=>'A senha deve ser iguais'
+        ]);
         $data = $request->only([
             'name',
             'email',
@@ -62,30 +77,11 @@ class RegisterUserController extends Controller
             'password_confirmation'
         ]);
 
-        $validator = $this->validator($data);
-
-
-        if ($validator->fails()) {
-            return redirect()->route('register')
-            ->withErrors($validator)
-            ->withInput();
-        }
-
         $user = $this->create($data);
 
         Auth::login($user);
 
         return redirect()->route('home.index');
-
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password' => ['required', 'string', 'min:4', 'confirmed'],
-        ]);
     }
 
     /**
