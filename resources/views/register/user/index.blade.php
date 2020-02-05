@@ -10,16 +10,25 @@
     <div class="form-group">
         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
             placeholder="Nome" value="{{old('name')}}">
+        <div class="invalid-feedback">
+            {{$errors->first('name')}}
+        </div>
     </div>
 
     <div class="form-group">
         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
             placeholder="E-mail" value="{{old('email')}}">
+        <div class="invalid-feedback">
+            {{$errors->first('email')}}
+        </div>
     </div>
 
     <div class="form-group">
         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
             id="password" placeholder="Senha">
+        <div class="invalid-feedback">
+            {{$errors->first('password')}}
+        </div>
     </div>
     <div class="form-group">
         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
