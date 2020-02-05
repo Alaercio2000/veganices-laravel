@@ -1,6 +1,10 @@
 <?php
-use App\User;
 use App\Models\Provider;
+
+if (Auth::user()->provider == 1) {
+    $id = Auth::user()->id;
+    $provider = Provider::where('user_id', $id)->first();
+}
     $srcImg = 'sem-foto.png';
 if (!Auth::guest()) {
     if (Auth::user()->avatar){
@@ -120,7 +124,11 @@ if (!Auth::guest()) {
                         <div>
                             Nome : {{Auth::user()->name}}<br>
                             E-mail : {{Auth::user()->email}}<br>
-                            CNPJ : {{Provider::find(1)}}
+                            @if(Auth::user()->provider == 1)
+                            CNPJ : {{$provider->cnpj}}<br>
+                            Telefone : {{$provider->phone}}<br>
+                            Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}
+                            @endif
                         </div>
                         <div class="mt-3">
                             <a href="#" class="mt-5">Editar informações</a>
