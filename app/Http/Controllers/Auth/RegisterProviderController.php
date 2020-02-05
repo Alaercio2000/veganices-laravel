@@ -8,6 +8,7 @@ use App\Models\Provider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class RegisterProviderController extends Controller
@@ -61,7 +62,7 @@ class RegisterProviderController extends Controller
             'cnpj' => 'required|cnpj|unique:providers',
             'password' => 'required|string|min:4|confirmed',
             'phone' => 'required|string|max:14|min:14',
-            'date_create' =>'required|max:10|min:10'
+            'date_opening' =>'required|max:10|min:10'
         ],
         [
             'email.required' => 'Esse campo é obrigatório',
@@ -77,9 +78,9 @@ class RegisterProviderController extends Controller
             'phone.required'=>'Esse campo é obrigatório',
             'phone.max'=>'Digite um telefone válido',
             'phone.min'=>'Digite um telefone válido',
-            'date_create.required'=>'Esse campo é obrigatório',
-            'date_create.max'=>'Digite uma data válida',
-            'date_create.min'=>'Digite uma data válida'
+            'date_opening.required'=>'Esse campo é obrigatório',
+            'date_opening.max'=>'Digite uma data válida',
+            'date_opening.min'=>'Digite uma data válida'
         ]);
 
         $cnpj_debug = str_replace(['.', '-', '/'], '', $request->input('cnpj'));
@@ -99,23 +100,21 @@ class RegisterProviderController extends Controller
             'password_confirmation',
             'phone',
             'cnpj',
-            'date_create'
+            'date_opening'
         ]);
 
-        if ($reply_url->data_situacao != $data['date_create']) {
+        if ($reply_url->abertura != date('d/m/Y', strtotime($data['date_opening']))) {
             return redirect()->route('register.provider')
-                ->with('date_create' , 'A data de criação está errada')
+                ->with('date_opening' , 'A data de criação está errada')
                 ->withInput();
         }
         $data['name'] = $reply_url->nome;
-        $data['provider'] = true;
 
         $user = $this->createUser($data);
 
-        echo ('<pre>');
-        print_r($user->id);
-        echo ('</pre>');
-        die();
+        $data['user_id'] = $user->id;
+
+        $provider = $this->create($data);
 
         // $address = [
         //     'cep' => $reply_url->cep,
@@ -126,6 +125,10 @@ class RegisterProviderController extends Controller
         //     'uf' => $reply_url->uf,
         //     'complement' => $reply_url->complemento,
         // ];
+
+        Auth::login($user);
+
+        return redirect()->route('home.index');
     }
 
     /**
@@ -138,11 +141,11 @@ class RegisterProviderController extends Controller
     {
         return Provider::create([
             'name' => $data['name'],
-            'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'cnpj' => $data['cnpj'],
             'phone' => $data['phone'],
-            'date_create' => $data['date_create']
+            'date_opening' => $data['date_opening'],
+            'user_id' => $data['user_id'],
         ]);
     }
 

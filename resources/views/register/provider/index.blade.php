@@ -2,10 +2,6 @@
 
 @section('title','Cadastro Profissional')
 
-@section('css')
-<link rel="stylesheet" href="{{asset('assets/css/register/style.css')}}">
-@endsection
-
 @section('js')
 <script src="{{asset('assets/js/register/provider/script.js')}}"></script>
 @endsection
@@ -18,9 +14,10 @@
     @csrf
 
     <div class="form-group">
+        <label class="text-secondary label-form" for="cnpj">CNPJ</label>
         <input type="text" name="cnpj" id="cnpj"
             class="form-control @error('cnpj') is-invalid @enderror @if(session('cnpj')) is-invalid @endif"
-            placeholder="Digite o CNPJ" value="{{old('cnpj')}}">
+            placeholder="Digite o CNPJ..." value="{{old('cnpj')}}">
         <div class="invalid-feedback">
             {{$errors->first('cnpj')}}
             @if(session('cnpj'))
@@ -30,43 +27,48 @@
     </div>
 
     <div class="form-group">
+            <label class="text-secondary label-form" for="email">E-mail</label>
         <input type="text" name="email" id="email"
             class="form-control @error('email') is-invalid @enderror"
-            placeholder="Digite o email de acesso" value="{{old('email')}}">
+            placeholder="Digite o email de acesso..." value="{{old('email')}}">
         <div class="invalid-feedback">
             {{$errors->first('email')}}
         </div>
     </div>
 
     <div class="form-group">
+            <label class="text-secondary label-form" for="password">Senha</label>
         <input id="password" name="password" class="form-control @error('password') is-invalid @enderror"
-            type="password" placeholder="Senha">
+            type="password" placeholder="Difite sua senha...">
         <div class="invalid-feedback">
             {{$errors->first('password')}}
         </div>
     </div>
 
     <div class="form-group">
+            <label class="text-secondary label-form" for="cnpj">Confirme sua senha</label>
         <input id="password_confirmation" name="password_confirmation"
             class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Repita a senha">
     </div>
 
     <div  class="form-group">
+            <label class="text-secondary label-form" for="phone">Telefone</label>
         <input id="phone" name="phone" class="form-control  @error('phone') is-invalid @enderror" type="text"
-            value="{{old('phone')}}" placeholder="Celular para contato" maxlength="14">
+            value="{{old('phone')}}" placeholder="Telefone para contato" maxlength="14">
         <div class="invalid-feedback">
             {{$errors->first('phone')}}
         </div>
     </div>
 
     <div  class="form-group">
-        <input id="date_create" name="date_create"
-            class="form-control  @error('date_create') is-invalid @enderror @if(session('date_create')) is-invalid @endif"
-            type="text" value="{{old('date_create')}}" placeholder="Data de crição da empresa" maxlength="14">
+            <label class="text-secondary label-form" for="date_opening">Data de abertura</label>
+        <input id="date_opening" name="date_opening"
+            class="form-control  @error('date_opening') is-invalid @enderror @if(session('date_opening')) is-invalid @endif"
+            type="date" value="{{old('date_opening')}}" placeholder="Data de abertura da empresa" maxlength="14">
         <div class="invalid-feedback">
-            {{$errors->first('date_create')}}
-            @if(session('date_create'))
-            {{session('date_create')}}
+            {{$errors->first('date_opening')}}
+            @if(session('date_opening'))
+            {{session('date_opening')}}
             @endif
         </div>
     </div>

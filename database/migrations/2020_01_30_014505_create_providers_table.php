@@ -16,11 +16,11 @@ class CreateProvidersTable extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->bigInteger('cnpj')->unique();
+            $table->string('cnpj')->unique();
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('phone');
-            $table->string('date_create');
+            $table->date('date_opening');
             $table->timestamps();
             $table->softDeletes();
 

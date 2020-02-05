@@ -1,4 +1,6 @@
 <?php
+use App\User;
+use App\Models\Provider;
     $srcImg = 'sem-foto.png';
 if (!Auth::guest()) {
     if (Auth::user()->avatar){
@@ -12,7 +14,6 @@ if (!Auth::guest()) {
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -78,11 +79,15 @@ if (!Auth::guest()) {
                 </div>
                 <div class="order-3">
                     @if(!Auth::guest())
-                    <button class="btn btn-link py-3 px-3 px-md-0 mr-0" id="button-perfil" data-target="#modal-user"
+                    <button class="btn btn-link pt-3 pb-4 pb-md-3 px-3" id="button-perfil" data-target="#modal-user"
                         data-toggle="modal">
                         <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
-                            {{Auth::user()->name}}
+                            <?php
+                                $nome = Auth::user()->name;
+                                $partes = explode(" " , $nome);
+                                echo $partes[0];
+                            ?>
                         </span>
                     </button>
                     <a href="{{route('logout')}}"
@@ -115,6 +120,7 @@ if (!Auth::guest()) {
                         <div>
                             Nome : {{Auth::user()->name}}<br>
                             E-mail : {{Auth::user()->email}}<br>
+                            CNPJ : {{Provider::find(1)}}
                         </div>
                         <div class="mt-3">
                             <a href="#" class="mt-5">Editar informações</a>
