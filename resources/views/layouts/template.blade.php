@@ -16,7 +16,7 @@ if (Auth::user()->provider == 1) {
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
 
 <head>
     <meta charset="UTF-8">
@@ -47,7 +47,7 @@ if (Auth::user()->provider == 1) {
             <div class="d-flex">
                 <div class="{{(Auth::guest())?'col-7 col-sm-7':'col-6 col-sm-5'}} col-md-2 order-2 order-md-1">
                     <a href="{{route('home.index')}}">
-                        <img class="p-2 p-pq-1" height="60" src="{{asset('assets/img/template/logo.png')}}" alt="Logo">
+                        <img class="p-2 p-pq-1" height="60" src="{{asset('favicon.ico')}}" alt="Logo">
                     </a>
                 </div>
                 <div class="col order-1 order-md-2">
@@ -163,7 +163,7 @@ if (Auth::user()->provider == 1) {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 col-md-2">
-                    <a href="{{route('home.index')}}"><img class="mt-2" src="{{asset('assets/img/template/logo.png')}}"
+                    <a href="{{route('home.index')}}"><img class="mt-2" src="{{asset('favicon.ico')}}"
                             height="50" alt="Logo Veganices"></a>
                 </div>
                 <div class="col-6 d-none d-md-flex">
