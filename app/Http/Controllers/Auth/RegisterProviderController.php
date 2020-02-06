@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\AddressProvider;
 
 class RegisterProviderController extends Controller
 {
@@ -108,6 +109,7 @@ class RegisterProviderController extends Controller
                 ->with('date_opening' , 'A data de criação está errada')
                 ->withInput();
         }
+
         $data['name'] = $reply_url->nome;
 
         $user = $this->createUser($data);
@@ -116,15 +118,18 @@ class RegisterProviderController extends Controller
 
         $provider = $this->create($data);
 
-        // $address = [
-        //     'cep' => $reply_url->cep,
-        //     'neighborhood' => $reply_url->bairro,
-        //     'street' => $reply_url->logradouro,
-        //     'number' => $reply_url->numero,
-        //     'county' => $reply_url->municipio,
-        //     'uf' => $reply_url->uf,
-        //     'complement' => $reply_url->complemento,
-        // ];
+        $address = [
+            'cep' => $reply_url->cep,
+            'neighborhood' => $reply_url->bairro,
+            'street' => $reply_url->logradouro,
+            'number' => $reply_url->numero,
+            'county' => $reply_url->municipio,
+            'uf' => $reply_url->uf,
+            'complement' => $reply_url->complemento,
+            'provider_id' => $provider->id,
+        ];
+
+        $this->createAddress($address);
 
         Auth::login($user);
 
@@ -141,7 +146,6 @@ class RegisterProviderController extends Controller
     {
         return Provider::create([
             'name' => $data['name'],
-            'password' => Hash::make($data['password']),
             'cnpj' => $data['cnpj'],
             'phone' => $data['phone'],
             'date_opening' => $data['date_opening'],
@@ -156,6 +160,20 @@ class RegisterProviderController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'provider' => true,
+        ]);
+    }
+
+    protected function createAddress(array $data)
+    {
+        return AddressProvider::create([
+            'cep' => $data['cep'],
+            'neighborhood' => $data['neighborhood'],
+            'street' => $data['street'],
+            'number' => $data['number'],
+            'county' => $data['county'],
+            'uf' => $data['uf'],
+            'complement' => $data['complement'],
+            'provider_id' => $data['provider_id'],
         ]);
     }
 }

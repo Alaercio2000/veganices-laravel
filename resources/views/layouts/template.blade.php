@@ -1,18 +1,27 @@
 <?php
 use App\Models\Provider;
+use App\Models\AddressProvider;
 
 if (!Auth::guest()) {
 
-if (Auth::user()->provider == 1) {
     $id = Auth::user()->id;
-    $provider = Provider::where('user_id', $id)->first();
-}
+
+    if (Auth::user()->provider == 1) {
+        $provider = Provider::where('user_id', $id)->first();
+    }
+
     $srcImg = 'sem-foto.png';
+
     if (Auth::user()->avatar){
         $srcImg = Auth::user()->avatar;
     }
+
+    if (AddressProvider::find($id)){
+        $addressProvider = AddressProvider::where('provider_id', $id)->first();
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -69,11 +78,11 @@ if (Auth::user()->provider == 1) {
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('recipes.index')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-lg-5"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @if (Auth::guest())
-                                <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1"
+                                <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 ml-lg-5"
                                     href="{{route('login')}}">Acesse</a>
                                 <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 mr-n4"
                                     href="{{route('register')}}">Registre-se</a>
@@ -125,6 +134,7 @@ if (Auth::user()->provider == 1) {
                         <div>
                             Nome : {{Auth::user()->name}}<br>
                             E-mail : {{Auth::user()->email}}<br>
+                            {{(Auth::user()->phone)?"Telefone : ". Auth::user()->phone:""}}
                             @if(Auth::user()->provider == 1)
                             CNPJ : {{$provider->cnpj}}<br>
                             Telefone : {{$provider->phone}}<br>
@@ -139,11 +149,21 @@ if (Auth::user()->provider == 1) {
                         <div class="pb-2 text-center">
                             <h5>Endereços</h5>
                         </div>
-                        <div class="pb-3">
-                            ...
+                        <div class="pb-2">
+                            @if (AddressProvider::find($id))
+                                Cep :    {{str_replace('.' ,'',$addressProvider->cep)}}<br>
+                                Município :   {{$addressProvider->county}}<br>
+                                Bairro : {{$addressProvider->neighborhood}}<br>
+                                Rua : {{$addressProvider->street}}<br>
+                                Complemento : {{$addressProvider->complement}}<br>
+                                Número : {{$addressProvider->number}}<br>
+                            @else
+                                Nenhum endereço cadastrado
+                            @endif
+
                         </div>
-                        <div class="mt-3">
-                            <a href="#" class="mt-5">Adicionar</a>
+                        <div class="mt-2">
+                            <a href="#" class="mt-5">Ver endereços</a>
                         </div>
                     </div>
                 </div>

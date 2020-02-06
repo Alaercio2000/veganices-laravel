@@ -16,11 +16,11 @@ class CreateAddressProvidersTable extends Migration
         Schema::create('address_providers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('provider_id');
-            $table->integer('cep');
-            $table->integer('uf');
-            $table->integer('county');
+            $table->string('cep');
+            $table->string('uf');
+            $table->string('county');
             $table->string('neighborhood');
-            $table->integer('street');
+            $table->string('street');
             $table->integer('number');
             $table->string('complement')->nullable();
             $table->string('reference_point')->nullable();
