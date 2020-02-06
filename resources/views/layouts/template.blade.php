@@ -1,12 +1,13 @@
 <?php
 use App\Models\Provider;
 
+if (!Auth::guest()) {
+
 if (Auth::user()->provider == 1) {
     $id = Auth::user()->id;
     $provider = Provider::where('user_id', $id)->first();
 }
     $srcImg = 'sem-foto.png';
-if (!Auth::guest()) {
     if (Auth::user()->avatar){
         $srcImg = Auth::user()->avatar;
     }
@@ -68,7 +69,7 @@ if (!Auth::guest()) {
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('recipes.index')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @if (Auth::guest())
@@ -95,7 +96,7 @@ if (!Auth::guest()) {
                         </span>
                     </button>
                     <a href="{{route('logout')}}"
-                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-md-inline">Sair</a>
+                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-lg-inline">Sair</a>
                     @endif
                 </div>
             </div>

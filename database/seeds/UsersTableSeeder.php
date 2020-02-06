@@ -44,6 +44,14 @@ class UsersTableSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
+            [
+                'name' => 'Teste Provider',
+                'email' => 'provider@veganices.com.br',
+                'password' => Hash::make('1234'),
+                'avatar' => '55217950.jpg',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
         ]);
     }
 }
