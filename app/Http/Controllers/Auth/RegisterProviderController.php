@@ -72,7 +72,7 @@ class RegisterProviderController extends Controller
             'email.max' => 'Máximo de :max caracteres',
             'cnpj.required'=>'Esse campo é obrigatório',
             'cnpj.cnpj'=>'Digite um CNPJ válido',
-            'cnpj.unique:provider'=>'Já existir esse CNPJ',
+            'cnpj.unique'=>'Já existir esse CNPJ',
             'password.required'=>'Esse campo é obrigatório',
             'password.min'=>'A senha deve ter :min ou mais caracteres',
             'password.confirmed'=>'As senhas deve ser iguais',

@@ -6,18 +6,17 @@ if (!Auth::guest()) {
 
     $id = Auth::user()->id;
 
-    if (Auth::user()->provider == 1) {
+    if (Auth::user()->provider) {
         $provider = Provider::where('user_id', $id)->first();
+        $id_provider = intval($provider->id);
+
+        $addressProvider = AddressProvider::where('provider_id', $id_provider)->first();
     }
 
     $srcImg = 'sem-foto.png';
 
     if (Auth::user()->avatar){
         $srcImg = Auth::user()->avatar;
-    }
-
-    if (AddressProvider::find($id)){
-        $addressProvider = AddressProvider::where('provider_id', $id)->first();
     }
 }
 ?>
@@ -150,15 +149,15 @@ if (!Auth::guest()) {
                             <h5>Endereços</h5>
                         </div>
                         <div class="pb-2">
-                            @if (AddressProvider::find($id))
-                                Cep :    {{str_replace('.' ,'',$addressProvider->cep)}}<br>
-                                Município :   {{$addressProvider->county}}<br>
-                                Bairro : {{$addressProvider->neighborhood}}<br>
-                                Rua : {{$addressProvider->street}}<br>
-                                Complemento : {{$addressProvider->complement}}<br>
-                                Número : {{$addressProvider->number}}<br>
+                            @if (!empty($addressProvider))
+                            Cep : {{str_replace('.' ,'',$addressProvider->cep)}}<br>
+                            Município : {{$addressProvider->county}}<br>
+                            Bairro : {{$addressProvider->neighborhood}}<br>
+                            Rua : {{$addressProvider->street}}<br>
+                            Número : {{$addressProvider->number}}<br>
+                            {{($addressProvider->complement)?'Complemento : '.$addressProvider->complement:""}}
                             @else
-                                Nenhum endereço cadastrado
+                            Nenhum endereço cadastrado
                             @endif
 
                         </div>
@@ -183,8 +182,8 @@ if (!Auth::guest()) {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 col-md-2">
-                    <a href="{{route('home.index')}}"><img class="mt-2" src="{{asset('favicon.ico')}}"
-                            height="50" alt="Logo Veganices"></a>
+                    <a href="{{route('home.index')}}"><img class="mt-2" src="{{asset('favicon.ico')}}" height="50"
+                            alt="Logo Veganices"></a>
                 </div>
                 <div class="col-6 d-none d-md-flex">
                     <a class="nav-link text-light font-weight-bold py-4 px-sm-1 px-md-2 px-lg-3 px-xl-4 pl-full-5 pr-full-4"
