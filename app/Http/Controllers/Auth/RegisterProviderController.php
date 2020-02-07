@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Models\AddressProvider;
+use App\Models\Address;
 
 class RegisterProviderController extends Controller
 {
@@ -116,7 +116,7 @@ class RegisterProviderController extends Controller
 
         $data['user_id'] = $user->id;
 
-        $provider = $this->create($data);
+        $this->create($data);
 
         $address = [
             'cep' => $reply_url->cep,
@@ -126,7 +126,7 @@ class RegisterProviderController extends Controller
             'county' => $reply_url->municipio,
             'uf' => $reply_url->uf,
             'complement' => $reply_url->complemento,
-            'provider_id' => $provider->id,
+            'user_id' => $data['user_id'],
         ];
 
         $this->createAddress($address);
@@ -165,7 +165,7 @@ class RegisterProviderController extends Controller
 
     protected function createAddress(array $data)
     {
-        return AddressProvider::create([
+        return Address::create([
             'cep' => $data['cep'],
             'neighborhood' => $data['neighborhood'],
             'street' => $data['street'],
@@ -173,7 +173,7 @@ class RegisterProviderController extends Controller
             'county' => $data['county'],
             'uf' => $data['uf'],
             'complement' => $data['complement'],
-            'provider_id' => $data['provider_id'],
+            'user_id' => $data['user_id'],
         ]);
     }
 }
