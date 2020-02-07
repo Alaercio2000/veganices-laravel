@@ -1,6 +1,6 @@
 <?php
 use App\Models\Provider;
-use App\Models\AddressProvider;
+use App\Models\Address;
 
 if (!Auth::guest()) {
 
@@ -8,9 +8,6 @@ if (!Auth::guest()) {
 
     if (Auth::user()->provider) {
         $provider = Provider::where('user_id', $id)->first();
-        $id_provider = intval($provider->id);
-
-        $addressProvider = AddressProvider::where('provider_id', $id_provider)->first();
     }
 
     $srcImg = 'sem-foto.png';
@@ -18,6 +15,8 @@ if (!Auth::guest()) {
     if (Auth::user()->avatar){
         $srcImg = Auth::user()->avatar;
     }
+
+    $address = Address::where('user_id', $id)->first();
 }
 ?>
 
@@ -149,13 +148,13 @@ if (!Auth::guest()) {
                             <h5>Endereços</h5>
                         </div>
                         <div class="pb-2">
-                            @if (!empty($addressProvider))
-                            Cep : {{str_replace('.' ,'',$addressProvider->cep)}}<br>
-                            Município : {{$addressProvider->county}}<br>
-                            Bairro : {{$addressProvider->neighborhood}}<br>
-                            Rua : {{$addressProvider->street}}<br>
-                            Número : {{$addressProvider->number}}<br>
-                            {{($addressProvider->complement)?'Complemento : '.$addressProvider->complement:""}}
+                            @if (!empty($address))
+                            Cep : {{str_replace('.' ,'',$address->cep)}}<br>
+                            Município : {{$address->county}}<br>
+                            Bairro : {{$address->neighborhood}}<br>
+                            Rua : {{$address->street}}<br>
+                            Número : {{$address->number}}<br>
+                            {{($address->complement)?'Complemento : '.$address->complement:""}}
                             @else
                             Nenhum endereço cadastrado
                             @endif
