@@ -161,7 +161,7 @@ if (!Auth::guest()) {
 
                         </div>
                         <div class="mt-2">
-                            <a href="#" class="mt-5">Ver endereços</a>
+                        <a href="{{route('address.index')}}" class="mt-5">Ver endereços</a>
                         </div>
                     </div>
                 </div>
