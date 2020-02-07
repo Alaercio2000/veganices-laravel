@@ -16,6 +16,7 @@ class CreateAdressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->string('title');
             $table->string('cep');
             $table->string('uf');
             $table->string('county');

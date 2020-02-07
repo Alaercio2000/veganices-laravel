@@ -23,10 +23,10 @@ class AddressController extends Controller
     {
         $id = Auth::user()->id;
 
-        $address =  Address::where('user_id',$id)->first();
+        $addresses =  Address::where('user_id',$id)->get();
 
         return view('address.index',[
-            'address' => $address
+            'addresses' => $addresses
         ]);
     }
 
@@ -37,7 +37,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        //
+        return view('address.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

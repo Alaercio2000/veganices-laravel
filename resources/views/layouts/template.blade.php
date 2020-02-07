@@ -160,9 +160,11 @@ if (!Auth::guest()) {
                             @endif
 
                         </div>
+                        @if(!Auth::user()->provider)
                         <div class="mt-2">
-                        <a href="{{route('address.index')}}" class="mt-5">Ver endereços</a>
+                            <a href="{{route('address.index')}}" class="mt-5">Ver endereços</a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

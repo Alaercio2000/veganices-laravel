@@ -20,7 +20,7 @@ function menuScroll() {
 let height = document.body.offsetHeight;
 let footer = document.getElementById('rodape');
 
-if (height < 1000) {
+if (height < 500) {
     footer.classList.add('fixed-bottom');
 }else{
     footer.classList.remove('fixed-bottom');

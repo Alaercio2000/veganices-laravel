@@ -166,6 +166,7 @@ class RegisterProviderController extends Controller
     protected function createAddress(array $data)
     {
         return Address::create([
+            'title' => 'Endereço Principal',
             'cep' => $data['cep'],
             'neighborhood' => $data['neighborhood'],
             'street' => $data['street'],

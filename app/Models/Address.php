@@ -13,6 +13,6 @@ class Address extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'user_id', 'cep' , 'uf','county' , 'neighborhood' , 'street' , 'number' , 'complement' , 'reference_point'
+        'user_id', 'title' , 'cep' , 'uf','county' , 'neighborhood' , 'street' , 'number' , 'complement' , 'reference_point'
     ];
 }
