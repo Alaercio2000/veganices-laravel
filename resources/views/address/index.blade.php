@@ -53,7 +53,7 @@
             </div>
         @endif
 
-        <div class="text-center mt-5">
+        <div class="text-center my-5">
         <a href="{{route('address.create')}}" class="btn btn-success">Adicionar</a>
     </div>
     </main>
