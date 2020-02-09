@@ -48,7 +48,34 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $this->validate($request , [
+            'title' => 'required|max:40',
+            'cep' => 'required|max:9|min:9',
+            'street' => 'required|max:191',
+            'neighborhood' => 'required|max:191',
+            'number' => 'required|max:6|',
+            'complement' => 'required|max:191|min:10',
+            'county' =>  'required|max:191',
+            'uf' => 'required'
+        ]);
+
+        $data = $request->only([
+            'title',
+            'cep',
+            'street',
+            'neighborhood',
+            'number',
+            'complement',
+            'county',
+            'uf'
+        ]);
+
+
+        echo '<pre>';
+        print_r($data);
+        echo '<pre>';
+        die();
+
     }
 
     /**
