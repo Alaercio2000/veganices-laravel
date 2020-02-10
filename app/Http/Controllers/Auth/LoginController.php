@@ -53,12 +53,10 @@ class LoginController extends Controller
             'email' => 'required|string|email|max:191',
             'password' => 'required|string|min:4|max:191'
         ],[
-            'email.required' => 'Esse campo é obrigatório',
+            'required' => 'Esse campo é obrigatório',
             'email.email' => 'Digite um email válido',
-            'email.max' => 'Máximo de :max caracteres',
-            'password.required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
             'password.min' => 'A senha deve ter :min ou mais caracteres',
-            'email.max' => 'Máximo de :max caracteres',
         ]);
         $data = $request->only([
             'email',

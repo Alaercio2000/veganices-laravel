@@ -23,8 +23,7 @@ class CreateAdressesTable extends Migration
             $table->string('neighborhood');
             $table->string('street');
             $table->integer('number');
-            $table->string('complement')->nullable();
-            $table->string('reference_point')->nullable();
+            $table->string('complement');
             $table->timestamps();
             $table->softDeletes();
 

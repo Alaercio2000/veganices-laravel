@@ -60,15 +60,12 @@ class RegisterUserController extends Controller
             'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|string|min:4|confirmed'
         ],[
-            'name.required'=>'Esse campo é obrigatório',
-            'name.max'=>'Máximo de :max caracteres',
+            'max'=>'O número máximo de caracteres é :max',
             'email.unique:users'=>'Já existir esse email',
-            'email.required'=>'Esse campo é obrigatório',
             'email.email'=>'Digite um email válido',
-            'email.max'=>'Máximo de :max caracteres',
-            'password.required'=>'Esse campo é obrigatório',
+            'required'=>'Esse campo é obrigatório',
             'password.min'=>'A senha deve ter :min ou mais caracteres',
-            'password.confirmed'=>'A senha deve ser iguais'
+            'password.confirmed'=>'As senhas devem ser iguais'
         ]);
         $data = $request->only([
             'name',

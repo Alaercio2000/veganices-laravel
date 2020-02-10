@@ -11,7 +11,7 @@
 @endsection
 
 @section('body')
-onload="selectedUf('{{old('uf')}}')"
+onload="selectedUf('{{$address->uf}}')"
 @endsection
 
 @section('content')
@@ -22,11 +22,12 @@ onload="selectedUf('{{old('uf')}}')"
 
 
         <div class="card border-0">
-            <form action="{{route('address.store')}}" method="post" class="col-md-8 offset-md-2 form-horizontal">
+            <form action="{{route('address.update',['address' => $address->id])}}" method="post" class="col-md-8 offset-md-2 form-horizontal">
                 @csrf
+                @method('PUT')
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="title">Titulo</label>
-                    <input id="title" name="title" type="text" class="form-control col @error('title') is-invalid @enderror" value="{{old('title')}}">
+                    <input id="title" name="title" type="text" class="form-control col @error('title') is-invalid @enderror" value="{{$address->title}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('title')}}
                     </div>
@@ -34,7 +35,7 @@ onload="selectedUf('{{old('uf')}}')"
 
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="cep">Cep</label>
-                    <input id="cep" name="cep" type="text" class="form-control col @error('cep') is-invalid @enderror" value="{{old('cep')}}">
+                    <input id="cep" name="cep" type="text" class="form-control col @error('cep') is-invalid @enderror" value="{{$address->cep}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('cep')}}
                     </div>
@@ -42,7 +43,7 @@ onload="selectedUf('{{old('uf')}}')"
 
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="street">Rua</label>
-                    <input id="street" name="street" type="text" class="form-control col @error('street') is-invalid @enderror" value="{{old('street')}}">
+                    <input id="street" name="street" type="text" class="form-control col @error('street') is-invalid @enderror" value="{{$address->street}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('street')}}
                     </div>
@@ -51,7 +52,7 @@ onload="selectedUf('{{old('uf')}}')"
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="neighborhood">Bairro</label>
                     <input id="neighborhood" name="neighborhood" type="text" class="form-control col @error('neighborhood') is-invalid @enderror"
-                        value="{{old('neighborhood')}}">
+                        value="{{$address->neighborhood}}">
                         <div class="invalid-feedback offset-lg-3 offset-4">
                             {{$errors->first('neighborhood')}}
                         </div>
@@ -59,7 +60,7 @@ onload="selectedUf('{{old('uf')}}')"
 
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="">Número</label>
-                    <input id="number" name="number" type="text" class="form-control col @error('number') is-invalid @enderror" value="{{old('number')}}">
+                    <input id="number" name="number" type="text" class="form-control col @error('number') is-invalid @enderror" value="{{$address->number}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('number')}}
                     </div>
@@ -68,7 +69,7 @@ onload="selectedUf('{{old('uf')}}')"
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="complement">Complemento</label>
                     <input id="complement" name="complement" type="text" class="form-control col @error('complement') is-invalid @enderror"
-                        value="{{old('complement')}}">
+                        value="{{$address->complement}}">
                         <div class="invalid-feedback offset-lg-3 offset-4">
                             {{$errors->first('complement')}}
                         </div>
@@ -76,7 +77,7 @@ onload="selectedUf('{{old('uf')}}')"
 
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="">Cidade</label>
-                    <input id="county" name="county" type="text" class="form-control col @error('county') is-invalid @enderror" value="{{old('county')}}">
+                    <input id="county" name="county" type="text" class="form-control col @error('county') is-invalid @enderror" value="{{$address->county}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('county')}}
                     </div>

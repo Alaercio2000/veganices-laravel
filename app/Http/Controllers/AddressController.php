@@ -23,9 +23,9 @@ class AddressController extends Controller
     {
         $id = Auth::user()->id;
 
-        $addresses =  Address::where('user_id',$id)->get();
+        $addresses =  Address::where('user_id', $id)->get();
 
-        return view('address.index',[
+        return view('address.index', [
             'addresses' => $addresses
         ]);
     }
@@ -48,7 +48,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request , [
+        $this->validate($request, [
             'title' => 'required|max:40',
             'cep' => 'required|max:9|min:9',
             'street' => 'required|max:191',
@@ -57,6 +57,10 @@ class AddressController extends Controller
             'complement' => 'required|max:191|min:10',
             'county' =>  'required|max:191',
             'uf' => 'required'
+        ], [
+            'required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
+            'min' => 'O número mínimo de caracteres é :min',
         ]);
 
         $data = $request->only([
@@ -70,12 +74,11 @@ class AddressController extends Controller
             'uf'
         ]);
 
+        $data['user_id'] = Auth::user()->id;
 
-        echo '<pre>';
-        print_r($data);
-        echo '<pre>';
-        die();
+        $this->createAddress($data);
 
+        return redirect()->route('address.index');
     }
 
     /**
@@ -97,7 +100,11 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $address = Address::find($id);
+
+        return view('address.edit', [
+            'address' => $address
+        ]);
     }
 
     /**
@@ -109,7 +116,35 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:40',
+            'cep' => 'required|max:9|min:9',
+            'street' => 'required|max:191',
+            'neighborhood' => 'required|max:191',
+            'number' => 'required|max:6|',
+            'complement' => 'required|max:191|min:10',
+            'county' =>  'required|max:191',
+            'uf' => 'required'
+        ], [
+            'required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
+            'min' => 'O número mínimo de caracteres é :min',
+        ]);
+
+        $data = $request->only([
+            'title',
+            'cep',
+            'street',
+            'neighborhood',
+            'number',
+            'complement',
+            'county',
+            'uf'
+        ]);
+
+        $this->updateAddress($data , $id);
+
+        return redirect()->route('address.index');
     }
 
     /**
@@ -120,6 +155,40 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $address = Address::find($id);
+        $address->deleted_at = NOW();
+        $address->save();
+
+        return redirect()->route('address.index');
+    }
+
+    protected function createAddress(array $data)
+    {
+        return Address::create([
+            'title' => $data['title'],
+            'cep' => $data['cep'],
+            'street' => $data['street'],
+            'neighborhood' => $data['neighborhood'],
+            'number' => $data['number'],
+            'complement' => $data['complement'],
+            'county' => $data['county'],
+            'uf' => $data['uf'],
+            'user_id' => $data['user_id']
+        ]);
+    }
+
+    protected function updateAddress(array $data, int $id)
+    {
+        return Address::where('id', $id)
+            ->update([
+                'title' => $data['title'],
+                'cep' => $data['cep'],
+                'street' => $data['street'],
+                'neighborhood' => $data['neighborhood'],
+                'number' => $data['number'],
+                'complement' => $data['complement'],
+                'county' => $data['county'],
+                'uf' => $data['uf'],
+            ]);
     }
 }

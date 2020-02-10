@@ -13,16 +13,21 @@
         <h1 class="text-center py-2">Endereços</h1>
         @if(!empty($addresses->all()))
         @foreach($addresses as $address)
-        <div class="col-12">
+        <div class="col-12 mt-4">
             <div class="card">
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <h3 class="pl-3">{{$address->title}}</h3>
-                        <a href="#" class="iconAction btn btn-danger" title="Deletar">
-                            <i class="material-icons">
-                                clear
-                            </i>
-                        </a>
+                            <form action="{{route('address.destroy',['address' => $address->id])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="iconAction btn btn-danger" title="Deletar">
+                                    <i class="material-icons">
+                                        clear
+                                    </i>
+                                </button>
+                            </form>
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -36,7 +41,7 @@
                         Complemento : {{$address->complement}}<br>
                    </div>
                    <div>
-                    <a href="#" class="iconAction btn btn-warning text-light" title="Editar">
+                   <a href="{{route('address.edit',['address' => $address->id])}}" class="iconAction btn btn-warning text-light" title="Editar">
                         <i class="material-icons">
                             create
                         </i>

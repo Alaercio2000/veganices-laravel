@@ -66,20 +66,16 @@ class RegisterProviderController extends Controller
             'date_opening' =>'required|max:10|min:10'
         ],
         [
-            'email.required' => 'Esse campo é obrigatório',
-            'email.unique' => 'Esse email já existir',
+            'email.unique' => 'Esse email já foi cadastrado',
             'email.email' => 'Digite um email válido',
             'email.max' => 'Máximo de :max caracteres',
-            'cnpj.required'=>'Esse campo é obrigatório',
             'cnpj.cnpj'=>'Digite um CNPJ válido',
-            'cnpj.unique'=>'Já existir esse CNPJ',
-            'password.required'=>'Esse campo é obrigatório',
+            'cnpj.unique'=>'Esse CNPJ já foi cadastrado',
             'password.min'=>'A senha deve ter :min ou mais caracteres',
             'password.confirmed'=>'As senhas deve ser iguais',
-            'phone.required'=>'Esse campo é obrigatório',
             'phone.max'=>'Digite um telefone válido',
             'phone.min'=>'Digite um telefone válido',
-            'date_opening.required'=>'Esse campo é obrigatório',
+            'required'=>'Esse campo é obrigatório',
             'date_opening.max'=>'Digite uma data válida',
             'date_opening.min'=>'Digite uma data válida'
         ]);
