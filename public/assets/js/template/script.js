@@ -17,12 +17,11 @@ function menuScroll() {
   }
 }
 
-let height = document.body.offsetHeight;
-let footer = document.getElementById('rodape');
+$(document).ready(function(){
 
-//if (height < 1000) {
-//    footer.classList.add('fixed-bottom');
-//}else{
-//    footer.classList.remove('fixed-bottom');
-//}
+    if ($('body').height() < $(window).height()) {
+        $('#rodape').addClass('fixed-bottom');
+    }
+
+});
 
