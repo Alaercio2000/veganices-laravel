@@ -18,10 +18,10 @@
                 <div class="card-header">
                     <div class="row justify-content-between">
                         <h3 class="pl-3">{{$address->title}}</h3>
-                        <form action="{{route('address.destroy',['address' => $address->id])}}" method="post">
+                        <form action="{{route('address.destroy',['address' => $address->id])}}" method="post" onSubmit="return confirm('Você tem certeza que deseja excluir esse endereço ?')">
                             @csrf
                             @method('DELETE')
-                            <button class="iconAction btn btn-danger" title="Deletar">
+                            <button type="submit" class="iconAction btn btn-danger" title="Deletar">
                                 <i class="material-icons">
                                     clear
                                 </i>
