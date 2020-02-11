@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
 Route::get('/recipes/item', 'RecipesController@item')->name('recipes.show');
 
-Route::get('/community', 'CommunityController@index')->name('community.index');
+Route::get('/community', 'CommunityController@index')->name('community.index')->middleware('auth');
 
 
 Route::prefix('register')->group(function () {
@@ -37,4 +37,7 @@ Route::post('/login', 'Auth\LoginController@authenticade');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('/address','AddressController');
+Route::resource('/address','AddressController')->middleware('auth');
+
+Route::get('/profile','ProfileController@index')->name('profile')->middleware('auth');
+Route::put('/profile','ProfileController@uploadUser');
