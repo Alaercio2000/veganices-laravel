@@ -30,8 +30,24 @@ $('#imageProfile , #iconCamera').click(function(event){
 $('body').click(function (event){
     if (event.target.id != 'imageProfile' &&
         event.target.id != 'iconCamera' &&
-        event.target.id != 'optionsClickImage' &&
-        event.target.class != 'spanOptions') {
+        event.target.id != 'optionsClickImage'){
         clickOutImage()
     };
 });
+
+// function readURL(input) {
+
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
+
+//         reader.onload = function (e) {
+//             $('#blah').attr('src', e.target.result);
+//         }
+
+//         reader.readAsDataURL(input.files[0]);
+//     }
+// }
+
+// $("#imgInp").change(function(){
+//     readURL(this);
+// });

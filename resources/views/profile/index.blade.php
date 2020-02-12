@@ -1,6 +1,6 @@
 <?php
 $srcImg = '/media/img/sem-foto.png';
-
+$user = Auth::user();
 if (Auth::user()->avatar){
     $srcImg = '/media/img/'.Auth::user()->avatar;
 }
@@ -31,11 +31,21 @@ if (Auth::user()->avatar){
             </i>
             <div id="optionsClickImage">
                 <span class="spanOptions">Ver foto</span>
-                <span class="spanOptions">Carregar foto</span>
-                <span class="spanOptions">Remover foto</span>
+                <span class="spanOptions"><label for="uploadImage">Carregar foto</label></span>
+                <span class="spanOptions"><label for="deleteImage">Remover foto</label></span>
             </div>
         </div>
     </div>
 </div>
+
+<form method="post" enctype="multipart/form-data" class="d-none">
+    <input type="file" name="uploadImage" id="uploadImage">
+</form>
+
+<form action="{{route('del.image',['id' => $user->id])}}" method="post" class="d-none">
+    @csrf
+    @method('DELETE')
+<button id="deleteImage"></button>
+</form>
 
 @endsection
