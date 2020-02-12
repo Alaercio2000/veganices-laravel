@@ -45,9 +45,12 @@ class RecipesController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show( $id)
     {
-        echo 'to aqui';
+        // dd ($recipe);
+        $recipe = Recipe::find($id);
+        return view('recipes.item', ['recipe'=>$recipe]);
+        
     }
 
     /**
