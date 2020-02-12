@@ -92,8 +92,11 @@
                 </select>
               </div>
             </form>
-        </aside>
+        </aside>  
         <main class="col-12 col-sm-9">
+          <div class="text-right my-3">
+          <a href="{{route('recipes.create')}}" class="btn btn-success">Adicionar</a>
+        </div>
           @foreach($recipes as $recipe)
             <div class="row border-top ml-3">
               <div class="col-12 col-md-5">

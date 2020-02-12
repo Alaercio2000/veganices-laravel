@@ -16,14 +16,10 @@ class Recipe extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'id',
         'provider_id',
         'name',
         'image',
         'ingredients',
-        'preparation_method',
-        'created_at',
-        'updated_at',
-        'deleted_at'
+        'preparation_method'
     ];
 }

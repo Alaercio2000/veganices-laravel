@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipesController extends Controller
 {
@@ -25,7 +26,7 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        //
+        return view('recipes.create');
     }
 
     /**
@@ -36,7 +37,21 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'
+        ]);
+
+        $data = $request->only([
+            'name',
+            'ingredients',
+            'preparation_method'
+        ]);
+
+
+
+        $data['provider_id'] = Auth::user()->id;
+
+        $this->createRecipe($data);
     }
 
     /**
@@ -49,7 +64,9 @@ class RecipesController extends Controller
     {
         // dd ($recipe);
         $recipe = Recipe::find($id);
-        return view('recipes.item', ['recipe'=>$recipe]);
+        return view('recipes.show', [
+            'recipe' => $recipe
+        ]);
         
     }
 
@@ -71,9 +88,10 @@ class RecipesController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(Request $request, $id)
     {
-        //
+        $recipe = Recipe::find($id);
+        $recipe->name = 
     }
 
     /**
@@ -82,8 +100,19 @@ class RecipesController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recipe $recipe)
+    public function destroy($id)
     {
         //
+    }
+
+    protected function createRecipe(array $data)
+    {
+        $recipe = new Recipe;
+        $recipe->provider_id = $data['provider_id'];
+        $recipe->name = $data['name'];
+
+        
+        $recipe->save();
+        return true;
     }
 }
