@@ -141,7 +141,7 @@ if (!Auth::guest()) {
                             @endif
                         </div>
                         <div class="mt-3">
-                            <a href="#" class="mt-5">Editar informações</a>
+                        <a href="{{route('profile')}}" class="mt-5">Editar informações</a>
                         </div>
                     </div>
                     <div>

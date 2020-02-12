@@ -17,10 +17,9 @@ Route::fallback(function () {
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/recipes', 'RecipesController@index')->name('recipes.index');
-Route::get('/recipes/item', 'RecipesController@item')->name('recipes.show');
+Route::resource('/recipes', 'RecipesController');
 
-Route::get('/community', 'CommunityController@index')->name('community.index');
+Route::get('/community', 'CommunityController@index')->name('community.index')->middleware('auth');
 
 
 Route::prefix('register')->group(function () {
@@ -37,4 +36,12 @@ Route::post('/login', 'Auth\LoginController@authenticade');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('/address','AddressController');
+Route::resource('/address','AddressController')->middleware('auth');
+
+
+Route::prefix('provider')->group(function (){
+
+    Route::get('/','ProfileController@index')->name('profile');
+    Route::put('/','ProfileController@uploadUser');
+    Route::delete('/delImage/{id}','ProfileController@deleteImage')->name('del.image');
+});
