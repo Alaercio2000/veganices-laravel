@@ -10,10 +10,10 @@ if (!Auth::guest()) {
         $provider = Provider::where('user_id', $id)->first();
     }
 
-    $srcImg = 'sem-foto.png';
+    $srcImg = 'media/img/sem-foto.png';
 
     if (Auth::user()->avatar){
-        $srcImg = Auth::user()->avatar;
+        $srcImg = 'app/avatar/'.Auth::user()->avatar;
     }
 
     $address = Address::where('user_id', $id)->first();
@@ -94,7 +94,7 @@ if (!Auth::guest()) {
                     @if(!Auth::guest())
                     <button class="btn btn-link pt-3 pb-4 pb-md-3 px-3" id="button-perfil" data-target="#modal-user"
                         data-toggle="modal">
-                        <img id="img-perfil" src="{{asset('media/img/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
+                        <img id="img-perfil" src="{{asset($srcImg)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
                             <?php
                                 $nome = Auth::user()->name;
@@ -120,8 +120,8 @@ if (!Auth::guest()) {
                         style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
                         class="widget-user-header bg-aqua-active w-100">
                         <div id="div-user" class="d-flex justify-content-center mt-4">
-                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('media/img/'.$srcImg)}}"
-                                width="128" alt="Foto do usuário">
+                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset($srcImg)}}"
+                                alt="Foto do usuário">
                         </div>
                     </div>
                 </div>

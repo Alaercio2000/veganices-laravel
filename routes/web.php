@@ -42,6 +42,6 @@ Route::resource('/address','AddressController')->middleware('auth');
 Route::prefix('provider')->group(function (){
 
     Route::get('/','ProfileController@index')->name('profile');
-    Route::put('/','ProfileController@uploadUser');
+    Route::put('/','ProfileController@uploadImage');
     Route::delete('/delImage/{id}','ProfileController@deleteImage')->name('del.image');
 });

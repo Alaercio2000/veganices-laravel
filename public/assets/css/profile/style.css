@@ -19,6 +19,8 @@
 #imageProfile{
     border-radius: 50%;
     width: 200px;
+    height: 200px;
+    object-fit: cover;
     transition: 0.5s;
     cursor: pointer;
 }
@@ -30,7 +32,9 @@
     opacity: 0;
     cursor: pointer;
 }
-
+#uploadImage{
+    display: none;
+}
 /* Opções ao clicar na imagem */
 
 #optionsClickImage{
@@ -48,7 +52,7 @@
     display: none;
 }
 
-.spanOptions{
+.options{
     cursor: pointer;
     display: block;
     width: 100%;
@@ -57,11 +61,12 @@
 
 }
 
-#optionsClickImage *:hover{
+.options:hover{
     background-color: #ddd;
 }
 
-#uploadImage{
-    display: none;
-}
+/* Forms */
 
+#testePreview{
+    position: absolute;
+}

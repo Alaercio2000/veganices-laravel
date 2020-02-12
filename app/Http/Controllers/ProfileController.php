@@ -20,12 +20,18 @@ class ProfileController extends Controller
     public function uploadImage(Request $request){
 
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,jpg,png'
+            'uploadImage' => 'required|image|mimes:jpeg,jpg,svg'
         ]);
 
-        $imageName = Auth::user()->id.'.'.$request->file->extension();
+        $imageName = Auth::user()->id.'.jpg';
 
-        $request->file->move(public_path('app/avatar'),$imageName);
+        $request->uploadImage->move(public_path('app/avatar'),$imageName);
+
+        $user = User::find(Auth::user()->id);
+        $user->avatar = $imageName;
+        $user->save();
+
+        return redirect()->route('profile');
     }
 
     public function deleteImage($id){

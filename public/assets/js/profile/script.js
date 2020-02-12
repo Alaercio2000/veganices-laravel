@@ -1,10 +1,12 @@
 function hoverImageProfile() {
     $('#iconCamera').css('opacity', '1');
-    $('#imageProfile').css('filter', 'grayscale(50%)');
+    $('#textImageHover').css('opacity','1');
+    $('#imageProfile').css('filter', 'grayscale(80%)');
 }
 
 function outImageProfie() {
     $('#iconCamera').css('opacity', '0');
+    $('#textImageHover').css('opacity','0');
     $('#imageProfile').css('filter', 'grayscale(0)');
 }
 
@@ -35,19 +37,20 @@ $('body').click(function (event){
     };
 });
 
-// function readURL(input) {
 
-//     if (input.files && input.files[0]) {
-//         var reader = new FileReader();
+function previewImage(input) {
 
-//         reader.onload = function (e) {
-//             $('#blah').attr('src', e.target.result);
-//         }
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
+        reader.onload = function (e) {
+            $('#testePreview').attr('src', e.target.result);
+        }
 
-// $("#imgInp").change(function(){
-//     readURL(this);
-// });
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#uploadImage").change(function(){
+    previewImage(this);
+});
