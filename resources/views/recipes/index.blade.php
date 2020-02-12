@@ -94,81 +94,32 @@
             </form>
         </aside>
         <main class="col-12 col-sm-9">
-          <div class="row ml-3">
-            <div class="col-12 col-md-5">
-              <div class="card-body d-flex flex-column">
-                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
-              </div>
-            </div>
-            <div class="col-12 col-md-7">
-              <div class="row">
-                <div class="col-9 card-body d-flex flex-column pl-0">
-                  <h5 class="card-title mt-2">Restaurante 1</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6>
-                </div>
-                <div class="col-3 card-body d-flex flex-column">
-                  <a href="#" class="card-link align-self-center d-flex flex-column">
-                    <i class="material-icons align-self-center">favorite</i>
-                  </a>
-                </div>
-                <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.</p>
-                <div class="col-12 d-flex justify-content-end my-3">
-                    <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
+          @foreach($recipes as $recipe)
+            <div class="row border-top ml-3">
+              <div class="col-12 col-md-5">
+                <div class="card-body d-flex flex-column">
+                  <img class="restaurante" src="('assets/img/recipes/{{$recipe['image']}}')" />
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row border-top ml-3">
-            <div class="col-12 col-md-5">
-              <div class="card-body d-flex flex-column">
-                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
-              </div>
-            </div>
-            <div class="col-12 col-md-7">
-              <div class="row">
-                <div class="col-9 card-body d-flex flex-column pl-0">
-                  <h5 class="card-title mt-2">Restaurante 2</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6>
-                </div>
-                <div class="col-3 card-body d-flex flex-column">
-                  <a href="#" class="card-link align-self-center d-flex flex-column">
-                    <i class="material-icons align-self-center">favorite</i>
-                  </a>
-                </div>
-                <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod. </p>
-                <div class="col-12 d-flex justify-content-end my-3">
-                  <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
+              <div class="col-12 col-md-7">
+                <div class="row">
+                  <div class="col-9 card-body d-flex flex-column pl-0">
+                    <h5 class="card-title mt-2">{{$recipe['name']}}</h5>
+                    {{-- <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6> --}}
+                  </div>
+                  <div class="col-3 card-body d-flex flex-column">
+                    <a href="#" class="card-link align-self-center d-flex flex-column">
+                      <i class="material-icons align-self-center">favorite</i>
+                    </a>
+                  </div>
+                <p class="card-text align-self-center m-0">{{$recipe['preparation_method']}}</p>
+                  <div class="col-12 d-flex justify-content-end my-3">
+                    <a class="text-light btn btn-primary" href="/recipes/{{$recipe['id']}}">Ver receita</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row border-top ml-3">
-            <div class="col-12 col-md-5">
-              <div class="card-body d-flex flex-column">
-                <img class="restaurante" src="{{asset('assets/img/recipes/restaurante_2.jpg')}}" />
-              </div>
-            </div>
-            <div class="col-12 col-md-7">
-              <div class="row">
-                <div class="col-9 card-body d-flex flex-column pl-0">
-                  <h5 class="card-title mt-2">Restaurante 3</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6>
-                </div>
-                <div class="col-3 card-body d-flex flex-column">
-                  <a href="#" class="card-link align-self-center d-flex flex-column">
-                    <i class="material-icons align-self-center">favorite</i>
-                  </a>
-                </div>
-                <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod. </p>
-                <div class="col-12 d-flex justify-content-end my-3">
-                    <a class="text-light btn btn-primary" href="{{route('recipes.show')}}">Entrar em contato</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </main>
       </div>
     </div>
