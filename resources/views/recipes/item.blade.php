@@ -44,7 +44,7 @@
             <div id="carouselExampleControls" class="carousel slide col-12 col-md-9" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{{asset('assets/img/recipes/item/restaurante_1.png')}}" class="d-block w-100">
+                  <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
                   <img src="{{asset('assets/img/recipes/item/restaurante_2.jpg')}}" class="d-block w-100">

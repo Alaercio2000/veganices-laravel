@@ -98,7 +98,7 @@
             <div class="row border-top ml-3">
               <div class="col-12 col-md-5">
                 <div class="card-body d-flex flex-column">
-                  <img class="restaurante" src="('assets/img/recipes/{{$recipe['image']}}')" />
+                  <img class="restaurante" src="{{asset('app/imageRecipes/'.$recipe['image'])}}" />
                 </div>
               </div>
               <div class="col-12 col-md-7">
@@ -112,9 +112,9 @@
                       <i class="material-icons align-self-center">favorite</i>
                     </a>
                   </div>
-                <p class="card-text align-self-center m-0">{{$recipe['preparation_method']}}</p>
+                <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
                   <div class="col-12 d-flex justify-content-end my-3">
-                    <a class="text-light btn btn-primary" href="/recipes/{{$recipe['id']}}">Ver receita</a>
+                  <a class="text-light btn btn-primary" href="{{route('recipes.show',['recipe'=> $recipe->id ])}}">Ver receita</a>
                   </div>
                 </div>
               </div>
