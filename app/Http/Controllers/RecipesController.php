@@ -90,9 +90,13 @@ class RecipesController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recipe $recipe)
+    public function edit($id)
     {
-        //
+        $recipe = Recipe::find($id);
+
+        return view('recipes.edit', [
+            'recipe' => $recipe
+        ]);
     }
 
     /**
@@ -104,7 +108,33 @@ class RecipesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $recipe = Recipe::find($id);
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'image' => 'required|image|mimes:jpeg,jpg,svg',
+            'ingredients' => 'required|string',
+            'preparation_method' => 'required|string'
+        ], [
+            'required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
+    
+        ]);
+
+        $data = $request->only([
+            'name',
+            'ingredients',
+            'preparation_method'
+        ]);
+
+        $imageName = $request->image.'.jpg';
+
+        $request->image->move(public_path('app/imageRecipes/'),$imageName);
+
+        $data['image'] = $imageName;
+
+
+        $this->updateRecipe($data, $id);
+
+        return redirect()->route('recipes.show');
         
     }
 

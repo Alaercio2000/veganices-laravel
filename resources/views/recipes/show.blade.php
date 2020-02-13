@@ -11,7 +11,7 @@
   <div class="space">
   </div>
   <div class="banner">
-    <img class="bannerImg" src="{{asset('assets/img/recipes/item/banner.jpg')}}" />
+    <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
     <div class="container">
       <div class="row">
         <div class="input-group mb-3 searchInput">
@@ -29,9 +29,12 @@
       <div class="row mt-5">
         <main class="col-12">
           <div class="row">
-            <div class="col-6 card-body d-flex flex-column pl-0">
-              <h5 class="card-title mt-2">Restaurante 1</h5>
+            <div class="col-5 card-body d-flex flex-column pl-0">
+              <h5 class="card-title mt-2">{{$recipe->name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Número de estrelas</h6>
+            </div>
+            <div class="col-2 col-md-1 card-body d-flex flex-column align-self-center">
+            <a href="{{route('recipes.edit',['recipe'=> $recipe->id ])}}">Editar</a>
             </div>
             <div class="col-4 col-md-2 card-body d-flex flex-column align-self-center">
               <button type="button" class="btn btn-primary">Avaliar</button>
@@ -41,26 +44,8 @@
                 <i class="material-icons align-self-center">favorite</i>
               </a>
             </div>
-            <div id="carouselExampleControls" class="carousel slide col-12 col-md-9" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                  <img src="{{asset('assets/img/recipes/item/restaurante_2.jpg')}}" class="d-block w-100">
-                </div>
-                <div class="carousel-item">
-                  <img src="{{asset('assets/img/recipes/item/restaurante_3.png')}}" class="d-block w-100">
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+            <div id="recipeImage" class="col-12 col-md-9" data-ride="carousel">
+                  <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">   
             </div>
             <aside class="col-12 col-md-3">
               <h4>Entrar em contato </h4>
@@ -77,36 +62,13 @@
             </aside>
             <div class="row">
               <div class="col-12 col-md-8 my-5">
-                <h4>Informações sobre o restaurante</h4>
-                <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                  finibus arcu quis luctus ultricies. Phasellus bibendum rhoncus euismod.</p>
+                <h4>Informações sobre a receita</h4>
+                <h6 class="mt-3">Ingredientes</h6>
+                <p class="card-text align-self-center m-0">{{$recipe->ingredients}}</p>
+                <h6 class="mt-3">Modo de preparo</h6>
+                <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
               </div>
             </div>
-            <div class="row">
-                <div class="col-6 col-md-2">
-                    <h4>Avaliações</h4>
-                  <div class="card-body d-flex flex-column">
-                    <img class="restaurante" src="{{asset('assets/img/recipes/item/perfil.jpg')}}" />
-                  </div>
-                </div>
-                <div class="col-6 col-md-6">
-                  <div class="row">
-                    <div class="col-9 card-body d-flex flex-column pl-0">
-                      <h5 class="card-title mt-2">Nome Usuário</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Data da avaliação</h6>
-                    </div>
-                    <p class="card-text align-self-center m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sapien eu lacus consectetur sodales. Nullam
-                      finibus arcu quis luctus ultricies. </p>
-                  </div>
-                </div>
-              </div>
               </div>
           </div>
         </main>
