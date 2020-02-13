@@ -1,8 +1,8 @@
 <?php
-$srcImg = '/media/img/sem-foto.png';
+$srcImg = 'default.jpg';
 $user = Auth::user();
 if (Auth::user()->avatar){
-    $srcImg = '/app/avatar/'.Auth::user()->avatar;
+    $srcImg = Auth::user()->avatar;
 }
 ?>
 
@@ -25,7 +25,7 @@ if (Auth::user()->avatar){
         style="background-image:url({{asset('assets/img/profile/fundo.png')}})"></div>
     <div id="corpo" class="col">
         <div class="div-img d-flex justify-content-center align-items-center">
-            <img id="imageProfile" src="{{$srcImg}}" alt="Imagem de Perfil">
+            <img id="imageProfile" src="{{asset('app/avatar/'.$srcImg)}}" alt="Imagem de Perfil">
             <i id="iconCamera" class="material-icons text-light">
                 camera_alt
             </i>

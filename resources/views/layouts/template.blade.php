@@ -4,16 +4,18 @@ use App\Models\Address;
 
 if (!Auth::guest()) {
 
-    $id = Auth::user()->id;
+    $user = Auth::user();
 
-    if (Auth::user()->provider) {
+    $id = $user->id;
+
+    if ($user->provider) {
         $provider = Provider::where('user_id', $id)->first();
     }
 
-    $srcImg = 'media/img/sem-foto.png';
+    $srcImg = 'default.jpg';
 
-    if (Auth::user()->avatar){
-        $srcImg = 'app/avatar/'.Auth::user()->avatar;
+    if ($user->avatar){
+        $srcImg = $user->avatar;
     }
 
     $address = Address::where('user_id', $id)->first();
@@ -55,7 +57,7 @@ if (!Auth::guest()) {
             <div class="d-flex">
                 <div class="{{(Auth::guest())?'col-7 col-sm-7':'col-6 col-sm-5'}} col-md-2 order-2 order-md-1">
                     <a href="{{route('home.index')}}">
-                        <img class="p-2 p-pq-1" height="60" src="{{asset('favicon.ico')}}" alt="Logo">
+                        <img height="60" src="{{asset('favicon.ico')}}" alt="Logo">
                     </a>
                 </div>
                 <div class="col order-1 order-md-2">
@@ -94,10 +96,10 @@ if (!Auth::guest()) {
                     @if(!Auth::guest())
                     <button class="btn btn-link pt-3 pb-4 pb-md-3 px-3" id="button-perfil" data-target="#modal-user"
                         data-toggle="modal">
-                        <img id="img-perfil" src="{{asset($srcImg)}}" class="mr-md-2" alt="imagem perfil">
+                        <img id="img-perfil" src="{{asset('app/avatar/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
                             <?php
-                                $nome = Auth::user()->name;
+                                $nome = $user->name;
                                 $partes = explode(" " , $nome);
                                 echo $partes[0];
                             ?>
@@ -120,7 +122,7 @@ if (!Auth::guest()) {
                         style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
                         class="widget-user-header bg-aqua-active w-100">
                         <div id="div-user" class="d-flex justify-content-center mt-4">
-                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset($srcImg)}}"
+                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('app/avatar/'.$srcImg)}}"
                                 alt="Foto do usuário">
                         </div>
                     </div>
@@ -131,10 +133,10 @@ if (!Auth::guest()) {
                             <h5>Informações do perfil</h5>
                         </div>
                         <div>
-                            Nome : {{Auth::user()->name}}<br>
-                            E-mail : {{Auth::user()->email}}<br>
-                            {{(Auth::user()->phone)?"Telefone : ". Auth::user()->phone:""}}
-                            @if(Auth::user()->provider == 1)
+                            Nome : {{$user->name}}<br>
+                            E-mail : {{$user->email}}<br>
+                            {{($user->phone)?"Telefone : ". $user->phone:""}}
+                            @if($user->provider == 1)
                             CNPJ : {{$provider->cnpj}}<br>
                             Telefone : {{$provider->phone}}<br>
                             Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}
@@ -161,7 +163,7 @@ if (!Auth::guest()) {
                             @endif
 
                         </div>
-                        @if(!Auth::user()->provider)
+                        @if(!$user->provider)
                         <div class="mt-2">
                             <a href="{{route('address.index')}}" class="mt-5">Ver endereços</a>
                         </div>
