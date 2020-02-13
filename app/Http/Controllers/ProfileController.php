@@ -25,7 +25,7 @@ class ProfileController extends Controller
 
         $imageName = Auth::user()->id.'.jpg';
 
-        $request->uploadImage->move(public_path('app/avatar'),$imageName);
+        $request->uploadImage->move(public_path('app/avatar/'),$imageName);
 
         $user = User::find(Auth::user()->id);
         $user->avatar = $imageName;
