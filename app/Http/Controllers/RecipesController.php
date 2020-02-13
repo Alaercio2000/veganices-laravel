@@ -38,7 +38,14 @@ class RecipesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'
+            'name' => 'required|string|max:191',
+            'image' => 'required|image|mimes:jpeg,jpg,svg',
+            'ingredients' => 'required|string',
+            'preparation_method' => 'required|string'
+        ], [
+            'required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
+    
         ]);
 
         $data = $request->only([
@@ -47,11 +54,18 @@ class RecipesController extends Controller
             'preparation_method'
         ]);
 
+        $imageName = time().'.jpg';
+
+        $request->image->move(public_path('app/imageRecipes/'),$imageName);
+
+        $data['image'] = $imageName;
 
 
         $data['provider_id'] = Auth::user()->id;
 
         $this->createRecipe($data);
+
+        return redirect()->route('recipes.index');
     }
 
     /**
@@ -91,7 +105,7 @@ class RecipesController extends Controller
     public function update(Request $request, $id)
     {
         $recipe = Recipe::find($id);
-        $recipe->name = 
+        
     }
 
     /**
@@ -107,12 +121,14 @@ class RecipesController extends Controller
 
     protected function createRecipe(array $data)
     {
-        $recipe = new Recipe;
-        $recipe->provider_id = $data['provider_id'];
-        $recipe->name = $data['name'];
+        return Recipe::create([
+            
+        'provider_id' => $data['provider_id'],
+        'name' => $data['name'],
+        'image' => $data['image'],
+        'ingredients' => $data['ingredients'],
+        'preparation_method' => $data['preparation_method'],
 
-        
-        $recipe->save();
-        return true;
+        ]);
     }
 }
