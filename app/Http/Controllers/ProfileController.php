@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function uploadImage(Request $request){
 
         $request->validate([
-            'uploadImage' => 'required|image|mimes:jpeg,jpg,svg'
+            'uploadImage' => 'required|image|mimes:jpeg,jpg,svg,png'
         ]);
 
         $imageName = Auth::user()->id.'.jpg';

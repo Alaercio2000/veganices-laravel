@@ -30,27 +30,46 @@ if (Auth::user()->avatar){
                 camera_alt
             </i>
             <div id="optionsClickImage">
-                <span class="options">Ver foto</span>
+                @if($user->avatar != null)<span id="viewImage" class="options">Ver foto</span>@endif
                 <label class="options" for="uploadImage">Carregar foto</label>
-                <label class="options" for="deleteImage">Remover foto</label>
+                @if($user->avatar != null)<label class="options" for="deleteImage">Remover foto</label>@endif
             </div>
         </div>
 
-            <img id="testePreview" src="">
 
-        <form method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <input type="file" name="uploadImage" id="uploadImage">
-            <button id="" type="submit" class="d-none">Confirmar</button>
-        </form>
     </div>
 </div>
 
-<form action="{{route('del.image',['id' => $user->id])}}" method="post" class="d-none">
+<form action="{{route('del.image',['id' => $user->id])}}" method="post" class="d-none"
+    onsubmit="return confirm('Apagar sua foto de perfil?')">
     @csrf
     @method('DELETE')
-<button id="deleteImage"></button>
+    <button id="deleteImage"></button>
 </form>
 
+<form method="post" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+    <input type="file" name="uploadImage" id="uploadImage">
+    <button id="buttonUpload" type="submit" class="d-none">Confirmar</button>
+</form>
+
+<div id="divViewImageProfile">
+    <i id="iconClose" class="material-icons">
+        close
+    </i>
+    <img id="viewImageProfile" src="{{asset('app/avatar/'.Auth::user()->avatar)}}">
+</div>
+
+<div id="divCardUpload">
+    <div id="cardUploadImage" class="card">
+        <div class="card-body">
+            <img id="imageUpload" class="card-img-top" src="">
+
+            <a id="closeUpload" class="btn btn-dark mt-3" href="javascript:void('')">Fechar</a>
+            <button id="confirmedUpload" class="btn btn-success float-right mt-3"><label id="labelConfimedImage"
+                    class="p-0 m-0" for="buttonUpload">Confirmar</label></button>
+        </div>
+    </div>
+</div>
 @endsection

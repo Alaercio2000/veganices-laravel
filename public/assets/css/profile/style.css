@@ -1,9 +1,10 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-#aside{
+
+#aside {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -11,12 +12,12 @@
     margin-top: 64px;
 }
 
-.div-img{
+.div-img {
     margin-top: 100px;
     height: 200px;
 }
 
-#imageProfile{
+#imageProfile {
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -25,48 +26,100 @@
     cursor: pointer;
 }
 
-#iconCamera{
+#iconCamera {
     position: absolute;
     font-size: 50px;
     transition: 1s;
     opacity: 0;
     cursor: pointer;
 }
-#uploadImage{
+
+#uploadImage {
     display: none;
 }
+
 /* Opções ao clicar na imagem */
 
-#optionsClickImage{
+#optionsClickImage {
     background-color: rgb(253, 253, 253);
     position: absolute;
     width: 150px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26),
-                0 2px 10px 0 rgba(0,0,0,.16);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26), 0 2px 10px 0 rgba(0, 0, 0, .16);
     position: absolute;
     top: 200px;
     margin-left: 70px;
-    padding: 10px 0px;
+    padding: 10px 0px 3px 0px;
     z-index: 9999;
     display: none;
 }
 
-.options{
+.options {
     cursor: pointer;
     display: block;
     width: 100%;
     padding: 10px 0 10px 20px;
     font-family: sans-serif;
-
 }
 
-.options:hover{
+.options:hover {
     background-color: #ddd;
 }
 
-/* Forms */
+/* Preview Image Pofile */
 
-#testePreview{
+#divViewImageProfile {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 10000;
+    text-align: center;
+    display: none;
+    transition: 1s;
+}
+#iconClose{
     position: absolute;
+    font-size: 50px;
+    right: 50px;
+    top: 50px;
+    cursor: pointer;
+}
+
+#viewImageProfile{
+    margin-top: 150px;
+    width: 500px;
+    height: 500px;
+    display: none;
+    border-radius: 3px;
+    transition: 1s;
+}
+
+#labelConfimedImage{
+    cursor: pointer;
+}
+
+#divCardUpload{
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 10000;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    padding-top: 100px;
+}
+
+#cardUploadImage{
+    margin: auto;
+    height: 500px;
+    width: 500px;
+}
+
+#imageUpload{
+    width: 100%;
+    height: 80%;
+    display: block;
+    object-fit: cover;
 }
