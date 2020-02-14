@@ -130,7 +130,13 @@ if (!Auth::guest()) {
                 <div class="modal-body">
                     <div class="pb-3">
                         <div class="pb-2 text-center">
-                            <h5>Informações do perfil</h5>
+                            <h5>
+                                @if($user->provider)
+                                Informações da empressa
+                                @else
+                                Informações do perfil
+                                @endif
+                            </h5>
                         </div>
                         <div>
                             Nome : {{$user->name}}<br>
@@ -154,7 +160,11 @@ if (!Auth::guest()) {
                             @endif
                         </div>
                         <div class="mt-3">
+                        @if($user->provider)
+                        <a href="{{route('profile.provider')}}" class="mt-5">Editar informações</a>
+                        @else
                         <a href="{{route('profile')}}" class="mt-5">Editar informações</a>
+                        @endif
                         </div>
                     </div>
                     <div>

@@ -39,9 +39,16 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('/address','AddressController')->middleware('auth');
 
 
-Route::prefix('provider')->group(function (){
+Route::prefix('profile')->group(function (){
 
     Route::get('/','ProfileController@index')->name('profile');
-    Route::put('/','ProfileController@uploadImage');
-    Route::delete('/delImage/{id}','ProfileController@deleteImage')->name('del.image');
+
+    Route::prefix('provider')->group(function(){
+
+        Route::get('/','ProfileProviderController@index')->name('profile.provider');
+
+    });
+
+    Route::put('/upload/{route}', 'UploadController@uploadImageProfile')->name('upload');
+    Route::delete('/delImage/{id}/{route}','UploadController@deleteImage')->name('del.image');
 });

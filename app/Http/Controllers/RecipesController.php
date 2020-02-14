@@ -23,7 +23,7 @@ class RecipesController extends Controller
             'recipes' => $recipes,
             'categoryRecipes' => $categoryRecipes
         ];
-        
+
         return view('recipes.index', $data);
     }
 
@@ -47,13 +47,13 @@ class RecipesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:191',
-            'image' => 'required|image|mimes:jpeg,jpg,svg',
+            'image' => 'required|image|mimes:jpeg,jpg,svg,png',
             'ingredients' => 'required|string',
             'preparation_method' => 'required|string'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
-    
+
         ]);
 
         $data = $request->only([
@@ -89,7 +89,7 @@ class RecipesController extends Controller
         return view('recipes.show', [
             'recipe' => $recipe
         ]);
-        
+
     }
 
     /**
@@ -124,7 +124,7 @@ class RecipesController extends Controller
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
-    
+
         ]);
 
         $data = $request->only([
@@ -143,7 +143,7 @@ class RecipesController extends Controller
         $this->updateRecipe($data, $id);
 
         return redirect()->route('recipes.show');
-        
+
     }
 
     /**
@@ -160,7 +160,7 @@ class RecipesController extends Controller
     protected function createRecipe(array $data)
     {
         return Recipe::create([
-            
+
             'provider_id' => $data['provider_id'],
             'name' => $data['name'],
             'image' => $data['image'],
@@ -173,7 +173,7 @@ class RecipesController extends Controller
     public function filter($category)
     {
         $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
-        
+
         return json_encode($recipes);
     }
 }

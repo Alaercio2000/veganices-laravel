@@ -30,7 +30,7 @@
         <div class="text-center mt-3">
             <h4>{{$user->name}}</h4>
         </div>
-        <div class="mt-3">
+        <div class="mt-5">
             <h5>Informações pessoais</h5>
             <p class="pt-2">Email : {{$user->email}}</p>
             <p>Telefone :
@@ -57,7 +57,7 @@
             <a href="#" class="btn btn-link pl-0">Editar informacões</a>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-5">
             <h5>Meus Pedidos</h5>
             @if (!empty($myRequests->all()))
             @foreach ($myRequests as $myRequest)
@@ -68,7 +68,7 @@
             @endif
         </div>
 
-        <div class="mt-4">
+        <div class="mt-5">
             <h5>Minhas Postagens</h5>
             @if (!empty($myPosts->all()))
             @foreach ($myPosts as $myPost)
@@ -82,14 +82,14 @@
     </div>
 </div>
 
-<form action="{{route('del.image',['id' => $user->id])}}" method="post" class="d-none"
+<form action="{{route('del.image',['id' => $user->id , 'route' => 'profile'])}}" method="post" class="d-none"
     onsubmit="return confirm('Apagar sua foto de perfil?')">
     @csrf
     @method('DELETE')
     <button id="deleteImage"></button>
 </form>
 
-<form method="post" enctype="multipart/form-data">
+<form action="{{route('upload',['route' => 'profile'])}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <input type="file" name="uploadImage" id="uploadImage">

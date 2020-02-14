@@ -27,42 +27,11 @@ class ProfileController extends Controller
         if ($user->avatar) {
             $srcImg = $user->avatar;
         }
-        return view('profile.index', [
+        return view('profile.user.index', [
             'user' => $user,
             'srcImg' => $srcImg,
             'myRequests' => $myRequests,
             'myPosts' => $myPosts,
         ]);
-    }
-
-    public function uploadImage(Request $request)
-    {
-
-        $request->validate([
-            'uploadImage' => 'required|image|mimes:jpeg,jpg,svg,png'
-        ]);
-
-        $imageName = Auth::user()->id . '.jpg';
-
-        $request->uploadImage->move(public_path('app/avatar/'), $imageName);
-
-        $user = User::find(Auth::user()->id);
-        $user->avatar = $imageName;
-        $user->save();
-
-        return redirect()->route('profile');
-    }
-
-    public function deleteImage($id)
-    {
-
-        $user = User::find($id);
-
-        if ($user->id == Auth::user()->id) {
-            $user->avatar = null;
-            $user->save();
-        }
-
-        return back();
     }
 }
