@@ -161,12 +161,19 @@ class RecipesController extends Controller
     {
         return Recipe::create([
             
-        'provider_id' => $data['provider_id'],
-        'name' => $data['name'],
-        'image' => $data['image'],
-        'ingredients' => $data['ingredients'],
-        'preparation_method' => $data['preparation_method'],
+            'provider_id' => $data['provider_id'],
+            'name' => $data['name'],
+            'image' => $data['image'],
+            'ingredients' => $data['ingredients'],
+            'preparation_method' => $data['preparation_method'],
 
         ]);
+    }
+
+    public function filter($category)
+    {
+        $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
+        
+        return json_encode($recipes);
     }
 }

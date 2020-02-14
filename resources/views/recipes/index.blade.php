@@ -26,72 +26,19 @@
     <div class="container">
       <div class="row mt-5">
         <aside class="col-12 col-md-3 border-right px-4 aside">
-          <form class="d-none d-md-block">
+          <form class=" ">
             <h4>Filtro</h4>
             <div>
-              <label class="font-weight-bold">Setor</label>
-              <select class="custom-select select" name="setor" size="5">
-                <option value="0">Todos os setores </option>
-                <option value="1">Restaurantes</option>
-                <option value="2">Produtos</option>
-                <option value="3">Profissionais</option>
-              </select>
-            </div>
-            <div class="mt-5 border-top pt-4">
-              <label class="font-weight-bold">Região</label>
-              <select class="custom-select select" name="regiao" size="5">
-                <option value="0">Todas as regiões</option>
-                <option value="1">Zona Norte</option>
-                <option value="2">Zona Sul</option>
-                <option value="3">Centro</option>
-                <option value="4">Zona Leste</option>
-                <option value="5">Zona Oeste</option>
-              </select>
-            </div>
-            <div class="mt-5 border-top pt-4">
-              <label class="font-weight-bold">Refeiçao</label>
-              <select class="custom-select select" name="refeicao" size="5">
-                <option value="0">Todos os tipos</option>
-                <option value="1">Fastfood</option>
-                <option value="2">Massas</option>
-                <option value="3">Crudívera</option>
-              </select>
+              @foreach ($categoryRecipes as $item) 
+                <div class="form-check">
+                  <input class="form-check-input category-recipe" type="checkbox" name="category_recipe[]" value="{{$item['id']}}" id="category-check-{{$item['id']}}">
+                  <label class="form-check-label" for="category-check-{{$item['id']}}">
+                    {{$item['name']}}
+                  </label>
+                </div>
+              @endforeach
             </div>
           </form>
-
-          <form class="d-block d-md-none">
-              <h4>Filtro</h4>
-
-              <div>
-                <label class="font-weight-bold">Setor</label>
-                <select class="form-control" name="setor">
-                  <option value="0">Todos os setores </option>
-                  <option value="1">Restaurantes</option>
-                  <option value="2">Produtos</option>
-                  <option value="3">Profissionais</option>
-                </select>
-              </div>
-              <div class="pt-4">
-                <label class="font-weight-bold">Região</label>
-                <select class="form-control" name="regiao">
-                  <option value="0">Todas as regiões</option>
-                  <option value="1">Zona Norte</option>
-                  <option value="2">Zona Sul</option>
-                  <option value="3">Centro</option>
-                  <option value="4">Zona Leste</option>
-                  <option value="5">Zona Oeste</option>
-                </select>
-              </div>
-              <div class="pt-4">
-                <label class="font-weight-bold">Refeiçao</label>
-                <select class="form-control" name="refeicao">
-                  <option value="0">Todos os tipos</option>
-                  <option value="1">Fastfood</option>
-                  <option value="2">Massas</option>
-                  <option value="3">Crudívera</option>
-                </select>
-              </div>
-            </form>
         </aside>  
         <main class="col-12 col-sm-9">
           <div class="text-right my-3">
@@ -127,6 +74,8 @@
       </div>
     </div>
   </div>
+
+  <script src="{{asset('assets/js/filter/filter.js')}}"></script>
 
   @endSection
 
