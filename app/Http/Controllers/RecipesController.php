@@ -7,6 +7,7 @@ use App\Models\CategoryRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Provider;
 
 class RecipesController extends Controller
 {
@@ -80,7 +81,9 @@ class RecipesController extends Controller
 
         $data['imageRecipe'] = $imageName;
 
-        $data['provider_id'] = Auth::user()->id;
+        $provider = Provider::where('user_id' , Auth::user()->id)->first();
+
+        $data['provider_id'] = $provider->id;
 
         $this->createRecipe($data);
 
