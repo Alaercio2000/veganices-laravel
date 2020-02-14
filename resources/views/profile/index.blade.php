@@ -1,15 +1,3 @@
-<?php
-use App\Models\Provider;
-
-$user = Auth::user();
-$provider = Provider::where('user_id',$user->id)->first();
-$srcImg = 'default.jpg';
-if ($user->avatar){
-    $srcImg = $user->avatar;
-}
-
-?>
-
 @extends('layouts.template')
 
 @section('title','Meu Perfil')
@@ -42,7 +30,6 @@ if ($user->avatar){
         <div class="text-center mt-3">
             <h4>{{$user->name}}</h4>
         </div>
-        @if(!$user->provider)
         <div class="mt-3">
             <h5>Informações pessoais</h5>
             <p class="pt-2">Email : {{$user->email}}</p>
@@ -60,7 +47,7 @@ if ($user->avatar){
                 Não informado
                 @endif
             </p>
-            <p>Data de abertura :
+            <p>Data de nascimento :
                 @if($user->date_birth)
                 {{date('d/m/Y', strtotime($user->date_birth))}}
                 @else
@@ -69,34 +56,28 @@ if ($user->avatar){
             </p>
             <a href="#" class="btn btn-link pl-0">Editar informacões</a>
         </div>
-        @else
-        <div class="mt-3">
-            <h5>Informações da empressa</h5>
-            <p class="pt-2">Email de acesso : {{$user->email}}</p>
-            <p>Telefone para contato:
-                @if($user->phone)
-                {{$user->phone}}
-                @else
-                Não informado
-                @endif
-            </p>
-            <p>CNPJ :
-                @if($provider->cnpj)
-                {{$provider->cnpj}}
-                @else
-                Não informado
-                @endif
-            </p>
-            <p>Data de nascimento :
-                @if($provider->date_opening)
-                {{date('d/m/Y', strtotime($provider->date_opening))}}
-                @else
-                Não informado
-                @endif
-            </p>
-            <a href="#" class="btn btn-link pl-0">Editar informacões</a>
+
+        <div class="mt-4">
+            <h5>Meus Pedidos</h5>
+            @if (!empty($myRequests->all()))
+            @foreach ($myRequests as $myRequest)
+
+            @endforeach
+            @else
+            <p class="pt-2">Você não fez nenhum pedido</p>
+            @endif
         </div>
-        @endif
+
+        <div class="mt-4">
+            <h5>Minhas Postagens</h5>
+            @if (!empty($myPosts->all()))
+            @foreach ($myPosts as $myPost)
+
+            @endforeach
+            @else
+            <p class="py-2">Você não tem postagens</p>
+            @endif
+        </div>
 
     </div>
 </div>

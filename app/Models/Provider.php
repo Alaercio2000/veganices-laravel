@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use App\User;
 
 class Provider extends Model
 {
@@ -17,6 +18,6 @@ class Provider extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 }
