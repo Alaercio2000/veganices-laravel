@@ -1,9 +1,13 @@
 <?php
-$srcImg = 'default.jpg';
+use App\Models\Provider;
+
 $user = Auth::user();
-if (Auth::user()->avatar){
-    $srcImg = Auth::user()->avatar;
+$provider = Provider::where('user_id',$user->id)->first();
+$srcImg = 'default.jpg';
+if ($user->avatar){
+    $srcImg = $user->avatar;
 }
+
 ?>
 
 @extends('layouts.template')
@@ -35,7 +39,64 @@ if (Auth::user()->avatar){
                 @if($user->avatar != null)<label class="options" for="deleteImage">Remover foto</label>@endif
             </div>
         </div>
-
+        <div class="text-center mt-3">
+            <h4>{{$user->name}}</h4>
+        </div>
+        @if(!$user->provider)
+        <div class="mt-3">
+            <h5>Informações pessoais</h5>
+            <p class="pt-2">Email : {{$user->email}}</p>
+            <p>Telefone :
+                @if($user->phone)
+                {{$user->phone}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <p>CPF :
+                @if($user->cpf)
+                {{$user->cpf}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <p>Data de abertura :
+                @if($user->date_birth)
+                {{date('d/m/Y', strtotime($user->date_birth))}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <a href="#" class="btn btn-link pl-0">Editar informacões</a>
+        </div>
+        @else
+        <div class="mt-3">
+            <h5>Informações da empressa</h5>
+            <p class="pt-2">Email de acesso : {{$user->email}}</p>
+            <p>Telefone para contato:
+                @if($user->phone)
+                {{$user->phone}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <p>CNPJ :
+                @if($provider->cnpj)
+                {{$provider->cnpj}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <p>Data de nascimento :
+                @if($provider->date_opening)
+                {{date('d/m/Y', strtotime($provider->date_opening))}}
+                @else
+                Não informado
+                @endif
+            </p>
+            <a href="#" class="btn btn-link pl-0">Editar informacões</a>
+        </div>
+        @endif
 
     </div>
 </div>
@@ -58,7 +119,7 @@ if (Auth::user()->avatar){
     <i id="iconClose" class="material-icons">
         close
     </i>
-    <img id="viewImageProfile" src="{{asset('app/avatar/'.Auth::user()->avatar)}}">
+    <img id="viewImageProfile" src="{{asset('app/avatar/'.$user->avatar)}}">
 </div>
 
 <div id="divCardUpload">

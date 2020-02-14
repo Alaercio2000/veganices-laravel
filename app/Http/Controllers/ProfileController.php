@@ -14,6 +14,7 @@ class ProfileController extends Controller
     }
 
     public function index(){
+        $user = User::find(Auth::user()->id)->provider();
         return view('profile.index');
     }
 

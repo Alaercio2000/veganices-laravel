@@ -52,7 +52,7 @@
     </div>
 
     <div  class="form-group">
-            <label class="text-secondary label-form" for="phone">Telefone</label>
+            <label class="text-secondary label-form" for="phone">Telefone/Celular</label>
         <input id="phone" name="phone" class="form-control  @error('phone') is-invalid @enderror" type="text"
             value="{{old('phone')}}" placeholder="Telefone para contato" maxlength="14">
         <div class="invalid-feedback">

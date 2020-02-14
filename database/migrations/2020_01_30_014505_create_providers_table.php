@@ -18,8 +18,6 @@ class CreateProvidersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('cnpj')->unique();
             $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->string('phone');
             $table->date('date_opening');
             $table->timestamps();
             $table->softDeletes();

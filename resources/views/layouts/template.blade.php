@@ -135,10 +135,21 @@ if (!Auth::guest()) {
                         <div>
                             Nome : {{$user->name}}<br>
                             E-mail : {{$user->email}}<br>
-                            {{($user->phone)?"Telefone : ". $user->phone:""}}
-                            @if($user->provider == 1)
+
+                            @if($user->phone)
+                            Telefone : {{$user->phone}}<br>
+                            @endif
+
+                            @if($user->cpf)
+                            CPF : {{$user->cpf}}<br>
+                            @endif
+
+                            @if($user->date_birth)
+                            Data de Nascimento : {{date('d/m/Y', strtotime($user->date_birth))}}
+                            @endif
+
+                            @if($user->provider)
                             CNPJ : {{$provider->cnpj}}<br>
-                            Telefone : {{$provider->phone}}<br>
                             Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}
                             @endif
                         </div>
