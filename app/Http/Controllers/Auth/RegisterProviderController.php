@@ -62,7 +62,7 @@ class RegisterProviderController extends Controller
             'email' => 'required|string|email|max:191|unique:users',
             'cnpj' => 'required|cnpj|unique:providers',
             'password' => 'required|string|min:4|confirmed',
-            'phone' => 'required|string|max:14|min:14',
+            'phone' => 'required|string|max:15|min:14',
             'date_opening' =>'required|max:10|min:10'
         ],
         [
@@ -143,7 +143,6 @@ class RegisterProviderController extends Controller
         return Provider::create([
             'name' => $data['name'],
             'cnpj' => $data['cnpj'],
-            'phone' => $data['phone'],
             'date_opening' => $data['date_opening'],
             'user_id' => $data['user_id'],
         ]);
@@ -154,6 +153,7 @@ class RegisterProviderController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' =>$data['phone'],
             'password' => Hash::make($data['password']),
             'provider' => true,
         ]);

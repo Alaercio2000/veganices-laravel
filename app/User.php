@@ -39,4 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function provider(){
+        return $this->hasOne('App\Models\Provider', 'user_id');
+    }
 }

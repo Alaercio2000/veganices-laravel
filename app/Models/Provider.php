@@ -15,4 +15,8 @@ class Provider extends Model
     protected $fillable = [
         'name', 'cnpj' , 'avatar','phone' , 'user_id' , 'date_opening'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
