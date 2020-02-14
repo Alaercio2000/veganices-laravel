@@ -13,7 +13,8 @@ class RecipesTableSeeder extends Seeder
     {
         DB::table('recipes')->insert([
             [
-                'provider_id'=> 1,
+                'provider_id' => 1,
+                'category_recipes_id' => 7,
                 'name' => 'Estronofe Vegano',
                 'image' => '49242568.jpg',
                 'ingredients' => '1 xícara de aveia,
@@ -38,6 +39,7 @@ class RecipesTableSeeder extends Seeder
 
             [
                 'provider_id'=> 1,
+                'category_recipes_id' => 4,
                 'name' => 'Mousse de Chocolate Vegano',
                 'image' => 'mousse-vegano.jpg',
                 'ingredients' => '1 abacate maduro, 

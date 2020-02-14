@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\CategoryRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,14 @@ class RecipesController extends Controller
     public function index()
     {
         $recipes = Recipe::all();
-        return view('recipes.index', ['recipes' => $recipes]);
+        $categoryRecipes = CategoryRecipe::all();
+
+        $data = [
+            'recipes' => $recipes,
+            'categoryRecipes' => $categoryRecipes
+        ];
+        
+        return view('recipes.index', $data);
     }
 
     /**
