@@ -6,6 +6,7 @@ use App\Models\Recipe;
 use App\Models\CategoryRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RecipesController extends Controller
 {
@@ -34,7 +35,11 @@ class RecipesController extends Controller
      */
     public function create()
     {
-        return view('recipes.create');
+        $categoryRecipes = CategoryRecipe::all();
+
+        return view('recipes.create',[
+            'categoryRecipes' => $categoryRecipes
+        ]);
     }
 
     /**
@@ -45,29 +50,35 @@ class RecipesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:191',
-            'image' => 'required|image|mimes:jpeg,jpg,svg,png',
-            'ingredients' => 'required|string',
-            'preparation_method' => 'required|string'
-        ], [
-            'required' => 'Esse campo é obrigatório',
-            'max' => 'O número máximo de caracteres é :max',
 
-        ]);
+        $request->validate([
+                'name' => 'required|string|max:191',
+                'ingredients' => 'required|string',
+                'preparation_method' => 'required|string',
+                'category_recipes_id' => 'required',
+                'imageRecipe' => 'required|image|mimes:jpeg,jpg,png',
+            ], [
+                'required' => 'Esse campo é obrigatório',
+                'max' => 'O número máximo de caracteres é :max',
+                'mimes' => 'Formato inválido',
+                'image' => 'Coloque uma imagem',
+                'required' => 'Campo obrigatório',
+                'mimes' => 'Formato inválido',
+            ]);
 
         $data = $request->only([
-            'name',
-            'ingredients',
-            'preparation_method'
-        ]);
+                    'name',
+                    'ingredients',
+                    'preparation_method',
+                    'category_recipes_id'
+                ]);
+
 
         $imageName = time().'.jpg';
 
-        $request->image->move(public_path('app/imageRecipes/'),$imageName);
+        $request->imageRecipe->move(public_path('app/imageRecipes/'),$imageName);
 
-        $data['image'] = $imageName;
-
+        $data['imageRecipe'] = $imageName;
 
         $data['provider_id'] = Auth::user()->id;
 
@@ -160,13 +171,12 @@ class RecipesController extends Controller
     protected function createRecipe(array $data)
     {
         return Recipe::create([
-
             'provider_id' => $data['provider_id'],
+            'category_recipes_id' => intval($data['category_recipes_id']),
             'name' => $data['name'],
-            'image' => $data['image'],
+            'image' => $data['imageRecipe'],
             'ingredients' => $data['ingredients'],
             'preparation_method' => $data['preparation_method'],
-
         ]);
     }
 

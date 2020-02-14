@@ -12,7 +12,7 @@ class UploadController extends Controller
     {
 
         $request->validate([
-            'uploadImage' => 'required|image|mimes:jpeg,jpg,svg,png'
+            'uploadImage' => 'required|image|mimes:jpeg,jpg,png'
         ]);
 
         $imageName = Auth::user()->id . '.jpg';

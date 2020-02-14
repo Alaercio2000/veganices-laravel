@@ -20,6 +20,7 @@ class Recipe extends Model
         'name',
         'image',
         'ingredients',
-        'preparation_method'
+        'preparation_method',
+        'category_recipes_id',
     ];
 }

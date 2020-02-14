@@ -8,11 +8,11 @@ use Illuminate\Notifications\Notifiable;
 
 class CategoryRecipe extends Model
 {
-    use Notifiable;
+    use Notifiable , SoftDeletes;
 
     protected $table = 'category_recipes';
 
-    protected $dates = [];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'name'
