@@ -12,8 +12,10 @@
     <div class="row justify-content-center">
     <div class="col-5">
     <h3 class="text-center font-weight-normal py-3">Cadastro de nova receita</h3>
-<form method="post" class="p-3">
-   
+
+<form action="{{route('recipes.update',['recipe'=> $recipe->id ])}}" method="post" class="p-3" enctype="multipart/form-data">
+   @csrf
+   @method('PUT')
 
     <div class="form-group">
         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{$recipe->name}}">
@@ -23,7 +25,7 @@
     </div>
 
     <div class="form-group">
-        <textarea class="form-control @error('email') is-invalid @enderror" name="ingredients" id="ingredients">{{$recipe->ingredients}}</textarea>
+        <textarea class="form-control @error('ingredients') is-invalid @enderror" name="ingredients" id="ingredients">{{$recipe->ingredients}}</textarea>
         <div class="invalid-feedback">
             {{$errors->first('ingredients')}}
         </div>
@@ -42,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        <a class="btn btn-success w-100 mt-3" href="{{route('recipes.update',['recipe'=> $recipe->id ])}}">Cadastrar</a>
+    <button type="submit" class="btn btn-success w-100">Salvar</button>
     </div>
 </form>
 

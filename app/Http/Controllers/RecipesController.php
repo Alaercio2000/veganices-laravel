@@ -132,7 +132,7 @@ class RecipesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:191',
-            'image' => 'required|image|mimes:jpeg,jpg,svg',
+            'image' => 'image|mimes:jpeg,jpg,svg',
             'ingredients' => 'required|string',
             'preparation_method' => 'required|string'
         ], [
@@ -147,16 +147,26 @@ class RecipesController extends Controller
             'preparation_method'
         ]);
 
-        $imageName = $request->image.'.jpg';
+        $recipe = Recipe::find($id);
 
-        $request->image->move(public_path('app/imageRecipes/'),$imageName);
+        if(!empty($request->input('image'))) {
+            $imageName = $recipe->image;
 
-        $data['image'] = $imageName;
+            $request->image->move(public_path('app/imageRecipes/'),$imageName);
 
+            $data['image'] = $imageName;
+        }
+
+        // $recipe->name = $data['name'];
+        // $recipe->ingredients = $data['ingredients'];
+        // $recipe->preparation_method = $data['preparation_method'];
+        // $recipe->save();
 
         $this->updateRecipe($data, $id);
 
-        return redirect()->route('recipes.show');
+        return redirect()->route('recipes.show',[
+            'recipe'=> $id
+        ]);
 
     }
 
@@ -188,5 +198,15 @@ class RecipesController extends Controller
         $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
 
         return json_encode($recipes);
+    }
+
+    protected function updateRecipe(array $data, int $id)
+    {
+        return Recipe::where('id', $id)
+            ->update([
+                'name' => $data['name'],
+                'ingredients' => $data['ingredients'],
+                'preparation_method' => $data['preparation_method'],
+            ]);
     }
 }
