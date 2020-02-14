@@ -16,9 +16,16 @@ class RecipesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('can:is-provider');
+    }
+
     public function index()
     {
-        $recipes = Recipe::all();
+        $provider = Provider::where('user_id',Auth::user()->id)->first();
+        $recipes = Recipe::where('provider_id' , $provider->id)->get();
         $categoryRecipes = CategoryRecipe::all();
 
         $data = [
@@ -26,7 +33,7 @@ class RecipesController extends Controller
             'categoryRecipes' => $categoryRecipes
         ];
 
-        return view('recipes.index', $data);
+        return view('recipes.provider.index', $data);
     }
 
     /**
@@ -38,7 +45,7 @@ class RecipesController extends Controller
     {
         $categoryRecipes = CategoryRecipe::all();
 
-        return view('recipes.create',[
+        return view('recipes.provider.create',[
             'categoryRecipes' => $categoryRecipes
         ]);
     }
@@ -87,7 +94,7 @@ class RecipesController extends Controller
 
         $this->createRecipe($data);
 
-        return redirect()->route('recipes.index');
+        return redirect()->route('recipes.provider.index');
     }
 
     /**
@@ -100,7 +107,7 @@ class RecipesController extends Controller
     {
         // dd ($recipe);
         $recipe = Recipe::find($id);
-        return view('recipes.show', [
+        return view('recipes.provider.show', [
             'recipe' => $recipe
         ]);
 
@@ -116,7 +123,7 @@ class RecipesController extends Controller
     {
         $recipe = Recipe::find($id);
 
-        return view('recipes.edit', [
+        return view('recipes.provider.edit', [
             'recipe' => $recipe
         ]);
     }
@@ -164,7 +171,7 @@ class RecipesController extends Controller
 
         $this->updateRecipe($data, $id);
 
-        return redirect()->route('recipes.show',[
+        return redirect()->route('recipes.provider.show',[
             'recipe'=> $id
         ]);
 
