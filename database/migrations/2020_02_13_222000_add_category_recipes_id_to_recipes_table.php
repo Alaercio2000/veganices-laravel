@@ -14,7 +14,7 @@ class AddCategoryRecipesIdToRecipesTable extends Migration
     public function up()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_recipes_id');
+            $table->unsignedBigInteger('category_recipes_id')->after('provider_id');
 
             $table->foreign('category_recipes_id')->references('id')->on('category_recipes')->onDelete('cascade');
         });
@@ -28,7 +28,7 @@ class AddCategoryRecipesIdToRecipesTable extends Migration
     public function down()
     {
         Schema::table('recipes', function (Blueprint $table) {
-            //
+            $table->dropColumn('category_recipes_id');
         });
     }
 }

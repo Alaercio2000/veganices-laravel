@@ -42,12 +42,12 @@ class RecipesTableSeeder extends Seeder
                 'category_recipes_id' => 4,
                 'name' => 'Mousse de Chocolate Vegano',
                 'image' => 'mousse-vegano.jpg',
-                'ingredients' => '1 abacate maduro, 
-                2 colheres (sopa) de cacau em pó, 
+                'ingredients' => '1 abacate maduro,
+                2 colheres (sopa) de cacau em pó,
                 1 pitada de canela em pó,
                 4 colheres (sopa) de melado de cana,
                 1 colher (chá) de essência de baunilha',
-                'preparation_method' => 'No liquidificador, adicione o abacate, o cacau, a canela, o melado e a essência de baunilha. 
+                'preparation_method' => 'No liquidificador, adicione o abacate, o cacau, a canela, o melado e a essência de baunilha.
                 Bata bem e leve à geladeira por 2 horas.',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),

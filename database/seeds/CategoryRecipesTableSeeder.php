@@ -13,28 +13,44 @@ class CategoryRecipesTableSeeder extends Seeder
     {
         DB::table('category_recipes')->insert([
             [
-                'name' => 'Aperitivos'
+                'name' => 'Aperitivos',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Bebidas'
+                'name' => 'Bebidas',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Bolos'
+                'name' => 'Bolos',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Doces'
+                'name' => 'Doces',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Lanches'
+                'name' => 'Lanches',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Massas'
+                'name' => 'Massas',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Salgados'
+                'name' => 'Salgados',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ],
             [
-                'name' => 'Tortas'
+                'name' => 'Tortas',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ]
         ]);
     }

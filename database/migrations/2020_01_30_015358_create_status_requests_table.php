@@ -16,6 +16,8 @@ class CreateStatusRequestsTable extends Migration
         Schema::create('status_requests', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('status');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
