@@ -1,7 +1,7 @@
-$('#cep').mask('00000-000')
+$('#zip_code').mask('00000-000')
 
-function selectedUf(uf){
-    $('#uf').val(uf)
+function selectedstate(state){
+    $('#state').val(state)
 }
 
 $(document).ready(function() {
@@ -11,11 +11,11 @@ $(document).ready(function() {
         $("#street").val("");
         $("#neighborhood").val("");
         $("#county").val("");
-        $("#uf").val("");
+        $("#state").val("");
     }
 
     //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
+    $("#zip_code").blur(function() {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -33,7 +33,7 @@ $(document).ready(function() {
                 $("#street").val("...");
                 $("#neighborhood").val("...");
                 $("#county").val("...");
-                $("#uf").val("...");
+                $("#state").val("...");
 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(data) {
@@ -43,7 +43,7 @@ $(document).ready(function() {
                         $("#street").val(data.logradouro);
                         $("#neighborhood").val(data.bairro);
                         $("#county").val(data.localidade);
-                        $("#uf").val(data.uf);
+                        $("#state").val(data.uf);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.

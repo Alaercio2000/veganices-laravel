@@ -31,6 +31,25 @@
             <h4>{{$user->name}}</h4>
         </div>
 
+        <div>
+            <h5 class="py-3">Informações da empresa</h5>
+            <p>Nome : {{$provider->name}}</p>
+            <p>CPNJ : {{$provider->cnpj}}</p>
+            <p>Telefone : {{$provider->phone}}</p>
+            <p>Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}</p>
+        </div>
+        <div class="pt-3">
+            <h5>Minhas Receitas</h5>
+            ...
+        </div>
+        <div class="pt-4 pb-5">
+            <h5>Endereço da empresa</h5>
+            <p>Cep : {{$address->zip_code}}</p>
+            <p>Rua : {{$address->street}}</p>
+            <p>Bairro : {{$address->neighborhood}}</p>
+            <p>Número : {{$address->number}}</p>
+            <p>Cidade : {{$address->county}}</p>
+        </div>
     </div>
 </div>
 

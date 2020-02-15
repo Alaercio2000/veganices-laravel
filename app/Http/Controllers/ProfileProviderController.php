@@ -19,6 +19,7 @@ class ProfileProviderController extends Controller
         $user = Auth::user();
         $provider = $user->provider()->first();
         $recipe = Recipe::where('provider_id', $provider->id);
+        $address = $user->address()->first();
 
         $srcImg = 'default.jpg';
 
@@ -31,6 +32,7 @@ class ProfileProviderController extends Controller
             'provider' => $provider,
             'recipe' => $recipe,
             'srcImg' =>$srcImg,
+            'address' => $address
         ]);
     }
 }

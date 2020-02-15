@@ -11,7 +11,7 @@
 @endsection
 
 @section('body')
-onload="selectedUf('{{$address->uf}}')"
+onload="selectedState('{{$address->state}}')"
 @endsection
 
 @section('content')
@@ -34,10 +34,10 @@ onload="selectedUf('{{$address->uf}}')"
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-4 col-lg-3 pt-1" for="cep">Cep</label>
-                    <input id="cep" name="cep" type="text" class="form-control col @error('cep') is-invalid @enderror" value="{{$address->cep}}">
+                    <label class="col-4 col-lg-3 pt-1" for="zip_code">Cep</label>
+                    <input id="zip_code" name="zip_code" type="text" class="form-control col @error('zip_code') is-invalid @enderror" value="{{$address->zip_code}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
-                        {{$errors->first('cep')}}
+                        {{$errors->first('zip_code')}}
                     </div>
                 </div>
 
@@ -83,8 +83,8 @@ onload="selectedUf('{{$address->uf}}')"
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-4 col-lg-3 pt-1" for="uf">Estado</label>
-                    <select id="uf" name="uf" class="form-control col @error('uf') is-invalid @enderror">
+                    <label class="col-4 col-lg-3 pt-1" for="state">Estado</label>
+                    <select id="state" name="state" class="form-control col @error('state') is-invalid @enderror">
                         <option value=""></option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -115,7 +115,7 @@ onload="selectedUf('{{$address->uf}}')"
                         <option value="TO">Tocantins</option>
                     </select>
                     <div class="invalid-feedback offset-lg-3 offset-4">
-                        {{$errors->first('uf')}}
+                        {{$errors->first('state')}}
                     </div>
                 </div>
 

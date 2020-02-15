@@ -44,13 +44,13 @@ class AddressController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:40',
-            'cep' => 'required|max:9|min:9',
+            'zip_code' => 'required|max:9|min:9',
             'street' => 'required|max:191',
             'neighborhood' => 'required|max:191',
             'number' => 'required|max:6|',
             'complement' => 'required|max:191|min:10',
             'county' =>  'required|max:191',
-            'uf' => 'required'
+            'state' => 'required'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
@@ -59,13 +59,13 @@ class AddressController extends Controller
 
         $data = $request->only([
             'title',
-            'cep',
+            'zip_code',
             'street',
             'neighborhood',
             'number',
             'complement',
             'county',
-            'uf'
+            'state'
         ]);
 
         $data['user_id'] = Auth::user()->id;
@@ -112,13 +112,13 @@ class AddressController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:40',
-            'cep' => 'required|max:9|min:9',
+            'zip_code' => 'required|max:9|min:9',
             'street' => 'required|max:191',
             'neighborhood' => 'required|max:191',
             'number' => 'required|max:6|',
             'complement' => 'required|max:191|min:10',
             'county' =>  'required|max:191',
-            'uf' => 'required'
+            'state' => 'required'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
@@ -127,13 +127,13 @@ class AddressController extends Controller
 
         $data = $request->only([
             'title',
-            'cep',
+            'zip_code',
             'street',
             'neighborhood',
             'number',
             'complement',
             'county',
-            'uf'
+            'state'
         ]);
 
         $this->updateAddress($data , $id);
@@ -160,13 +160,13 @@ class AddressController extends Controller
     {
         return Address::create([
             'title' => $data['title'],
-            'cep' => $data['cep'],
+            'zip_code' => $data['zip_code'],
             'street' => $data['street'],
             'neighborhood' => $data['neighborhood'],
             'number' => $data['number'],
             'complement' => $data['complement'],
             'county' => $data['county'],
-            'uf' => $data['uf'],
+            'state' => $data['state'],
             'user_id' => $data['user_id']
         ]);
     }
@@ -176,13 +176,13 @@ class AddressController extends Controller
         return Address::where('id', $id)
             ->update([
                 'title' => $data['title'],
-                'cep' => $data['cep'],
+                'zip_code' => $data['zip_code'],
                 'street' => $data['street'],
                 'neighborhood' => $data['neighborhood'],
                 'number' => $data['number'],
                 'complement' => $data['complement'],
                 'county' => $data['county'],
-                'uf' => $data['uf'],
+                'state' => $data['state'],
             ]);
     }
 }

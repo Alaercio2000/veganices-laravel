@@ -1,17 +1,10 @@
-<?php
-
-if (!Auth::guest()) {
-
-    $user = Auth::user();
-
-    if ($user->provider) {
-        $provider = $user->provider()->first();
-    }
-
-    $address = $user->address()->first();
-}
-?>
-
+@if(!Auth::guest())
+    <?php $user = Auth::user()?>
+    <?php $address = $user->address()->first()?>
+@if($user->provider)
+    <?php $provider = $user->provider()->first()?>
+@endif
+@endif
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -98,7 +91,8 @@ if (!Auth::guest()) {
                     @if(!Auth::guest())
                     <button class="btn btn-link pt-3 pb-4 pb-md-3 px-3" id="button-perfil" data-target="#modal-user"
                         data-toggle="modal">
-                        <img id="img-perfil" src="{{asset('app/avatar/'.$user->avatar)}}" class="mr-md-2" alt="imagem perfil">
+                        <img id="img-perfil" src="{{asset('app/avatar/'.$user->avatar)}}" class="mr-md-2"
+                            alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
                             <?php
                                 $nome = $user->name;
@@ -124,8 +118,8 @@ if (!Auth::guest()) {
                         style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
                         class="widget-user-header bg-aqua-active w-100">
                         <div id="div-user" class="d-flex justify-content-center mt-4">
-                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('app/avatar/'.$user->avatar)}}"
-                                alt="Foto do usuário">
+                            <img id="img-user" class="img-thumbnail img-fluid"
+                                src="{{asset('app/avatar/'.$user->avatar)}}" alt="Foto do usuário">
                         </div>
                     </div>
                 </div>
@@ -175,7 +169,7 @@ if (!Auth::guest()) {
                         </div>
                         <div class="pb-2">
                             @if (!empty($address))
-                            Cep : {{str_replace('.' ,'',$address->cep)}}<br>
+                            Cep : {{str_replace('.' ,'',$address->zip_code)}}<br>
                             Município : {{$address->county}}<br>
                             Bairro : {{$address->neighborhood}}<br>
                             Rua : {{$address->street}}<br>
