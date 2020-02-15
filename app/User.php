@@ -2,9 +2,8 @@
 
 namespace App;
 
+use App\Models\Address;
 use App\Models\Provider;
-use App\Models\Request;
-use App\Models\Post;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,15 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function address(){
+        return $this->hasMany(Address::class, 'user_id','id');
+    }
+
     public function provider(){
-        return $this->belongsTo(Provider::class);
+        return $this->hasOne(Provider::class, 'user_id', 'id');
     }
 
-    public function request(){
-        return $this->belongsTo(Request::class);
-    }
 
-    public function posts(){
-        return $this->belongsTo(Post::class);
-    }
 }

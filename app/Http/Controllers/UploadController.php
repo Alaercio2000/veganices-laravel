@@ -32,7 +32,7 @@ class UploadController extends Controller
         $user = User::find($id);
 
         if ($user->id == Auth::user()->id) {
-            $user->avatar = null;
+            $user->avatar = 'default.jpg';
             $user->save();
         }
 

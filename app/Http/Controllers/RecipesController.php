@@ -24,7 +24,7 @@ class RecipesController extends Controller
 
     public function index()
     {
-        $provider = Provider::where('user_id',Auth::user()->id)->first();
+        $provider = Auth::user()->provider()->first();
         $recipes = Recipe::where('provider_id' , $provider->id)->get();
         $categoryRecipes = CategoryRecipe::all();
 
@@ -88,7 +88,7 @@ class RecipesController extends Controller
 
         $data['imageRecipe'] = $imageName;
 
-        $provider = Provider::where('user_id' , Auth::user()->id)->first();
+        $provider = Auth::user()->provider()->first();
 
         $data['provider_id'] = $provider->id;
 

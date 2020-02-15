@@ -1,24 +1,14 @@
 <?php
-use App\Models\Provider;
-use App\Models\Address;
 
 if (!Auth::guest()) {
 
     $user = Auth::user();
 
-    $id = $user->id;
-
     if ($user->provider) {
-        $provider = Provider::where('user_id', $id)->first();
+        $provider = $user->provider()->first();
     }
 
-    $srcImg = 'default.jpg';
-
-    if ($user->avatar){
-        $srcImg = $user->avatar;
-    }
-
-    $address = Address::where('user_id', $id)->first();
+    $address = $user->address()->first();
 }
 ?>
 
@@ -36,8 +26,7 @@ if (!Auth::guest()) {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
@@ -76,15 +65,22 @@ if (!Auth::guest()) {
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('home.index')}}">Home &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                               @if(Auth::user()->provider)
-                               <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
-                               href="{{route('recipes.index')}}">Minhas Receitas &nbsp;<span
-                                   class="d-none d-md-inline">|</span></a>
-                               @else
-                               <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
-                               href="{{route('recipes.index')}}">Receitas &nbsp;<span
-                                   class="d-none d-md-inline">|</span></a>
-                               @endif
+                                @if(!Auth::guest())
+                                @if(Auth::user()->provider)
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
+                                    href="{{route('recipes.index')}}">Minhas Receitas &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                @else
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
+                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                @endif
+                                @else
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
+                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                @endif
+
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-lg-5"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
@@ -102,7 +98,7 @@ if (!Auth::guest()) {
                     @if(!Auth::guest())
                     <button class="btn btn-link pt-3 pb-4 pb-md-3 px-3" id="button-perfil" data-target="#modal-user"
                         data-toggle="modal">
-                        <img id="img-perfil" src="{{asset('app/avatar/'.$srcImg)}}" class="mr-md-2" alt="imagem perfil">
+                        <img id="img-perfil" src="{{asset('app/avatar/'.$user->avatar)}}" class="mr-md-2" alt="imagem perfil">
                         <span class="font-weight-bold navItem text-light d-none d-sm-inline">
                             <?php
                                 $nome = $user->name;
@@ -128,7 +124,7 @@ if (!Auth::guest()) {
                         style="background-image:url('{{asset('assets/img/template/fundo-modal.jpg')}}')"
                         class="widget-user-header bg-aqua-active w-100">
                         <div id="div-user" class="d-flex justify-content-center mt-4">
-                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('app/avatar/'.$srcImg)}}"
+                            <img id="img-user" class="img-thumbnail img-fluid" src="{{asset('app/avatar/'.$user->avatar)}}"
                                 alt="Foto do usuário">
                         </div>
                     </div>
@@ -166,11 +162,11 @@ if (!Auth::guest()) {
                             @endif
                         </div>
                         <div class="mt-3">
-                        @if($user->provider)
-                        <a href="{{route('profile.provider')}}" class="mt-5">Editar informações</a>
-                        @else
-                        <a href="{{route('profile')}}" class="mt-5">Editar informações</a>
-                        @endif
+                            @if($user->provider)
+                            <a href="{{route('profile.provider')}}" class="mt-5">Editar informações</a>
+                            @else
+                            <a href="{{route('profile')}}" class="mt-5">Editar informações</a>
+                            @endif
                         </div>
                     </div>
                     <div>

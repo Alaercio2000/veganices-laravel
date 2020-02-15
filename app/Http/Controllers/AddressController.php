@@ -16,13 +16,12 @@ class AddressController extends Controller
 
     public function index()
     {
-        $id = Auth::user()->id;
-
-        $addresses =  Address::where('user_id', $id)->get();
+        $addresses = Address::where('user_id',Auth::user()->id)->get();
 
         return view('address.index', [
             'addresses' => $addresses
         ]);
+
     }
 
     /**

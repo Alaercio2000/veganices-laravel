@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Teste provider',
                 'email' => 'teste@veganices.com.br',
                 'password' => Hash::make('1234'),
-                'avatar' => null,
+                'avatar' => 'default.jpg',
                 'phone' => '(11) 9421-1231',
                 'provider' => true,
                 'created_at' => NOW(),
