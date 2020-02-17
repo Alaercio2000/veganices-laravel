@@ -17,7 +17,11 @@ Route::fallback(function () {
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
+
 Route::resource('/recipes', 'RecipesController');
+
+Route::get('user/recipes' , 'RecipesUsersController@index')->name('user.recipes');
+Route::get('user/recipes/show/{id}' , 'RecipesUsersController@show')->name('user.recipe.show');
 
 Route::get('/community', 'CommunityController@index')->name('community.index')->middleware('auth');
 

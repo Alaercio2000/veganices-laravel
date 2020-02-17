@@ -61,7 +61,7 @@
                   </div>
                 <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
                   <div class="col-12 d-flex justify-content-end my-3">
-                  <a class="text-light btn btn-primary" href="{{route('recipes.show',['recipe'=> $recipe->id ])}}">Ver receita</a>
+                  <a class="text-light btn btn-primary" href="{{route('user.recipe.show',['id'=> $recipe->id ])}}">Ver receita</a>
                   </div>
                 </div>
               </div>

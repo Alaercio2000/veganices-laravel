@@ -58,22 +58,15 @@
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('home.index')}}">Home &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
-                                @if(!Auth::guest())
-                                @if(Auth::user()->provider)
+                                @if(!empty(Auth::user()->provider))
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
                                     href="{{route('recipes.index')}}">Minhas Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @else
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
-                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span
+                                    href="{{route('user.recipes')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @endif
-                                @else
-                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-3"
-                                    href="{{route('recipes.index')}}">Receitas &nbsp;<span
-                                        class="d-none d-md-inline">|</span></a>
-                                @endif
-
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-lg-5"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
