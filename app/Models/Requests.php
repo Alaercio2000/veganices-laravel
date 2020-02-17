@@ -17,8 +17,4 @@ class Requests extends Model
     protected $fillable = [
         'user_id', 'provider_id', 'recipe_id', 'status_id', 'price'
     ];
-
-    public function user(){
-        return $this->hasOne(User::class, 'user_id', 'id');
-    }
 }
