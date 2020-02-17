@@ -204,7 +204,7 @@ class RecipesController extends Controller
     {
         $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
 
-        return json_encode($recipes);
+        echo json_encode($recipes);
     }
 
     protected function updateRecipe(array $data, int $id)
