@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\State_brazil;
 use App\Models\Address;
 
 class AddressController extends Controller
@@ -16,7 +17,7 @@ class AddressController extends Controller
 
     public function index()
     {
-        $addresses = Address::where('user_id',Auth::user()->id)->get();
+        $addresses = Auth::user()->address()->get();
 
         return view('address.index', [
             'addresses' => $addresses
@@ -31,7 +32,11 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('address.create');
+        $states = State_brazil::all();
+
+        return view('address.create' , [
+            'states' => $states
+        ]);
     }
 
     /**
@@ -95,9 +100,11 @@ class AddressController extends Controller
     public function edit($id)
     {
         $address = Address::find($id);
+        $states = State_brazil::all();
 
         return view('address.edit', [
-            'address' => $address
+            'address' => $address,
+            'states' => $states
         ]);
     }
 
@@ -138,7 +145,10 @@ class AddressController extends Controller
 
         $this->updateAddress($data , $id);
 
-        return redirect()->route('address.index');
+        return redirect()->route('address.edit' ,[
+            'address' => $id
+        ])
+        ->with('success','Endereço atualizado com sucesso');
     }
 
     /**
@@ -166,7 +176,7 @@ class AddressController extends Controller
             'number' => $data['number'],
             'complement' => $data['complement'],
             'county' => $data['county'],
-            'state' => $data['state'],
+            'state_id' => $data['state'],
             'user_id' => $data['user_id']
         ]);
     }
@@ -182,7 +192,7 @@ class AddressController extends Controller
                 'number' => $data['number'],
                 'complement' => $data['complement'],
                 'county' => $data['county'],
-                'state' => $data['state'],
+                'state_id' => $data['state'],
             ]);
     }
 }
