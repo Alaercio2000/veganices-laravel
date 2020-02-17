@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 
 class ProfileProviderController extends Controller
 {
@@ -18,7 +17,7 @@ class ProfileProviderController extends Controller
 
         $user = Auth::user();
         $provider = $user->provider()->first();
-        $recipe = Recipe::where('provider_id', $provider->id);
+        $recipes = $provider->recipe()->get();
         $address = $user->address()->first();
 
         $srcImg = 'default.jpg';
@@ -30,7 +29,7 @@ class ProfileProviderController extends Controller
         return view('profile.provider.index',[
             'user' => $user,
             'provider' => $provider,
-            'recipe' => $recipe,
+            'recipes' => $recipes,
             'srcImg' =>$srcImg,
             'address' => $address
         ]);

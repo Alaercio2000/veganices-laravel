@@ -18,18 +18,12 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $user = User::find(Auth::user()->id);
-        $myRequests = Requests::where('user_id',$user->id)->get();
-        $myPosts = Post::where('user_id',$user->id)->get();
+        $user = Auth::user();
+        $myRequests = $user->requests()->get();
+        $myPosts = $user->post()->get();
 
-        $srcImg = 'default.jpg';
-
-        if ($user->avatar) {
-            $srcImg = $user->avatar;
-        }
         return view('profile.user.index', [
             'user' => $user,
-            'srcImg' => $srcImg,
             'myRequests' => $myRequests,
             'myPosts' => $myPosts,
         ]);
