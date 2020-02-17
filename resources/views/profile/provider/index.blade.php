@@ -39,16 +39,23 @@
             <p>Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}</p>
         </div>
         <div class="pt-3">
-            <h5>Minhas Receitas</h5>
-            ...
+            <h5 class="pb-3">Minhas Receitas</h5>
+            @if($recipes->all())
+            @foreach ($recipes->all() as $recipe)
+            <a class="btn btn-link p-0 my-1" target="_blank" href="{{route('recipes.show',['recipe' => $recipe->id])}}">{{$recipe->name}}</a><br>
+            @endforeach
+            @else
+            Não tem receitas
+            @endif
         </div>
         <div class="pt-4 pb-5">
-            <h5>Endereço da empresa</h5>
+            <h5 >Endereço da empresa</h5>
             <p>Cep : {{$address->zip_code}}</p>
             <p>Rua : {{$address->street}}</p>
             <p>Bairro : {{$address->neighborhood}}</p>
             <p>Número : {{$address->number}}</p>
             <p>Cidade : {{$address->county}}</p>
+            <p>UF : {{$address->state}}</p>
         </div>
     </div>
 </div>

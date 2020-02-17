@@ -17,7 +17,7 @@
         style="background-image:url({{asset('assets/img/profile/fundo.png')}})"></div>
     <div id="corpo" class="col">
         <div class="div-img d-flex justify-content-center align-items-center">
-            <img id="imageProfile" src="{{asset('app/avatar/'.$srcImg)}}" alt="Imagem de Perfil">
+            <img id="imageProfile" src="{{asset('app/avatar/'.$user->avatar)}}" alt="Imagem de Perfil">
             <i id="iconCamera" class="material-icons text-light">
                 camera_alt
             </i>
@@ -58,21 +58,21 @@
         </div>
 
         <div class="mt-5">
-            <h5>Meus Pedidos</h5>
+            <h5>Minhas Compras</h5>
             @if (!empty($myRequests->all()))
             @foreach ($myRequests as $myRequest)
-
+                Tem
             @endforeach
             @else
             <p class="pt-2">Você não fez nenhum pedido</p>
             @endif
         </div>
 
-        <div class="mt-5">
+        <div class="my-5">
             <h5>Minhas Postagens</h5>
             @if (!empty($myPosts->all()))
             @foreach ($myPosts as $myPost)
-
+                Tem
             @endforeach
             @else
             <p class="py-2">Você não tem postagens</p>
