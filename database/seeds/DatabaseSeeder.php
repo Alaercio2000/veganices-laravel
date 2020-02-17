@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvidersTableSeeder::class);
         $this->call(CategoryRecipesTableSeeder::class);
         $this->call(RecipesTableSeeder::class);
+        $this->call(States_brazilTableSeeder::class);
     }
 }
