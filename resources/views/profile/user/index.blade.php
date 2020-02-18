@@ -7,7 +7,7 @@
 @endsection
 
 @section('js')
-<script src="{{asset('assets/js/profile/script.js')}}"></script>
+<script src="{{asset('assets/js/profile/user/script.js')}}"></script>
 @endsection
 
 @section('content')
@@ -54,7 +54,7 @@
                 Não informado
                 @endif
             </p>
-            <a href="#" class="btn btn-link pl-0">Editar informacões</a>
+        <a href="{{route('profile.edit')}}" class="btn btn-link pl-0">Editar informacões</a>
         </div>
 
         <div class="mt-5">

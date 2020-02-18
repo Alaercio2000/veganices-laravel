@@ -7,7 +7,7 @@
 @endsection
 
 @section('js')
-<script src="{{asset('assets/js/profile/script.js')}}"></script>
+<script src="{{asset('assets/js/profile/user/script.js')}}"></script>
 @endsection
 
 @section('content')

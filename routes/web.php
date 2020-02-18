@@ -44,7 +44,9 @@ Route::resource('/address','AddressController')->middleware('auth')->middleware(
 
 Route::prefix('profile')->group(function (){
 
-    Route::get('/','ProfileController@index')->name('profile')->middleware('auth')->middleware('can:is-user');
+    Route::get('/','ProfileController@index')->name('profile')->middleware('can:is-user');
+    Route::get('/edit' ,'ProfileController@edit')->name('profile.edit')->middleware('can:is-user');
+    Route::put('/edit' ,'ProfileController@update')->name('profile.update')->middleware('can:is-user');
 
     Route::prefix('provider')->group(function(){
 
