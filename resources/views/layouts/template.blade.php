@@ -1,8 +1,8 @@
 @if(!Auth::guest())
-    <?php $user = Auth::user()?>
-    <?php $address = $user->address()->first()?>
+<?php $user = Auth::user()?>
+<?php $address = $user->address()->first()?>
 @if($user->provider)
-    <?php $provider = $user->provider()->first()?>
+<?php $provider = $user->provider()->first()?>
 @endif
 @endif
 <!DOCTYPE html>
@@ -67,9 +67,11 @@
                                     href="{{route('user.recipes')}}">Receitas &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @endif
+                                @if (empty(Auth::user()->provider))
                                 <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-lg-5"
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
+                                @endif
                                 @if (Auth::guest())
                                 <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 ml-lg-5"
                                     href="{{route('login')}}">Acesse</a>
