@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileProviderController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('can:is-provider');
-    }
 
     public function index(){
 

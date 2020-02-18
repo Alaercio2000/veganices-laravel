@@ -10,12 +10,6 @@ use App\Models\Post;
 
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('can:is-user');
-    }
-
     public function index()
     {
         $user = Auth::user();
