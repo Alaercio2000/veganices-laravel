@@ -40,7 +40,7 @@
             </div>
           </form>
         </aside>
-        <main class="col-12 col-sm-9">
+        <main class="col-12 col-sm-9 recipes">
           @foreach($recipes as $recipe)
             <div class="row border-top ml-3">
               <div class="col-12 col-md-5">
@@ -68,6 +68,7 @@
             </div>
           @endforeach
         </main>
+        <input type="hidden" id="categoryFilter">
       </div>
     </div>
   </div>

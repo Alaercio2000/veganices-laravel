@@ -12,7 +12,11 @@ class FilterController extends Controller
 
     public function filter($category)
     {
-        $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
+        if(empty($category)) {
+            $recipes = Recipe::select()->get()->toArray();
+        } else {
+            $recipes = Recipe::whereRaw("category_recipes_id IN ({$category})")->get()->toArray();
+        }
 
         echo json_encode($recipes);
     }
