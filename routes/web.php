@@ -18,13 +18,12 @@ Route::fallback(function () {
 Route::get('/', 'HomeController@index')->name('home.index');
 
 
-Route::resource('/recipes', 'RecipesController');
+Route::resource('/recipes', 'RecipesController')->middleware('auth')->middleware('can:is-provider');
 
 Route::get('user/recipes' , 'RecipesUsersController@index')->name('user.recipes');
 Route::get('user/recipes/show/{id}' , 'RecipesUsersController@show')->name('user.recipe.show');
 
-Route::get('/community', 'CommunityController@index')->name('community.index')->middleware('auth');
-
+Route::get('/community', 'CommunityController@index')->name('community.index');
 
 Route::prefix('register')->group(function () {
 
@@ -40,19 +39,19 @@ Route::post('/login', 'Auth\LoginController@authenticade');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('/address','AddressController')->middleware('auth');
+Route::resource('/address','AddressController')->middleware('auth')->middleware('can:is-user');
 
 
 Route::prefix('profile')->group(function (){
 
-    Route::get('/','ProfileController@index')->name('profile');
+    Route::get('/','ProfileController@index')->name('profile')->middleware('auth')->middleware('can:is-user');
 
     Route::prefix('provider')->group(function(){
 
-        Route::get('/','ProfileProviderController@index')->name('profile.provider');
+        Route::get('/','ProfileProviderController@index')->name('profile.provider')->middleware('auth')->middleware('can:is-provider');
 
     });
 
-    Route::put('/upload/{route}', 'UploadController@uploadImageProfile')->name('upload');
-    Route::delete('/delImage/{id}/{route}','UploadController@deleteImage')->name('del.image');
+    Route::put('/upload/{route}', 'UploadController@uploadImageProfile')->name('upload')->middleware('auth');
+    Route::delete('/delImage/{id}/{route}','UploadController@deleteImage')->name('del.image')->middleware('auth');
 });
