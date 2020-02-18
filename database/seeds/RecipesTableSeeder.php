@@ -51,6 +51,31 @@ class RecipesTableSeeder extends Seeder
                 Bata bem e leve à geladeira por 2 horas.',
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
+            ],
+
+            [
+                'provider_id'=> 1,
+                'category_recipes_id' => 3,
+                'name' => 'Bolo de Cenoura Vegano',
+                'image' => 'bolo-de-cenoura.jpg',
+                'ingredients' => 'Bolo:,
+                3 cenouras em pedaços,
+                suco de 2 laranjas,
+                1/2 copo de óleo,
+                1 copo de açúcar,
+                3 copos de farinha de trigo,
+                1 colher de sopa de fermento químico,
+                Cobertura:,
+                200 ml de leite de coco
+                7 colheres de sopa de cacau em pó
+                7 colheres de sopa de açucar',
+                'preparation_method' => 'Bolo: No liquidificador bata todos os ingredientes, exceto a farinha de trigo e o fermento, que devem ser colocados em um recipiente à parte, e misturados com uma colher de pau aos ingredientes já batidos do liquidificador.
+                Unte uma forma com óleo e polvilhe farinha de trigo.
+                Despeje a massa do bolo que deve estar uniforme.
+                Ingredientes: Em uma panelinha misture todos os ingredientes, leve ao fogo até que forme uma calda lisa, sem pedaços.
+                Reserve a calda e a despeje sobre o bolo tão logo o tire do forno.',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
             ]
         ]);
     }
