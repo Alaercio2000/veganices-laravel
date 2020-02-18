@@ -6,14 +6,8 @@ let menuHeader = document.getElementById("menuHeader");
 function menuScroll() {
   if (document.documentElement.scrollTop > 50) {
     menuHeader.setAttribute("style","background-color:rgb(80,80,80)");
-    // elementosNav.forEach(function(elem) {
-    //     elem.classList.add('text-dark');
-    //   });
   } else {
     menuHeader.removeAttribute("style");
-    // elementosNav.forEach(function(elem) {
-    //     elem.classList.remove('text-dark');
-    //   });
   }
 }
 

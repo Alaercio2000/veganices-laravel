@@ -2,8 +2,16 @@ function showPassword(){
     $('.input-password').removeClass('d-none');
     $('.input-password input').removeAttr('type');
     $('.input-password input').attr('type','password');
-    $('#rodape').removeClass('fixed-bottom');
     $('#buttonShowPassword').addClass('d-none');
+    rodapeFixed();
+}
+
+function rodapeFixed(){
+    if ($('body').height() < $(window).height()) {
+        $('#rodape').addClass('fixed-bottom');
+    }else{
+        $('#rodape').removeClass('fixed-bottom');
+    }
 }
 
 var behavior = function (val) {

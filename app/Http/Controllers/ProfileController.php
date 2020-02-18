@@ -58,7 +58,7 @@ class ProfileController extends Controller
 
         if ($data['email'] != $user->email) {
             $request->validate([
-               'email' => 'required|max:191|unique:users'
+                'email' => 'required|max:191|unique:users'
             ], [
                 'required' => 'Esse campo é obrigatório',
                 'max' => 'O número máximo de caracteres é de :max',
@@ -71,17 +71,27 @@ class ProfileController extends Controller
         if (!empty($data['cpf'])) {
             $request->validate([
                 'cpf' => 'cpf'
-            ],[
+            ], [
                 'cpf' => 'Digite um cpf válido'
             ]);
 
             $user->cpf = $data['cpf'];
         }
 
+        if (!empty($data['date_birth'])) {
+            $request->validate([
+                'date_birth' => 'date'
+            ], [
+                'date' => 'Digite uma data válida'
+            ]);
+
+            $user->date_birth = $data['date_birth'];
+        }
+
         if (!empty($data['phone'])) {
             $request->validate([
                 'phone' => 'min:14|max:15'
-            ],[
+            ], [
                 'min' => 'Digite um telefone válido',
                 'max' => 'Digite um telefone válido'
             ]);
@@ -90,26 +100,26 @@ class ProfileController extends Controller
         }
 
         if (!empty($data['password_old'])) {
-            if (password_verify($data['password_old'],$user->password)) {
+            if (password_verify($data['password_old'], $user->password)) {
                 if (!empty($data['password'])) {
                     $request->validate([
                         'password' => 'min:4|max:191|confirmed'
-                    ],[
+                    ], [
                         'min' => 'O número mínimo de caracteres é :min',
                         'max' => 'O número máximo de caracteres é :max',
                         'confirmed' => 'As senhas devem ser iguais'
                     ]);
 
-                        $user->password = Hash::make($data['password']);
+                    $user->password = Hash::make($data['password']);
                 }
-            }else{
+            } else {
                 return redirect()->route('profile.edit')
-                    ->with('errorPassword' , 'A senha está errada');
+                    ->with('errorPassword', 'A senha está errada');
             }
         }
 
         $user->save();
         return redirect()->route('profile.edit')
-            ->with('success' , 'Dados atualizados com sucesso');
+            ->with('success', 'Dados atualizados com sucesso');
     }
 }
