@@ -22,9 +22,9 @@
                 camera_alt
             </i>
             <div id="optionsClickImage">
-                @if($user->avatar != null)<span id="viewImage" class="options">Ver foto</span>@endif
+                @if($user->avatar != 'default.jpg')<span id="viewImage" class="options">Ver foto</span>@endif
                 <label class="options" for="uploadImage">Carregar foto</label>
-                @if($user->avatar != null)<label class="options" for="deleteImage">Remover foto</label>@endif
+                @if($user->avatar != 'default.jpg')<label class="options" for="deleteImage">Remover foto</label>@endif
             </div>
         </div>
         <div class="text-center mt-3">
@@ -42,20 +42,25 @@
             <h5 class="pb-3">Minhas Receitas</h5>
             @if($recipes->all())
             @foreach ($recipes->all() as $recipe)
-            <a class="btn btn-link p-0 my-1" target="_blank" href="{{route('recipes.show',['recipe' => $recipe->id])}}">{{$recipe->name}}</a><br>
+            <a class="btn btn-link p-0 my-1" target="_blank"
+                href="{{route('recipes.show',['recipe' => $recipe->id])}}">{{$recipe->name}}</a><br>
             @endforeach
             @else
             Não tem receitas
             @endif
         </div>
         <div class="pt-4 pb-5">
-            <h5 >Endereço da empresa</h5>
+            <h5>Endereço da empresa</h5>
+            @if (!empty($address))
             <p>Cep : {{$address->zip_code}}</p>
             <p>Rua : {{$address->street}}</p>
             <p>Bairro : {{$address->neighborhood}}</p>
             <p>Número : {{$address->number}}</p>
             <p>Cidade : {{$address->county}}</p>
             <p>UF : {{$address->state}}</p>
+            @else
+            Não tem endereço
+            @endif
         </div>
     </div>
 </div>

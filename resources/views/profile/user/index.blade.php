@@ -22,9 +22,9 @@
                 camera_alt
             </i>
             <div id="optionsClickImage">
-                @if($user->avatar != null)<span id="viewImage" class="options">Ver foto</span>@endif
+                @if($user->avatar != 'default.jpg')<span id="viewImage" class="options">Ver foto</span>@endif
                 <label class="options" for="uploadImage">Carregar foto</label>
-                @if($user->avatar != null)<label class="options" for="deleteImage">Remover foto</label>@endif
+                @if($user->avatar != 'default.jpg')<label class="options" for="deleteImage">Remover foto</label>@endif
             </div>
         </div>
         <div class="text-center mt-3">
