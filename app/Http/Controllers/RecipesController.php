@@ -182,7 +182,7 @@ class RecipesController extends Controller
         $recipe->deleted_at = NOW();
         $recipe->save();
 
-        return redirect()->route('recipes.provider.index');
+        return redirect()->route('recipes.index');
     }
 
     protected function createRecipe(array $data)
