@@ -50,7 +50,9 @@ Route::prefix('profile')->group(function (){
 
     Route::prefix('provider')->group(function(){
 
-        Route::get('/','ProfileProviderController@index')->name('profile.provider')->middleware('auth')->middleware('can:is-provider');
+        Route::get('/','ProfileProviderController@index')->name('profile.provider')->middleware('can:is-provider');
+        Route::get('/edit','ProfileProviderController@edit')->name('profile.provider.edit')->middleware('can:is-provider');
+        Route::put('/edit' ,'ProfileProviderController@update')->name('profile.provider.update')->middleware('can:is-provider');
 
     });
 

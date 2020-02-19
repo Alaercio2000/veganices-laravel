@@ -6,15 +6,15 @@
 <link rel="stylesheet" href="{{asset('assets/css/profile/edit.css')}}">
 @endsection
 
-@section('js')
-<script src="{{asset('assets/js/profile/user/edit.js')}}"></script>
-@endsection
-
 @if(session('errorPassword') || $errors->first('password') || session('errorPasswordOld'))
 @section('body')
 onload="showPassword()"
 @endsection
 @endif
+
+@section('js')
+<script src="{{asset('assets/js/profile/provider/edit.js')}}"></script>
+@endsection
 
 @section('content')
 
@@ -35,7 +35,7 @@ onload="showPassword()"
 
         <div class="card border-0">
 
-            <form action="{{route('profile.update',['id' => $user->id])}}" method="post"
+            <form action="{{route('profile.provider.update',['id' => $provider->id])}}" method="post"
                 class="col-md-8 offset-md-2 form-horizontal">
                 @csrf
                 @method('PUT')
@@ -43,7 +43,7 @@ onload="showPassword()"
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="name">Nome</label>
                     <input id="name" name="name" type="text"
-                        class="form-control col @error('name') is-invalid @enderror" value="{{$user->name}}">
+                        class="form-control col @error('name') is-invalid @enderror" value="{{$provider->name}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('name')}}
                     </div>
@@ -59,16 +59,16 @@ onload="showPassword()"
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-4 col-lg-3 pt-1" for="cpf">CPF :</label>
-                    <input id="cpf" name="cpf" type="text" class="form-control col @error('cpf') is-invalid @enderror"
-                        value="{{$user->cpf}}">
+                    <label class="col-4 col-lg-3 pt-1" for="cnpj">CNPJ</label>
+                    <input id="cnpj" name="cnpj" type="text" class="form-control col @error('cnpj') is-invalid @enderror"
+                        value="{{$provider->cnpj}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
-                        {{$errors->first('cpf')}}
+                        {{$errors->first('cnpj')}}
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-4 col-lg-3 pt-1" for="phone">Telefone ou Celular</label>
+                    <label class="col-4 col-lg-3 pt-1" for="phone">Telefone</label>
                     <input id="phone" name="phone" type="text"
                         class="form-control col @error('phone') is-invalid @enderror" value="{{$user->phone}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
@@ -77,12 +77,12 @@ onload="showPassword()"
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-4 col-lg-3 pt-1" for="date_birth">Data de nascimento</label>
-                    <input id="date_birth" name="date_birth" type="date"
-                        class="form-control col @error('date_birth') is-invalid @enderror"
-                        value="{{$user->date_birth}}">
+                    <label class="col-4 col-lg-3 pt-1" for="date_opening">Data de abertura</label>
+                    <input id="date_opening" name="date_opening" type="date"
+                        class="form-control col @error('date_opening') is-invalid @enderror"
+                        value="{{$provider->date_opening}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
-                        {{$errors->first('date_birth')}}
+                        {{$errors->first('date_opening')}}
                     </div>
                 </div>
 

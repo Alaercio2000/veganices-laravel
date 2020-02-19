@@ -103,7 +103,7 @@ class ProfileController extends Controller
             if (password_verify($data['password_old'], $user->password)) {
                 if (!empty($data['password'])) {
                     $request->validate([
-                        'password' => 'min:4|max:191|confirmed'
+                        'password' => 'min:4|max:40|confirmed'
                     ], [
                         'min' => 'O número mínimo de caracteres é :min',
                         'max' => 'O número máximo de caracteres é :max',
@@ -115,6 +115,11 @@ class ProfileController extends Controller
             } else {
                 return redirect()->route('profile.edit')
                     ->with('errorPassword', 'A senha está errada');
+            }
+        }else{
+            if (!empty($data['password'])) {
+                return redirect()->route('profile.edit')
+                    ->with('errorPasswordOld', 'Preencha a senha atual');
             }
         }
 
