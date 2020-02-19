@@ -89,7 +89,7 @@
                     <select id="state" name="state" class="form-control col @error('state') is-invalid @enderror">
                         <option value="">Selecione</option>
                         @foreach ($states as $state)
-                        <option {{(old('state') == $state->id)?'selected':''}} value="{{$state->id}}">{{$state->name}}
+                        <option {{(old('state') == $state->id)?'selected':''}} value="{{$state->id}}">{{$state->state}}
                         </option>
                         @endforeach
                     </select>

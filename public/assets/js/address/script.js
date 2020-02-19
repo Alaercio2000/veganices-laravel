@@ -1,33 +1,33 @@
 $('#zip_code').mask('00000-000')
 
 let states = {
-        'Acre' : 1,
-        'Alagoas' : 2,
-        'Amapá' : 3,
-        'Amazonas' : 4,
-        'Bahia' : 5,
-        'Ceará' : 6,
-        'Distrito Federal' : 7,
-        'Espírito Santo' : 8,
-        'Goiás' : 9,
-        'Maranhão' : 10,
-        'Mato Grosso' : 11,
-        'Mato Grosso do Sul' : 12,
-        'Minas Gerais' : 13,
-        'Pará' : 14,
-        'Paraíba' : 15,
-        'Paraná' : 16,
-        'Pernambuco' : 17,
-        'Piauí' : 18,
-        'Rio de Janeiro' : 19,
-        'Rio Grande do Norte' : 20,
-        'Rio Grande do Sul' : 21,
-        'Rondônia' : 22,
-        'Roraima' : 23,
-        'Santa Catarina' : 24,
-        'São Paulo' : 25,
-        'Sergipe' : 26,
-        'Tocantins' : 27
+    'AC' : 1,
+    'AL' : 2,
+    'AP' : 3,
+    'AM' : 4,
+    'BA' : 5,
+    'CE' : 6,
+    'DF' : 7,
+    'ES' : 8,
+    'GO' : 9,
+    'MA' : 10,
+    'MT' : 11,
+    'MS' : 12,
+    'MG' : 13,
+    'PA' : 14,
+    'PB' : 15,
+    'PR' : 16,
+    'PE' : 17,
+    'PI' : 18,
+    'RJ' : 19,
+    'RN' : 20,
+    'RS' : 21,
+    'RO' : 22,
+    'RR' : 23,
+    'SC' : 24,
+    'SP' : 25,
+    'SE' : 26,
+    'TO' : 27
 };
 
 $(document).ready(function() {
@@ -69,7 +69,7 @@ $(document).ready(function() {
                         $("#street").val(data.logradouro);
                         $("#neighborhood").val(data.bairro);
                         $("#county").val(data.localidade);
-                        $("#state").val(states[data.localidade]);
+                        $("#state").val(states[data.uf]);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.

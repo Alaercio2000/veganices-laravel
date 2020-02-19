@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Address;
+use App\Models\State_brazil;
 
 class RegisterProviderController extends Controller
 {
@@ -114,13 +115,15 @@ class RegisterProviderController extends Controller
 
         $this->create($data);
 
+        $state = State_brazil::where('state' , $reply_url->uf)->first();
+
         $address = [
-            'cep' => $reply_url->cep,
+            'zip_code' => $reply_url->cep,
             'neighborhood' => $reply_url->bairro,
             'street' => $reply_url->logradouro,
             'number' => $reply_url->numero,
             'county' => $reply_url->municipio,
-            'uf' => $reply_url->uf,
+            'state_id' => $state->id,
             'complement' => $reply_url->complemento,
             'user_id' => $data['user_id'],
         ];
@@ -163,12 +166,12 @@ class RegisterProviderController extends Controller
     {
         return Address::create([
             'title' => 'Endereço Principal',
-            'cep' => $data['cep'],
+            'zip_code' => $data['zip_code'],
             'neighborhood' => $data['neighborhood'],
             'street' => $data['street'],
             'number' => $data['number'],
             'county' => $data['county'],
-            'uf' => $data['uf'],
+            'state_id' => $data['state_id'],
             'complement' => $data['complement'],
             'user_id' => $data['user_id'],
         ]);

@@ -89,7 +89,7 @@ class RecipesController extends Controller
 
         $this->createRecipe($data);
 
-        return redirect()->route('recipes.provider.index');
+        return redirect()->route('recipes.index');
     }
 
     /**

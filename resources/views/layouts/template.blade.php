@@ -160,7 +160,7 @@
                     </div>
                     <div>
                         <div class="pb-2 text-center">
-                            <h5>Endereços</h5>
+                            <h5>Endereço Principal</h5>
                         </div>
                         <div class="pb-2">
                             @if (!empty($address))

@@ -102,7 +102,7 @@
                         <option value="">Selecione</option>
                         @foreach ($states as $state)
                         <option {{($address->state_id == $state->id)?'selected':''}} value="{{$state->id}}">
-                            {{$state->name}}
+                            {{$state->state}}
                         </option>
                         @endforeach
                     </select>

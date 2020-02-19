@@ -16,7 +16,7 @@ class CreateStatesBrazilTable extends Migration
     {
         Schema::create('states_brazil', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('state');
             $table->timestamps();
             $table->softDeletes();
         });
