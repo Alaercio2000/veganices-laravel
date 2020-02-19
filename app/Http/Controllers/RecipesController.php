@@ -100,7 +100,7 @@ class RecipesController extends Controller
      */
     public function show( $id)
     {
-        // dd ($recipe);
+        // dd($id);
         $recipe = Recipe::find($id);
         return view('recipes.provider.show', [
             'recipe' => $recipe
@@ -166,9 +166,7 @@ class RecipesController extends Controller
 
         $this->updateRecipe($data, $id);
 
-        return redirect()->route('recipes.provider.show',[
-            'recipe'=> $id
-        ]);
+        return redirect('/recipes/' . $id);
 
     }
 
