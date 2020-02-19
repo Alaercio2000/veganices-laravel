@@ -47,19 +47,6 @@
             <div id="recipeImage" class="col-12 col-md-9" data-ride="carousel">
                   <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">
             </div>
-            <aside class="col-12 col-md-3">
-              <h4>Entrar em contato </h4>
-              <form>
-                  <div class="form-group">
-                      <input type="text" class="form-control mb-3 mt-5" id="nome" aria-describedby="nome" placeholder="Nome">
-                      <input type="text" class="form-control mb-3" id="sobrenome" aria-describedby="sobrenome" placeholder="Sobrenome">
-                      <input type="email" class="form-control mb-3" id="email" aria-describedby="emai" placeholder="Email">
-                      <input type="text" class="form-control mb-3" id="telefone" placeholder="Telefone">
-                      <textarea class="form-control" id="telefone"> Comentário</textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Enviar</button>
-                </form>
-            </aside>
             <div class="row">
               <div class="col-12 col-md-8 my-5">
                 <h4>Informações sobre a receita</h4>
