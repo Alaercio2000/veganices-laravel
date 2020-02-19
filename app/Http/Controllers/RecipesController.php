@@ -117,9 +117,11 @@ class RecipesController extends Controller
     public function edit($id)
     {
         $recipe = Recipe::find($id);
+        $categoryRecipes = CategoryRecipe::all();
 
         return view('recipes.provider.edit', [
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'categoryRecipes' => $categoryRecipes
         ]);
     }
 

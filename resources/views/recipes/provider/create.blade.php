@@ -43,7 +43,7 @@
     <div class="form-group">
         <select  class="form-control @error('category_recipes_id') is-invalid @enderror" name="category_recipes_id"
             id="category_recipes_id">
-            <option value="" onselect>Selecione</option>
+            <option value="" onselect>Categoria</option>
             @foreach ($categoryRecipes as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach

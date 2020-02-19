@@ -38,6 +38,20 @@
             {{$errors->first('preparation_method')}}
         </div>
     </div>
+
+    <div class="form-group">
+        <select  class="form-control @error('category_recipes_id') is-invalid @enderror" name="category_recipes_id"
+            id="category_recipes_id">
+            <option value="" onselect>Categoria</option>
+            @foreach ($categoryRecipes as $category)
+            <option {{($recipe->category_recipes_id == $category->id)?'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+        <div class="invalid-feedback">
+            {{$errors->first('category_recipes_id')}}
+        </div>
+    </div>
+
     <div class="form-group">
         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
             id="image">
