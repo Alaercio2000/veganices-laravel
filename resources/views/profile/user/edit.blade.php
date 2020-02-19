@@ -10,7 +10,7 @@
 <script src="{{asset('assets/js/profile/user/edit.js')}}"></script>
 @endsection
 
-@if(session('errorPassword') || $errors->first('password'))
+@if(session('errorPassword') || $errors->first('password') || session('errorPasswordOld'))
 @section('body')
 onload="showPassword()"
 @endsection
@@ -89,10 +89,14 @@ onload="showPassword()"
                 <div class="form-group row d-none input-password">
                     <label class="col-4 col-lg-3 pt-1" for="password_old">Senha atual</label>
                     <input id="password_old" name="password_old" type="hidden"
-                        class="form-control col @if(session('errorPassword')) is-invalid @endif">
+                        class="form-control col @if(session('errorPassword')) is-invalid @endif @if(session('errorPasswordOld')) is-invalid @endif">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         @if (session('errorPassword'))
                         {{session('errorPassword')}}
+                        @endif
+
+                        @if (session('errorPasswordOld'))
+                        {{session('errorPasswordOld')}}
                         @endif
                     </div>
                 </div>
@@ -110,9 +114,6 @@ onload="showPassword()"
                     <label class="col-4 col-lg-3 pt-1" for="password_confirmation">Repita a senha</label>
                     <input id="password_confirmation" name="password_confirmation" type="hidden"
                         class="form-control col @error('password') is-invalid @enderror">
-                    <div class="invalid-feedback offset-lg-3 offset-4">
-                        {{$errors->first('password')}}
-                    </div>
                 </div>
 
                 <div class="form-group row justify-content-end">
