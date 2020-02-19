@@ -24,3 +24,4 @@ options = {
 };
 
 $('#phone').mask(behavior , options);
+$('#cpf').mask('000.000.000-00');
