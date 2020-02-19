@@ -28,15 +28,16 @@
             </div>
         </div>
         <div class="text-center mt-3">
-            <h4>{{$user->name}}</h4>
+            <h4>{{$provider->name}}</h4>
         </div>
 
         <div>
             <h5 class="py-3">Informações da empresa</h5>
-            <p>Nome : {{$provider->name}}</p>
+            <p>E-mail : {{$user->email}}</p>
             <p>CPNJ : {{$provider->cnpj}}</p>
-            <p>Telefone : {{$provider->phone}}</p>
+            <p>Telefone : {{$user->phone}}</p>
             <p>Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}</p>
+        <a href="{{route('profile.provider.edit')}}">Editar informações</a>
         </div>
         <div class="pt-3">
             <h5 class="pb-3">Minhas Receitas</h5>
