@@ -25,22 +25,7 @@
   <div class="content">
     <div class="container">
       <div class="row mt-5">
-        <aside class="col-12 col-md-3 border-right px-4 aside">
-          <form class=" ">
-            <h4>Filtro</h4>
-            <div>
-              @foreach ($categoryRecipes as $item) 
-                <div class="form-check">
-                  <input class="form-check-input category-recipe" type="checkbox" name="category_recipe[]" value="{{$item['id']}}" id="category-check-{{$item['id']}}">
-                  <label class="form-check-label" for="category-check-{{$item['id']}}">
-                    {{$item['name']}}
-                  </label>
-                </div>
-              @endforeach
-            </div>
-          </form>
-        </aside>  
-        <main class="col-12 col-sm-9">
+        <main class="col-12 col-sm-12">
           <div class="text-right my-3">
           <a href="{{route('recipes.create')}}" class="btn btn-success">Adicionar</a>
         </div>

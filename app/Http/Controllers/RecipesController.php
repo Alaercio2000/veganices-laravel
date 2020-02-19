@@ -178,7 +178,11 @@ class RecipesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::find($id);
+        $recipe->deleted_at = NOW();
+        $recipe->save();
+
+        return redirect()->route('recipes.provider.index');
     }
 
     protected function createRecipe(array $data)

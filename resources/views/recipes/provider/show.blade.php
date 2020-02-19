@@ -40,12 +40,12 @@
               <button type="button" class="btn btn-primary">Avaliar</button>
             </div>
             <div class="col-1 card-body d-flex flex-column align-self-center">
-              <a href="#" class="card-link align-self-center d-flex flex-column">
-                <i class="material-icons align-self-center">favorite</i>
+              <a href="{{route('recipes.destroy',['recipe'=> $recipe->id])}}" class="card-link align-self-center d-flex flex-column">
+                <i class="material-icons align-self-center text-danger">delete</i>
               </a>
             </div>
             <div id="recipeImage" class="col-12 col-md-9" data-ride="carousel">
-                  <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">   
+                  <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">
             </div>
             <aside class="col-12 col-md-3">
               <h4>Entrar em contato </h4>
