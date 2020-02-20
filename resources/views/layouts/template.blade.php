@@ -72,6 +72,11 @@
                                     href="{{route('community.index')}}">Comunidade &nbsp;<span
                                         class="d-none d-md-inline">|</span></a>
                                 @endif
+                                @if (empty(Auth::user()->provider))
+                                <a class="nav-link navItem text-light font-weight-bold py-2 mt-1 mr-lg-5 d-inline-block d-md-none"
+                                    href="{{route('cart.index')}}">Meu carrinho &nbsp;<span
+                                        class="d-none d-md-inline">|</span></a>
+                                @endif
                                 @if (Auth::guest())
                                 <a class="nav-link navItem text-light font-weight-bold d-inline py-2 mt-1 ml-lg-5"
                                     href="{{route('login')}}">Acesse</a>
@@ -88,7 +93,7 @@
                         data-toggle="modal">
                         <img id="img-perfil" src="{{asset('app/avatar/'.$user->avatar)}}" class="mr-md-2"
                             alt="imagem perfil">
-                        <span class="font-weight-bold navItem text-light d-none d-sm-inline">
+                        <span class="font-weight-bold navItem text-light d-none d-sm-inline-block">
                             <?php
                                 $nome = $user->name;
                                 $partes = explode(" " , $nome);
@@ -96,8 +101,19 @@
                             ?>
                         </span>
                     </button>
+                </div>
+                <div class="order-4">
+                    @if(!Auth::user()->provider)
+                    <a href="{{route('cart.index')}}" id="cart-link"
+                        class="text-light navItem font-weight-bold nav-link d-none d-md-inline-block py-3">
+                        <i class="material-icons text-light">
+                            shopping_cart
+                        </i>
+                    </a>
+                    @else
                     <a href="{{route('logout')}}"
-                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-lg-inline">Sair</a>
+                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-md-inline">Sair</a>
+                    @endif
                     @endif
                 </div>
             </div>
