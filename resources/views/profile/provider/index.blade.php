@@ -51,14 +51,14 @@
             @endif
         </div>
         <div class="pt-4 pb-5">
-            <h5>Endereço da empresa</h5>
+            <h5 class="pb-3">Endereço Pricipal</h5>
             @if (!empty($address))
             <p>Cep : {{$address->zip_code}}</p>
             <p>Rua : {{$address->street}}</p>
             <p>Bairro : {{$address->neighborhood}}</p>
             <p>Número : {{$address->number}}</p>
             <p>Cidade : {{$address->county}}</p>
-            <p>UF : {{$address->state}}</p>
+            <p>UF : {{$state->state}}</p>
             @else
             Não tem endereço
             @endif

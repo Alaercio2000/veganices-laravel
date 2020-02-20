@@ -7,6 +7,7 @@ use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\State_brazil;
 
 class ProfileProviderController extends Controller
 {
@@ -17,6 +18,7 @@ class ProfileProviderController extends Controller
         $provider = $user->provider()->first();
         $recipes = $provider->recipe()->get();
         $address = $user->address()->first();
+        $state = State_brazil::find($address->state_id);
 
         $srcImg = 'default.jpg';
 
@@ -29,7 +31,8 @@ class ProfileProviderController extends Controller
             'provider' => $provider,
             'recipes' => $recipes,
             'srcImg' =>$srcImg,
-            'address' => $address
+            'address' => $address,
+            'state' => $state
         ]);
     }
 
@@ -46,9 +49,14 @@ class ProfileProviderController extends Controller
     public function update(Request $request){
         $request->validate([
             'name' => 'required|max:191',
+            'date_opening' => 'date',
+            'phone' => 'min:14|max:15',
         ], [
             'required' => 'Esse campo é obrigatório',
-            'max' => 'O número máximo de caracteres é de :max'
+            'max' => 'O número máximo de caracteres é de :max',
+            'date' => 'Digite uma data válida',
+            'phone.min' => 'Digite um telefone válido',
+            'phone.max' => 'Digite um telefone válido'
         ]);
 
         $user = User::find(Auth::user()->id);
@@ -66,6 +74,22 @@ class ProfileProviderController extends Controller
         ]);
 
         $provider->name = $data['name'];
+        $provider->date_opening = $data['date_opening'];
+
+        $user->phone = $data['phone'];
+
+        if ($data['cnpj'] != $provider->cnpj) {
+            $request->validate([
+                'cnpj' => 'required|cnpj|unique:providers'
+            ], [
+                'required' => 'Esse campo é obrigatório',
+                'cnpj' => 'Digite um CNPJ válido',
+                'unique' => 'Esse CNPJ já foi cadastrado'
+            ]);
+
+            $provider->cnpj = $data['cnpj'];
+        }
+
 
         if ($data['email'] != $user->email) {
             $request->validate([
@@ -77,37 +101,6 @@ class ProfileProviderController extends Controller
             ]);
 
             $user->email = $data['email'];
-        }
-
-        if (!empty($data['cnpj'])) {
-            $request->validate([
-                'cnpj' => 'cnpj'
-            ], [
-                'cnpj' => 'Digite um cnpj válido'
-            ]);
-
-            $provider->cnpj = $data['cnpj'];
-        }
-
-        if (!empty($data['date_opening'])) {
-            $request->validate([
-                'date_opening' => 'date'
-            ], [
-                'date' => 'Digite uma data válida'
-            ]);
-
-            $provider->date_opening = $data['date_opening'];
-        }
-
-        if (!empty($data['phone'])) {
-            $request->validate([
-                'phone' => 'min:14|max:15'
-            ], [
-                'min' => 'Digite um telefone válido',
-                'max' => 'Digite um telefone válido'
-            ]);
-
-            $user->phone = $data['phone'];
         }
 
         if (!empty($data['password_old'])) {

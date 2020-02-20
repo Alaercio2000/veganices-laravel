@@ -61,7 +61,7 @@ onload="showPassword()"
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="cpf">CPF :</label>
                     <input id="cpf" name="cpf" type="text" class="form-control col @error('cpf') is-invalid @enderror"
-                        value="{{$user->cpf}}">
+                        value="{{($user->cpf)?$user->cpf:old('cpf')}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('cpf')}}
                     </div>
@@ -70,7 +70,7 @@ onload="showPassword()"
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="phone">Telefone ou Celular</label>
                     <input id="phone" name="phone" type="text"
-                        class="form-control col @error('phone') is-invalid @enderror" value="{{$user->phone}}">
+                        class="form-control col @error('phone') is-invalid @enderror" value="{{($user->phone)?$user->phone:old('phone')}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('phone')}}
                     </div>
@@ -80,7 +80,7 @@ onload="showPassword()"
                     <label class="col-4 col-lg-3 pt-1" for="date_birth">Data de nascimento</label>
                     <input id="date_birth" name="date_birth" type="date"
                         class="form-control col @error('date_birth') is-invalid @enderror"
-                        value="{{$user->date_birth}}">
+                        value="{{($user->date_birth)?$user->date_birth:old('date_birth')}}">
                     <div class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('date_birth')}}
                     </div>

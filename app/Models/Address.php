@@ -16,8 +16,4 @@ class Address extends Model
     protected $fillable = [
         'user_id', 'title' , 'zip_code' , 'state_id','county' , 'neighborhood' , 'street' , 'number' , 'complement' , 'reference_point'
     ];
-
-    public function state(){
-        $this->hasOne(State_brazil::class, 'state_id' , 'id');
-    }
 }
