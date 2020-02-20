@@ -58,3 +58,11 @@
 #div-user{
     line-height: 200px;
 }
+
+#cart-link{
+    text-decoration: none;
+}
+
+#cart-link:hover{
+    background-color: rgb(100, 100, 100, .4);
+}
