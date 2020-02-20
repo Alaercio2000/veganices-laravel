@@ -16,11 +16,8 @@
     <main id="corpo">
 
         @if (session('success'))
-        <div class="alert alert-success col-md-8 offset-md-2 mt-5 alert-dismissible fade show">
+        <div class="alert alert-success col-md-8 offset-md-2 mt-5">
             {{session('success')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
         @endif
 
