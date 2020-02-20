@@ -59,3 +59,10 @@ Route::prefix('profile')->group(function (){
     Route::put('/upload/{route}', 'UploadController@uploadImageProfile')->name('upload')->middleware('auth');
     Route::delete('/delImage/{id}/{route}','UploadController@deleteImage')->name('del.image')->middleware('auth');
 });
+
+Route::prefix('cart')->group(function (){
+
+    Route::get('/','CartsController@index')->name('cart.index')->middleware('can:is-user');
+    Route::post('create/{recipe}', 'CartsController@store')->name('cart.store')->middleware('can:is-user');
+    Route::delete('destroy/{recipe}' , 'CartsController@destroy')->name('cart.destroy')->middleware('can:is-user');
+});
