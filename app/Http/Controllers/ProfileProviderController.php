@@ -18,7 +18,11 @@ class ProfileProviderController extends Controller
         $provider = $user->provider()->first();
         $recipes = $provider->recipe()->get();
         $address = $user->address()->first();
-        $state = State_brazil::find($address->state_id);
+
+        $state = 0;
+        if(!empty($address->state)){
+            $state = State_brazil::find($address->state_id);
+        }
 
         $srcImg = 'default.jpg';
 

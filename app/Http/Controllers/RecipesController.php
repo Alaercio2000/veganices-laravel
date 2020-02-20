@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Provider;
+use Illuminate\Support\Facades\Validator;
 
 class RecipesController extends Controller
 {
@@ -20,7 +21,7 @@ class RecipesController extends Controller
     public function index()
     {
         $provider = Auth::user()->provider()->first();
-        $recipes = Recipe::where('provider_id' , $provider->id)->get();
+        $recipes = Recipe::where('provider_id', $provider->id)->get();
         $categoryRecipes = CategoryRecipe::all();
 
         $data = [
@@ -40,7 +41,7 @@ class RecipesController extends Controller
     {
         $categoryRecipes = CategoryRecipe::all();
 
-        return view('recipes.provider.create',[
+        return view('recipes.provider.create', [
             'categoryRecipes' => $categoryRecipes
         ]);
     }
@@ -55,31 +56,41 @@ class RecipesController extends Controller
     {
 
         $request->validate([
-                'name' => 'required|string|max:191',
-                'ingredients' => 'required|string',
-                'preparation_method' => 'required|string',
-                'category_recipes_id' => 'required',
-                'imageRecipe' => 'required|image|mimes:jpeg,jpg,png',
-            ], [
-                'required' => 'Esse campo é obrigatório',
-                'max' => 'O número máximo de caracteres é :max',
-                'mimes' => 'Formato inválido',
-                'image' => 'Coloque uma imagem',
-                'required' => 'Campo obrigatório',
-                'mimes' => 'Formato inválido',
-            ]);
+            'name' => 'required|string|max:191',
+            'ingredients' => 'required|string',
+            'preparation_method' => 'required|string',
+            'category_recipes_id' => 'required',
+            'price' => 'required',
+            'imageRecipe' => 'required|image|mimes:jpeg,jpg,png',
+        ], [
+            'required' => 'Esse campo é obrigatório',
+            'max' => 'O número máximo de caracteres é :max',
+            'mimes' => 'Formato inválido',
+            'image' => 'Coloque uma imagem',
+            'required' => 'Campo obrigatório',
+            'mimes' => 'Formato inválido',
+        ]);
 
         $data = $request->only([
-                    'name',
-                    'ingredients',
-                    'preparation_method',
-                    'category_recipes_id'
-                ]);
+            'name',
+            'ingredients',
+            'preparation_method',
+            'category_recipes_id',
+        ]);
 
+        $data['price'] = str_replace(['.',','] , ['','.'] ,$request->input('price'));
 
-        $imageName = time().'.jpg';
+        $validator = Validator::make($data,[
+            'price' => ['numeric']
+        ]);
 
-        $request->imageRecipe->move(public_path('app/imageRecipes/'),$imageName);
+        if ($validator->fails()) {
+            return redirect()->route('recipes.create');
+        }
+
+        $imageName = time() . '.jpg';
+
+        $request->imageRecipe->move(public_path('app/imageRecipes/'), $imageName);
 
         $data['imageRecipe'] = $imageName;
 
@@ -98,14 +109,13 @@ class RecipesController extends Controller
      * @param  \App\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
         // dd($id);
         $recipe = Recipe::find($id);
         return view('recipes.provider.show', [
             'recipe' => $recipe
         ]);
-
     }
 
     /**
@@ -138,7 +148,8 @@ class RecipesController extends Controller
             'name' => 'required|string|max:191',
             'image' => 'image|mimes:jpeg,jpg,svg',
             'ingredients' => 'required|string',
-            'preparation_method' => 'required|string'
+            'preparation_method' => 'required|string',
+            'price' => 'required'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
@@ -151,12 +162,22 @@ class RecipesController extends Controller
             'preparation_method'
         ]);
 
+        $data['price'] = str_replace(['.',','] , ['','.'] ,$request->input('price'));
+
+        $validator = Validator::make($data,[
+            'price' => ['numeric']
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('recipes.create');
+        }
+
         $recipe = Recipe::find($id);
 
-        if(!empty($request->input('image'))) {
+        if (!empty($request->input('image'))) {
             $imageName = $recipe->image;
 
-            $request->image->move(public_path('app/imageRecipes/'),$imageName);
+            $request->image->move(public_path('app/imageRecipes/'), $imageName);
 
             $data['image'] = $imageName;
         }
@@ -169,7 +190,6 @@ class RecipesController extends Controller
         $this->updateRecipe($data, $id);
 
         return redirect('/recipes/' . $id);
-
     }
 
     /**
@@ -194,6 +214,7 @@ class RecipesController extends Controller
             'category_recipes_id' => intval($data['category_recipes_id']),
             'name' => $data['name'],
             'image' => $data['imageRecipe'],
+            'price' => $data['price'],
             'ingredients' => $data['ingredients'],
             'preparation_method' => $data['preparation_method'],
         ]);
@@ -213,6 +234,7 @@ class RecipesController extends Controller
                 'name' => $data['name'],
                 'ingredients' => $data['ingredients'],
                 'preparation_method' => $data['preparation_method'],
+                'price' => $data['price'],
             ]);
     }
 }

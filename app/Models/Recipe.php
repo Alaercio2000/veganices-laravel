@@ -22,5 +22,6 @@ class Recipe extends Model
         'ingredients',
         'preparation_method',
         'category_recipes_id',
+        'price'
     ];
 }
