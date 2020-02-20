@@ -112,7 +112,7 @@
                     </a>
                     @else
                     <a href="{{route('logout')}}"
-                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-md-inline">Sair</a>
+                        class="text-light navItem font-weight-bold nav-link py-3 d-none d-md-inline-block">Sair</a>
                     @endif
                     @endif
                 </div>

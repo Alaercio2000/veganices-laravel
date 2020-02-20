@@ -2,6 +2,10 @@
 
   @section('title','Nova Receita')
 
+  @section('js')
+    <script src="{{asset('assets/js/recipes/script.js')}}"></script>
+  @endsection
+
   @section('content')
 
   <link rel="stylesheet" href="{{asset('assets/css/recipes/style.css')}}">
@@ -9,7 +13,7 @@
   <div class="banner">
     <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
     </div>
-    <div class="row justify-content-center">
+    <div class="d-flex justify-content-center">
     <div class="col-5">
     <h3 class="text-center font-weight-normal py-3">Cadastro de nova receita</h3>
 
@@ -50,6 +54,14 @@
         </select>
         <div class="invalid-feedback">
             {{$errors->first('category_recipes_id')}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control @error('price') is-invalid @enderror" name="price"
+            id="price" value="{{old('price')}}" placeholder="Preço">
+        <div class="invalid-feedback">
+            {{$errors->first('price')}}
         </div>
     </div>
 

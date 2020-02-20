@@ -54,6 +54,7 @@
                 <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
               </div>
             </div>
+            <span style="font-size:30px" class="font-weight-bolder text-warning pb-4">R$ {{str_replace('.',',',$recipe->price)}}</span>
               </div>
           </div>
         </main>

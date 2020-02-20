@@ -60,28 +60,30 @@
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>
                     </aside>
-                    <div class="row">
+                    <div class="d-flex">
                         <div class="col-12 col-md-8 my-5">
                             <h4>Informações sobre a receita</h4>
                             <h6 class="mt-3">Ingredientes</h6>
                             <p class="card-text align-self-center m-0">{{$recipe->ingredients}}</p>
                             <h6 class="mt-3">Modo de preparo</h6>
                             <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
+                            <span style="font-size:30px" class="font-weight-bolder text-warning pt-4 d-block">R$
+                                {{str_replace('.',',',$recipe->price)}}</span>
                         </div>
                     </div>
-                    @if ($existCart)
-                    <form action="{{route('cart.destroy',$recipe->id)}}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-outline-danger mb-4">Remover do carrinho</button>
-                    </form>
-                    @else
-                    <form action="{{route('cart.store',$recipe->id)}}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-info mb-4">Adicionar no carrinho</button>
-                    </form>
-                    @endif
                 </div>
+                @if ($existCart)
+                <form action="{{route('cart.destroy',$recipe->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger mb-4">Remover do carrinho</button>
+                </form>
+                @else
+                <form action="{{route('cart.store',$recipe->id)}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-info mb-4">Adicionar no carrinho</button>
+                </form>
+                @endif
         </div>
         </main>
     </div>
