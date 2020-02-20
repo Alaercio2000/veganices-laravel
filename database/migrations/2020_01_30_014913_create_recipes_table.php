@@ -20,6 +20,7 @@ class CreateRecipesTable extends Migration
             $table->string('image');
             $table->mediumText('ingredients');
             $table->longText('preparation_method');
+            $table->float('price',10,2);
             $table->timestamps();
             $table->softDeletes();
 

@@ -19,7 +19,6 @@ class CreateRequestsTable extends Migration
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('recipe_id');
             $table->unsignedInteger('status_id');
-            $table->float('price', 10, 2);
             $table->timestamps();
             $table->softDeletes();
 
