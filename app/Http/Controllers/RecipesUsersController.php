@@ -26,9 +26,20 @@ class RecipesUsersController extends Controller
     public function show( $id)
     {
         // dd ($recipe);
+
+        $existCart = false;
+        $carts = Auth::user()->cart()->get();
+        foreach($carts as $cart){
+            if ($cart->recipe_id == $id) {
+                $existCart = true;
+            }
+
+        }
+
         $recipe = Recipe::find($id);
         return view('recipes.user.show', [
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'existCart' => $existCart
         ]);
 
     }

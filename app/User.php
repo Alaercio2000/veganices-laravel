@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Provider;
 use App\Models\Requests;
 use App\Models\Post;
+use App\Models\Cart;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,5 +59,9 @@ class User extends Authenticatable
 
     public function post(){
         return $this->hasMany(Post::class , 'user_id' , 'id');
+    }
+
+    public function cart(){
+        return $this->hasMany(Cart::class , 'user_id' , 'id');
     }
 }
