@@ -72,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                @if(!Auth::guest())
                 @if ($existCart)
                 <form action="{{route('cart.destroy',$recipe->id)}}" method="post">
                     @method('DELETE')
@@ -83,6 +84,9 @@
                     @csrf
                     <button type="submit" class="btn btn-outline-info mb-4">Adicionar no carrinho</button>
                 </form>
+                @endif
+                @else
+                    <button disabled class="btn btn-warning mb-4" title="Você precisa está logado para adicionar no carrinho">Adicionar no carrinho</button>
                 @endif
         </div>
         </main>

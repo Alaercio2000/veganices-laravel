@@ -3,5 +3,11 @@
 @section('title','Carrinho')
 
 @section('content')
-Olá Mundo
+
+<h2 class="text-center pt-5 mt-4">Meu Carrinho</h2>
+
+@foreach ($recipes as $recipe)
+    Nome : {{$recipe->name}}<br>
+@endforeach
+
 @endsection

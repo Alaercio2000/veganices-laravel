@@ -28,12 +28,14 @@ class RecipesUsersController extends Controller
         // dd ($recipe);
 
         $existCart = false;
-        $carts = Auth::user()->cart()->get();
-        foreach($carts as $cart){
-            if ($cart->recipe_id == $id) {
-                $existCart = true;
-            }
+        if(!Auth::guest()){
+            $carts = Auth::user()->cart()->get();
 
+            foreach($carts as $cart){
+                if ($cart->recipe_id == $id) {
+                    $existCart = true;
+                }
+            }
         }
 
         $recipe = Recipe::find($id);
