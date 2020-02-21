@@ -11,18 +11,18 @@ class CartsController extends Controller
 {
     public function index(){
         $id = Auth::user()->id;
-        $products = Cart::where('user_id',$id)->get();
+        $cart = Cart::where('user_id',$id)->get();
 
         $recipes_id = [];
 
-        foreach($products->all() as $product){
-            array_push($recipes_id,$product->id);
+        foreach($cart->all() as $item){
+            array_push($recipes_id,$item->recipe_id);
         }
 
-        $recipes = Recipe::whereIn('id',$recipes_id)->get();
+        $products = Recipe::whereIn('id',$recipes_id)->get();
 
         return view('cart.index',[
-            'recipes' => $recipes
+            'products' => $products
         ]);
     }
 
