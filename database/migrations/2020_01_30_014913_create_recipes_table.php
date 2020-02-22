@@ -18,6 +18,7 @@ class CreateRecipesTable extends Migration
             $table->unsignedBigInteger('provider_id');
             $table->string('name');
             $table->string('image');
+            $table->integer('stock');
             $table->mediumText('ingredients');
             $table->longText('preparation_method');
             $table->float('price',10,2);
