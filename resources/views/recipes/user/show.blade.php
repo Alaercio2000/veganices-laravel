@@ -74,7 +74,7 @@
                 </div>
                 @if(!Auth::guest())
                 @if ($existCart)
-                <form action="{{route('cart.destroy',$recipe->id)}}" method="post">
+                <form action="{{route('cart.destroy.recipe',$recipe->id)}}" method="post">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-outline-danger mb-4">Remover do carrinho</button>
