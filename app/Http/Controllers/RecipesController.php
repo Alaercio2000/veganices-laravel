@@ -146,14 +146,13 @@ class RecipesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:191',
-            'image' => 'image|mimes:jpeg,jpg,svg',
+            'imageRecipe' => 'image|mimes:jpeg,jpg,png',
             'ingredients' => 'required|string',
             'preparation_method' => 'required|string',
             'price' => 'required'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
-
         ]);
 
         $data = $request->only([
@@ -174,12 +173,12 @@ class RecipesController extends Controller
 
         $recipe = Recipe::find($id);
 
-        if (!empty($request->input('image'))) {
+        if (!empty($request->imageRecipe)) {
             $imageName = $recipe->image;
 
-            $request->image->move(public_path('app/imageRecipes/'), $imageName);
+            $request->imageRecipe->move(public_path('app/imageRecipes/'), $imageName);
 
-            $data['image'] = $imageName;
+            $data['imageRecipe'] = $imageName;
         }
 
         // $recipe->name = $data['name'];
