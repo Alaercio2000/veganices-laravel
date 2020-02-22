@@ -1,9 +1,22 @@
 @if(!Auth::guest())
-<?php $user = Auth::user()?>
-<?php $address = $user->address()->first()?>
+
+@php
+
+$user = Auth::user();
+$address = $user->address()->first();
+
+@endphp
+
 @if($user->provider)
-<?php $provider = $user->provider()->first()?>
+
+@php
+
+$provider = $user->provider()->first();
+
+@endphp
+
 @endif
+
 @endif
 <!DOCTYPE html>
 <html lang="pt-br">
