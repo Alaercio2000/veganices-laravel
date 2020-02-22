@@ -69,6 +69,8 @@
                             <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
                             <span style="font-size:30px" class="font-weight-bolder text-warning pt-4 d-block">R$
                                 {{str_replace('.',',',$recipe->price)}}</span>
+
+                            <div class="pt-3">Em estoque : {{$recipe->stock}}</div>
                         </div>
                     </div>
                 </div>

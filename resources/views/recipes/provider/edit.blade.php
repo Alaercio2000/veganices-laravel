@@ -69,6 +69,14 @@
             </div>
 
             <div class="form-group">
+                <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock"
+                    id="stock" value="{{$recipe->stock}}" placeholder="Em estoque">
+                <div class="invalid-feedback">
+                    {{$errors->first('stock')}}
+                </div>
+            </div>
+
+            <div class="form-group">
                 <input type="file" class="form-control @error('imageRecipe') is-invalid @enderror" name="imageRecipe"
                     id="imageRecipe">
                 <div class="invalid-feedback">

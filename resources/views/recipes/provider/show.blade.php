@@ -55,6 +55,7 @@
                             <p class="card-text align-self-center m-0">{{$recipe->ingredients}}</p>
                             <h6 class="mt-3">Modo de preparo</h6>
                             <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
+                            <div class="pt-4  ">Em estoque : {{$recipe->stock}}</div>
                         </div>
                     </div>
                 </div>
