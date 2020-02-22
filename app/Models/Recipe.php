@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Provider;
 
 class Recipe extends Model
 {
@@ -24,4 +25,8 @@ class Recipe extends Model
         'category_recipes_id',
         'price'
     ];
+
+    public function provider(){
+        return $this->belongsTo(Provider::class , 'provider_id' , 'id');
+    }
 }
