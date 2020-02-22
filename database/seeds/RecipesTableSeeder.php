@@ -34,6 +34,7 @@ class RecipesTableSeeder extends Seeder
                 pimenta-do-reino a gosto',
                 'preparation_method' => 'Em uma tigela, misture a aveia com a água morna.Deixe de molho por 30 minutos. Em seguida, bata no liquidificador e reserve. Em uma frigideira, esquente 1 fio de azeite e refogue a cebola e o alho. Acrescente o palmito, os cogumelos, o molho de tomate, a mostarda e o creme de aveia reservado. Mexa bem e acrescente a salsinha, o tomilho e o alecrim fresco. Adicione a água e tempere com sal e pimenta-do-reino a gosto.',
                 'price' => 57.75,
+                'stock' => 22,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
@@ -51,6 +52,7 @@ class RecipesTableSeeder extends Seeder
                 'preparation_method' => 'No liquidificador, adicione o abacate, o cacau, a canela, o melado e a essência de baunilha.
                 Bata bem e leve à geladeira por 2 horas.',
                 'price' => 92.99,
+                'stock' => 5,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
@@ -77,6 +79,7 @@ class RecipesTableSeeder extends Seeder
                 Ingredientes: Em uma panelinha misture todos os ingredientes, leve ao fogo até que forme uma calda lisa, sem pedaços.
                 Reserve a calda e a despeje sobre o bolo tão logo o tire do forno.',
                 'price' => 157.00,
+                'stock' => 12,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ]
