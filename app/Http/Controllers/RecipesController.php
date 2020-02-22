@@ -62,6 +62,7 @@ class RecipesController extends Controller
             'category_recipes_id' => 'required',
             'price' => 'required',
             'imageRecipe' => 'required|image|mimes:jpeg,jpg,png',
+            'stock' => 'required|numeric'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
@@ -69,6 +70,7 @@ class RecipesController extends Controller
             'image' => 'Coloque uma imagem',
             'required' => 'Campo obrigatório',
             'mimes' => 'Formato inválido',
+            'numeric' => 'Digite o número em estoque'
         ]);
 
         $data = $request->only([
@@ -76,6 +78,7 @@ class RecipesController extends Controller
             'ingredients',
             'preparation_method',
             'category_recipes_id',
+            'stock'
         ]);
 
         $data['price'] = str_replace(['.',','] , ['','.'] ,$request->input('price'));
@@ -149,16 +152,20 @@ class RecipesController extends Controller
             'imageRecipe' => 'image|mimes:jpeg,jpg,png',
             'ingredients' => 'required|string',
             'preparation_method' => 'required|string',
-            'price' => 'required'
+            'price' => 'required',
+            'stock' => 'required|numeric'
         ], [
             'required' => 'Esse campo é obrigatório',
             'max' => 'O número máximo de caracteres é :max',
+            'numeric' => 'Digite o número em estoque'
         ]);
 
         $data = $request->only([
             'name',
             'ingredients',
-            'preparation_method'
+            'preparation_method',
+            'numeric',
+            'stock'
         ]);
 
         $data['price'] = str_replace(['.',','] , ['','.'] ,$request->input('price'));
@@ -216,6 +223,7 @@ class RecipesController extends Controller
             'price' => $data['price'],
             'ingredients' => $data['ingredients'],
             'preparation_method' => $data['preparation_method'],
+            'stock' => $data['stock']
         ]);
     }
 
@@ -234,6 +242,7 @@ class RecipesController extends Controller
                 'ingredients' => $data['ingredients'],
                 'preparation_method' => $data['preparation_method'],
                 'price' => $data['price'],
+                'stock' => $data['stock']
             ]);
     }
 }
