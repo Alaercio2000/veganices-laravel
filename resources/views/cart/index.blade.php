@@ -8,12 +8,11 @@
 
 @section('content')
 
+@if(!empty($cart->all()))
 <div class="container-fluid">
 
     <h2 class="pt-5 mt-5">Meu Carrinho</h2>
-
     <div class="row">
-        @if(!empty($cart->all()))
 
         <table class="table col-lg-8 border-0">
             <thead>
@@ -59,7 +58,8 @@
                     <form action="{{route('cart.update.quantity',$item->id)}}" method="post">
                         @csrf
                         @method('PUT')
-                        <select name="quantity" id="quantity" class="form-control w-75" onChange="this.form.submit()">
+                        <select name="quantity" id="quantity{{$item->id}}" class="form-control w-75"
+                            onChange="this.form.submit()">
                             @php
                             if($product->stock > 10){
                             $counter = 10;
@@ -83,8 +83,8 @@
                 <td>
                     R$
                     @php
-                        $valueProducts = $product->price*$item->quantity;
-                        echo (str_replace('.',',',$valueProducts));
+                    $valueProducts = $product->price*$item->quantity;
+                    echo (str_replace('.',',',$valueProducts));
                     @endphp
                 </td>
             </tr>
@@ -107,13 +107,18 @@
                     </div>
                     <div class="pt-3 text-secondary d-flex justify-content-between">
                         <span>frete</span>
-                        <span>-</span>
+                        <span id="valueShipping">-</span>
                     </div>
                     <hr>
 
                     <div class="d-flex justify-content-between" style="font-size: 20px">
+
+                        @php
+                        echo '<script>var valueAllProducts ='.$valueProductsAll.' </script>';
+                        @endphp
+
                         <span class="font-weight-bolder">total de</span>
-                        <span class="font-weight-bolder">R$ {{str_replace('.',',',$valueProductsAll)}}</span>
+                        <span class="font-weight-bolder">R$ <span id="valueAllProducts">{{str_replace('.',',',$valueProductsAll)}}</span></span>
                     </div>
                     <div class="text-secondary float-right pb-2">em até 12 x sem juros</div><br>
                     <hr>
@@ -133,21 +138,33 @@
         </div>
     </div>
 
-    <div class="d-flex align-items-center my-5">
-        <label for="zipCodeSource" class="pr-3">calcular frete e prazo</label>
-        <div class="col-2">
-            <input class="form-control" type="text" id="zipCodeSource" name="zipCodeSource" placeholder="Ex: 12345-678">
+    <div class="my-5">
+        <div class="d-flex">
+            <label for="zipCodeSource" class="pr-3 mt-2">calcular frete e prazo :</label>
+            <div class="col-2">
+                <input class="form-control mt-1" type="text" id="zipCodeSource" name="zipCodeSource"
+                    placeholder="Ex: 12345-678">
+                <div id="invalidZipCode" class="invalid-feedback">
+
+                </div>
+            </div>
+            <button class="btn btn-info ml-3 mt-1 h-100" onClick="calcShipping()">Calcular</button>
         </div>
-        <button class="btn btn-info ml-3" onClick="calcShipping()">Calcular</button>
+        <div id="answerShipping" class="text-secondary pt-2">
+
+        </div>
     </div>
 </div>
 
 @else
-<div style="height:200px" class="border text-center mt-4">
-    <h3 class="pt-4">Seu carrinho está vazio</h3>
-    <div class="pt-2">
-        <a class="btn btn-link text-secondary" href="{{route('home.index')}}">Voltar para página inicial</a>ou
-        <a class="btn btn-link text-secondary" href="{{route('user.recipes')}}">escolhar outras receitas</a>
+<div class="container">
+    <h2 class="pt-5 mt-5">Meu Carrinho</h2>
+    <div style="height:200px" class="border text-center mt-4 col-12">
+        <h3 class="pt-4">Seu carrinho está vazio</h3>
+        <div class="pt-2">
+            <a class="btn btn-link text-secondary" href="{{route('home.index')}}">Voltar para página inicial</a>ou
+            <a class="btn btn-link text-secondary" href="{{route('user.recipes')}}">escolhar outras receitas</a>
+        </div>
     </div>
 </div>
 @endif
