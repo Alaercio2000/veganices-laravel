@@ -81,7 +81,11 @@
                     </form>
                 </td>
                 <td>
-                    R${{$valueProducts = $product->price*$item->quantity}}
+                    R$
+                    @php
+                        $valueProducts = $product->price*$item->quantity;
+                        echo (str_replace('.',',',$valueProducts));
+                    @endphp
                 </td>
             </tr>
             @php
@@ -99,7 +103,7 @@
                     </div>
                     <div class="pt-3 text-secondary d-flex justify-content-between">
                         <span>{{$productsAll}} produtos</span>
-                        <span>R$ {{$valueProductsAll}}</span>
+                        <span>R$ {{str_replace('.',',',$valueProductsAll)}}</span>
                     </div>
                     <div class="pt-3 text-secondary d-flex justify-content-between">
                         <span>frete</span>
@@ -109,7 +113,7 @@
 
                     <div class="d-flex justify-content-between" style="font-size: 20px">
                         <span class="font-weight-bolder">total de</span>
-                        <span class="font-weight-bolder">R$ {{$valueProductsAll}}</span>
+                        <span class="font-weight-bolder">R$ {{str_replace('.',',',$valueProductsAll)}}</span>
                     </div>
                     <div class="text-secondary float-right pb-2">em até 12 x sem juros</div><br>
                     <hr>
@@ -134,7 +138,7 @@
         <div class="col-2">
             <input class="form-control" type="text" id="zipCodeSource" name="zipCodeSource" placeholder="Ex: 12345-678">
         </div>
-        <button class="btn btn-info ml-3">Calcular</button>
+        <button class="btn btn-info ml-3" onClick="calcShipping()">Calcular</button>
     </div>
 </div>
 
