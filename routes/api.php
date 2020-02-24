@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/filter/{category}', 'FilterController@filter');
+
+Route::get('/calculate-shipping/{zip_code}','CartsController@calculateShipping');
