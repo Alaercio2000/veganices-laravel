@@ -61,4 +61,41 @@ class CartsController extends Controller
         $cart->save();
         return redirect()->route('cart.index');
     }
+
+    public function calculateShipping($zip_code){
+        $zipCodeSource = "04705000";
+        $zipCodeDestiny = $zip_code;
+
+        $width          = 2;
+        $value         = 100;
+        $typeShipping = '41106'; //Sedex: 40010   |  Pac: 41106
+        $height        = 6;
+        $width       = 20;
+        $length   = 20;
+
+
+        $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?";
+        $url .= "nCdEmpresa=";
+        $url .= "&sDsSenha=";
+        $url .= "&sCepOrigem=" . $zipCodeSource;
+        $url .= "&sCepDestino=" . $zipCodeDestiny;
+        $url .= "&nVlPeso=" . $width;
+        $url .= "&nVlLargura=" . $width;
+        $url .= "&nVlAltura=" . $height;
+        $url .= "&nCdFormato=1";
+        $url .= "&nVlComprimento=" . $length;
+        $url .= "&sCdMaoProria=n";
+        $url .= "&nVlValorDeclarado=" . $value;
+        $url .= "&sCdAvisoRecebimento=n";
+        $url .= "&nCdServico=" . $typeShipping;
+        $url .= "&nVlDiametro=0";
+        $url .= "&StrRetorno=xml";
+
+
+        $xml = simplexml_load_file($url);
+
+        $shipping =  $xml->cServico;
+
+        return json_encode($shipping);
+    }
 }
