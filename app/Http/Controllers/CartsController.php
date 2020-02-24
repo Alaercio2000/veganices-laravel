@@ -66,7 +66,7 @@ class CartsController extends Controller
         $zipCodeSource = "04705000";
         $zipCodeDestiny = $zip_code;
 
-        $width          = 2;
+        $weight          = 2;
         $value         = 100;
         $typeShipping = '41106'; //Sedex: 40010   |  Pac: 41106
         $height        = 6;
@@ -79,7 +79,7 @@ class CartsController extends Controller
         $url .= "&sDsSenha=";
         $url .= "&sCepOrigem=" . $zipCodeSource;
         $url .= "&sCepDestino=" . $zipCodeDestiny;
-        $url .= "&nVlPeso=" . $width;
+        $url .= "&nVlPeso=" . $weight;
         $url .= "&nVlLargura=" . $width;
         $url .= "&nVlAltura=" . $height;
         $url .= "&nCdFormato=1";
