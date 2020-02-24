@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('recipe_id');
+            $table->float('shipping')->nullable();
             $table->integer('quantity')->default(1);
             $table->timestamps();
             $table->softDeletes();
