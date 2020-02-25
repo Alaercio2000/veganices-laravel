@@ -18,8 +18,9 @@ function calcShipping() {
                             localStorage.setItem('answerShipping','O valor do frete é ' + data.Valor + ' em até '+ data.PrazoEntrega + ' úteis');
                             localStorage.setItem('shipping', data.Valor);
                             localStorage.setItem('termShipping' , data.PrazoEntrega);
+                            localStorage.setItem('zipCodeSource' , zip_code);
 
-                            $('#valueAllProducts').html((parseFloat(localStorage.getItem('shipping').replace(',','.')) + parseFloat(valueAllProducts)).toFixed(2));
+                            $('#valueAllProducts').html(((parseFloat(localStorage.getItem('shipping').replace(',','.')) + parseFloat(valueAllProducts)).toFixed(2)).replace('.',','));
                             $('#answerShipping').html(localStorage.getItem('answerShipping'));
                             $('#valueShipping').html(localStorage.getItem('shipping'));
                             $('#zipCodeSource').removeClass('is-invalid');
@@ -44,4 +45,6 @@ function calcShipping() {
 $('#answerShipping').html(localStorage.getItem('answerShipping'));
 $('#valueShipping').html(localStorage.getItem('shipping'));
 
-$('#valueAllProducts').html((parseFloat(localStorage.getItem('shipping').replace(',','.')) + parseFloat(valueAllProducts)).toFixed(2));
+$('#valueAllProducts').html(((parseFloat(localStorage.getItem('shipping').replace(',','.')) + parseFloat(valueAllProducts)).toFixed(2)).replace('.',','));
+
+$('#zipCodeSource').val(localStorage.getItem('zipCodeSource'));

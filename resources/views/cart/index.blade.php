@@ -123,7 +123,7 @@
                     <div class="text-secondary float-right pb-2">em até 12 x sem juros</div><br>
                     <hr>
                     <div>
-                        <button
+                        <a href="#"
                             class="btn btn-warning w-100 d-flex justify-content-lg-center align-items-center text-light font-weight-bolder py-2">
                             <i class="material-icons mt-1">
                                 shopping_basket
@@ -131,7 +131,7 @@
                             <span style="font-size:20px" class="ml-2">
                                 continuar
                             </span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
