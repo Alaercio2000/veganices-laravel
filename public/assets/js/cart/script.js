@@ -1,8 +1,8 @@
 $('#zipCodeSource').mask('00000-000');
 
 function calcShipping() {
-    var zip_code = $('#zipCodeSource');
-    zip_code = zip_code.val().replace(/\D/g, '');
+    var zip_codeT = $('#zipCodeSource');
+    zip_code = zip_codeT.val().replace(/\D/g, '');
 
     if (zip_code != '') {
         var validateZipCode = /^[0-9]{8}$/;
@@ -18,7 +18,7 @@ function calcShipping() {
                             localStorage.setItem('answerShipping','O valor do frete é ' + data.Valor + ' em até '+ data.PrazoEntrega + ' úteis');
                             localStorage.setItem('shipping', data.Valor);
                             localStorage.setItem('termShipping' , data.PrazoEntrega);
-                            localStorage.setItem('zipCodeSource' , zip_code);
+                            localStorage.setItem('zipCodeSource' , zip_codeT.val());
 
                             $('#valueAllProducts').html(((parseFloat(localStorage.getItem('shipping').replace(',','.')) + parseFloat(valueAllProducts)).toFixed(2)).replace('.',','));
                             $('#answerShipping').html(localStorage.getItem('answerShipping'));
