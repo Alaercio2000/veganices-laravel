@@ -17,6 +17,7 @@ class CreateAdressesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
+            $table->string('recipient')->nullable();
             $table->string('zip_code');
             $table->string('county');
             $table->string('neighborhood');
