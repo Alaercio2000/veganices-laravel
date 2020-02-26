@@ -173,6 +173,13 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $address = Address::find($id);
+
+        if ($address->id == Auth::user()->address_delivery) {
+            $user = User::find(Auth::user()->id);
+            $user->address_delivery = null;
+            $user->save();
+        }
+
         $address->deleted_at = NOW();
         $address->save();
 

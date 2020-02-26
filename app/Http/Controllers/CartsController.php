@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\Provider;
 use App\Models\Recipe;
 use App\Models\State_brazil;
+use App\User;
 
 class CartsController extends Controller
 {
@@ -110,14 +111,32 @@ class CartsController extends Controller
             'concluded' => false
         ])->get();
 
+        $addresses = Auth::user()->address()->get();
+
         $address = Auth::user()->address()->first();
 
-        $state = State_brazil::where('id',$address->state_id)->first();
+        if(Auth::user()->address_delivery != null){
+            $address = Address::find(Auth::user()->address_delivery);
+        }
+
+        $state = false;
+        if ($address) {
+            $state = State_brazil::where('id',$address->state_id)->first();
+        }
 
         return view('cart.confirmation.index',[
             'cart' => $cart,
             'address' => $address,
-            'state' => $state
+            'state' => $state,
+            'addresses' => $addresses
         ]);
+    }
+
+    public function alterAddress(Request $request){
+        $data = $request->input('address_delivery');
+        $user = User::find(Auth::user()->id);
+        $user->address_delivery = $data;
+        $user->save();
+        return redirect()->route('cart.confirmation');
     }
 }
