@@ -1,0 +1,17 @@
+div.card img {
+    height: 180px;
+}
+
+@media(max-width:768px) {
+    div.card img {
+        height: 300px;
+    }
+}
+
+label.custom-control-label {
+    cursor: pointer;
+}
+
+label.custom-control-label:hover {
+    color: rgb(35, 127, 233);
+}
