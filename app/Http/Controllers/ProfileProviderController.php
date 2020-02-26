@@ -20,7 +20,7 @@ class ProfileProviderController extends Controller
         $address = $user->address()->first();
 
         $state = 0;
-        if(!empty($address->state)){
+        if(!empty($address->state_id)){
             $state = State_brazil::find($address->state_id);
         }
 
