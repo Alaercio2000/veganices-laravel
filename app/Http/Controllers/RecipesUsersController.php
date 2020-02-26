@@ -32,7 +32,7 @@ class RecipesUsersController extends Controller
             $carts = Auth::user()->cart()->get();
 
             foreach($carts as $cart){
-                if ($cart->recipe_id == $id) {
+                if ($cart->recipe_id == $id && !$cart->concluded) {
                     $existCart = true;
                 }
             }
