@@ -63,6 +63,7 @@ Route::prefix('profile')->group(function (){
 Route::prefix('cart')->group(function (){
 
     Route::get('/','CartsController@index')->name('cart.index')->middleware('can:is-user');
+    Route::get('confirmation' , 'CartsController@confirmation')->name('cart.confirmation')->middleware('can:is-user');
     Route::post('create/{recipe}', 'CartsController@store')->name('cart.store')->middleware('can:is-user');
     Route::put('update/quantity/{id}','CartsController@updateQuantity')->name('cart.update.quantity')->middleware('can:is-user');
     Route::delete('destroy/{recipe}' , 'CartsController@destroyRecipe')->name('cart.destroy.recipe')->middleware('can:is-user');
