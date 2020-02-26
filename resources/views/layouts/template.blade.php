@@ -43,6 +43,7 @@ $provider = $user->provider()->first();
     <link rel="stylesheet" href="{{asset('assets/css/template/style.css')}}">
     @yield('css')
     <script defer src="{{asset('assets/js/template/script.js')}}"></script>
+    <script defer src="https://kit.fontawesome.com/75a3d76622.js" crossorigin="anonymous"></script>
 </head>
 
 <body @yield('body')>
