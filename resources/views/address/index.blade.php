@@ -33,6 +33,7 @@
                 <div class="card-body">
                     <div class="row justify-content-between">
                         <div class="pl-3">
+                            Destinatário : {{$address->recipient}} <br>
                             Cep : {{str_replace('.','',$address->zip_code)}}<br>
                             Município : {{$address->county}}<br>
                             Baiiro : {{$address->neighborhood}}<br>

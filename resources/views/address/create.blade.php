@@ -30,6 +30,15 @@
                 </div>
 
                 <div class="form-group row">
+                    <label class="col-4 col-lg-3 pt-1" for="recipient">Destinatário</label>
+                    <input id="recipient" name="recipient" type="text"
+                        class="form-control col @error('recipient') is-invalid @enderror" value="{{old('recipient')}}">
+                    <div class="invalid-feedback offset-lg-3 offset-4">
+                        {{$errors->first('recipient')}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="zip_code">Cep</label>
                     <input id="zip_code" name="zip_code" type="text"
                         class="form-control col @error('zip_code') is-invalid @enderror" value="{{old('zip_code')}}">

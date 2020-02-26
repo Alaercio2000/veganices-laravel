@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\State_brazil;
 use App\Models\Address;
+use App\User;
 
 class AddressController extends Controller
 {
@@ -48,6 +49,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'recipient' => 'required',
             'title' => 'required|max:40',
             'zip_code' => 'required|max:9|min:9',
             'street' => 'required|max:191',
@@ -63,6 +65,7 @@ class AddressController extends Controller
         ]);
 
         $data = $request->only([
+            'recipient',
             'title',
             'zip_code',
             'street',
@@ -75,7 +78,15 @@ class AddressController extends Controller
 
         $data['user_id'] = Auth::user()->id;
 
-        $this->createAddress($data);
+        $address = $this->createAddress($data);
+
+        if (Auth::user()->address_delivery == null) {
+            $user = User::find(Auth::user()->id);
+            $user->address_delivery = $address->id;
+            $user->save();
+        }
+
+
 
         return redirect()->route('address.index');
     }
@@ -118,6 +129,7 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'recipient' => 'required',
             'title' => 'required|max:40',
             'zip_code' => 'required|max:9|min:9',
             'street' => 'required|max:191',
@@ -133,6 +145,7 @@ class AddressController extends Controller
         ]);
 
         $data = $request->only([
+            'recipient',
             'title',
             'zip_code',
             'street',
@@ -170,6 +183,7 @@ class AddressController extends Controller
     {
         return Address::create([
             'title' => $data['title'],
+            'recipient' => $data['recipient'],
             'zip_code' => $data['zip_code'],
             'street' => $data['street'],
             'neighborhood' => $data['neighborhood'],
@@ -186,6 +200,7 @@ class AddressController extends Controller
         return Address::where('id', $id)
             ->update([
                 'title' => $data['title'],
+                'recipient' => $data['recipient'],
                 'zip_code' => $data['zip_code'],
                 'street' => $data['street'],
                 'neighborhood' => $data['neighborhood'],
