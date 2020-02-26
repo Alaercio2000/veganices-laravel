@@ -123,7 +123,7 @@
                     <div class="text-secondary float-right pb-2">em até 12 x sem juros</div><br>
                     <hr>
                     <div>
-                        <a href="#"
+                    <a href="{{route('cart.confirmation')}}"
                             class="btn btn-warning w-100 d-flex justify-content-lg-center align-items-center text-light font-weight-bolder py-2">
                             <i class="material-icons mt-1">
                                 shopping_basket
