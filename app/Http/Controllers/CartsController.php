@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Provider;
 use App\Models\Recipe;
+use App\Models\State_brazil;
 
 class CartsController extends Controller
 {
     public function index(){
         $id = Auth::user()->id;
-        $cart = Cart::where('user_id',$id)->get();
+        $cart = Cart::where([
+            'user_id' => Auth::user()->id,
+            'concluded' => false
+        ])->get();
 
         return view('cart.index',[
             'cart' => $cart
@@ -97,5 +102,22 @@ class CartsController extends Controller
         $shipping =  $xml->cServico;
 
         return json_encode($shipping);
+    }
+
+    public function confirmation(){
+        $cart = Cart::where([
+            'user_id' => Auth::user()->id,
+            'concluded' => false
+        ])->get();
+
+        $address = Auth::user()->address()->first();
+
+        $state = State_brazil::where('id',$address->state_id)->first();
+
+        return view('cart.confirmation.index',[
+            'cart' => $cart,
+            'address' => $address,
+            'state' => $state
+        ]);
     }
 }
