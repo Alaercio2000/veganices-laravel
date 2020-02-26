@@ -6,9 +6,13 @@
 <script src="{{asset('assets/js/cart/confirmation.js')}}"></script>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{asset('assets/css/cart/confirmation.css')}}">
+@endsection
 
 @section('body')
 style="background-color: rgb(250,250,250)"
+onload="showCard()"
 @endsection
 
 @section('content')
@@ -35,15 +39,15 @@ style="background-color: rgb(250,250,250)"
             @endphp
 
             <div class="pb-2">
-                {{$address->title}}<br>
+                {{$address->recipient}}<br>
                 <span class="text-secondary">{{$address->street}}, {{$address->number}},
                     {{$address->complement}}</span><br>
                 <span class="text-secondary">{{$address->neighborhood}}</span><br>
                 <span class="text-secondary">{{$address->county}} - {{$state->state}}</span><br><br>
 
-                <a href="#">Alterar endereço de entrega</a>
+                <a data-target="#modal-alter-address" data-toggle="modal" href="#">Alterar endereço de entrega</a>
             </div>
-            <div id="answerShipping">
+            <div class="pb-4" id="answerShipping">
 
             </div>
             @endif
@@ -52,15 +56,56 @@ style="background-color: rgb(250,250,250)"
         @php
         $valueProductsAll = 0;
         $productsAll = 0;
-        foreach ($cart as $item) {
-        $product = $item->recipe()->first();
-        $creator = $product->provider()->first();
-
-        $valueProducts = $product->price*$item->quantity;
-        $valueProductsAll = $valueProductsAll+$valueProducts;
-        $productsAll = $productsAll + $item->quantity;
-        }
         @endphp
+
+        <div class="modal fade" id="modal-products" tabindex="-1" role="dialog" aria-labelledby="modal-products-label"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span style="font-size:50px" aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="text-secondary mb-5">Resumo da sua compra</h4>
+                        @foreach ($cart as $item)
+                        @php
+                        $product = $item->recipe()->first();
+                        $creator = $product->provider()->first();
+
+                        $valueProducts = $product->price*$item->quantity;
+                        $valueProductsAll = $valueProductsAll+$valueProducts;
+                        $productsAll = $productsAll + $item->quantity;
+                        @endphp
+                        <div class="card mt-2" style="max-width: 900px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img style="object-fit: cover" class="card-img"
+                                        src="{{asset('app/imageRecipes/'.$product->image)}}" alt="Imagem da receita">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="pb-2">
+                                            <span class="font-weight-bold">Nome:</span>
+                                            {{$product->name}}
+                                        </div>
+                                        <div class="pb-2">
+                                            <span class="font-weight-bold">Qtd:</span>
+                                            {{$item->quantity}}
+                                        </div>
+                                        <div class="pb-2">
+                                            <span class="font-weight-bold">Preço:</span>
+                                            R$ {{str_replace('.',',',$product->price)}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-6">
             <div class="card border-0" style="background-color: #f8f8f8">
@@ -69,7 +114,8 @@ style="background-color: rgb(250,250,250)"
                         Resumo do pedido
                     </div>
                     <div class="pt-3 text-secondary d-flex justify-content-between">
-                        <span>{{$productsAll}} produtos</span>
+                        <span>{{$productsAll}} produtos <a href="#" data-target="#modal-products"
+                                data-toggle="modal">visualizar</a></span>
                         <span>R$ {{str_replace('.',',',$valueProductsAll)}}</span>
                     </div>
                     <div class="pt-3 text-secondary d-flex justify-content-between">
@@ -100,7 +146,7 @@ style="background-color: rgb(250,250,250)"
         <h5 class="text-secondary">Formas de pagamento</h5>
         <div class="col-12 d-flex justify-content-around">
             <div>
-                <a href="javascript:void('')" onClick="showCard()" class="text-secondary" style="text-decoration: none">
+                <a id="iconCard" href="javascript:void('')" onClick="showCard()" style="text-decoration: none">
                     <i class="material-icons" style="font-size:80px">
                         credit_card
                     </i>
@@ -108,15 +154,14 @@ style="background-color: rgb(250,250,250)"
                 </a>
             </div>
             <div>
-                <a href="javascript:void('')" onClick="showBillet()" class="text-secondary"
-                    style="text-decoration: none">
+                <a id="iconBillet" href="javascript:void('')" onClick="showBillet()" style="text-decoration: none">
                     <i class="fas fa-barcode" style="font-size:80px"></i>
                     <div class="ml-3">Boleto</div>
                 </a>
             </div>
         </div>
 
-        <div id="formCard" class="col-12 my-4 py-3" style="background-color: #eee">
+        <div id="formCard" class="col-12 my-4 py-3 d-none" style="background-color: #eee">
             <form method="get" class="form-horizontal">
 
                 <div class="form-group row mt-4">
@@ -174,6 +219,40 @@ style="background-color: rgb(250,250,250)"
                 <span style="font-size: 25px" class="text-secondary">R$ <span id="valueBillet"
                         class="mr-5"></span></span>
                 <button class="btn btn-success">Pagar com boleto</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-alter-address" tabindex="-1" role="dialog"
+        aria-labelledby="modal-alter-address-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4 class="py-3">Escolhar o endereço de entrega</h4>
+                    <form action="{{route('cart.alter.address')}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        @foreach ($addresses as $item)
+                        <div class="border py-3 mb-1 px-3">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="address{{$item->id}}" name="address_delivery"
+                                    class="custom-control-input" value="{{$item->id}}"
+                                    {{($address->zip_code == $item->zip_code)?'checked':''}}>
+                                <label class="custom-control-label" for="address{{$item->id}}">
+                                    {{$item->recipient}}<br>
+                                    <span>{{$item->street}}, {{$item->number}},
+                                        {{$item->complement}} - {{$item->neighborhood}}</span><br>
+                                    <span>{{$item->county}} - {{$item->zip_code}}</span>
+                                </label>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-success">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
