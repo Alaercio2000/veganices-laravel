@@ -10,6 +10,12 @@
 <script src="{{asset('assets/js/address/script.js')}}"></script>
 @endsection
 
+@if($errors->all())
+@section('body')
+onload="showFormComplete()"
+@endsection
+@endif
+
 @section('content')
 
 <div class="container">
@@ -40,13 +46,14 @@
 
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="zip_code">Cep</label>
-                    <input id="zip_code" name="zip_code" type="text"
+                    <input onkeyup="searchZipCode(this.value)" id="zip_code" name="zip_code" type="text"
                         class="form-control col @error('zip_code') is-invalid @enderror" value="{{old('zip_code')}}">
-                    <div class="invalid-feedback offset-lg-3 offset-4">
+                    <div id="answerZipCode" class="invalid-feedback offset-lg-3 offset-4">
                         {{$errors->first('zip_code')}}
                     </div>
                 </div>
 
+                <span id="formHidden" class="d-none">
                 <div class="form-group row">
                     <label class="col-4 col-lg-3 pt-1" for="street">Rua</label>
                     <input id="street" name="street" type="text"
@@ -111,6 +118,7 @@
                     <label class="col-4 col-lg-3" for=""></label>
                     <input type="submit" value="Adicionar" class="btn btn-success col my-3 w-100">
                 </div>
+            </span>
             </form>
         </div>
     </main>
