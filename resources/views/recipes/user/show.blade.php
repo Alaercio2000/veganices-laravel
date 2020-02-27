@@ -75,20 +75,24 @@
                     </div>
                 </div>
                 @if(!Auth::guest())
-                @if ($existCart)
-                <form action="{{route('cart.destroy.recipe',$recipe->id)}}" method="post">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit" class="btn btn-outline-danger mb-4">Remover do carrinho</button>
-                </form>
+                    @if(!Auth::user()->provider)
+                        @if ($existCart)
+                            <form action="{{route('cart.destroy.recipe',$recipe->id)}}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger mb-4">Remover do carrinho</button>
+                            </form>
+                        @else
+                            <form action="{{route('cart.store',$recipe->id)}}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-info mb-4">Adicionar no carrinho</button>
+                            </form>
+                        @endif
+                    @endif
+
                 @else
-                <form action="{{route('cart.store',$recipe->id)}}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-info mb-4">Adicionar no carrinho</button>
-                </form>
-                @endif
-                @else
-                    <button disabled class="btn btn-warning mb-4" title="Você precisa está logado para adicionar no carrinho">Adicionar no carrinho</button>
+                <button disabled class="btn btn-warning mb-4"
+                    title="Você precisa está logado para adicionar no carrinho">Adicionar no carrinho</button>
                 @endif
         </div>
         </main>
