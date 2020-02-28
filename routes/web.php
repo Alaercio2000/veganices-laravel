@@ -60,6 +60,13 @@ Route::middleware('auth')->group(function () {
 
         });
 
+        Route::prefix('favorite')->group(function () {
+
+            Route::post('create/{recipe}', 'FavoritesController@store')->name('favorite.store');
+            Route::delete('destroy/{recipe}', 'FavoritesController@destroy')->name('favorite.destroy');
+
+        });
+
         Route::prefix('profile')->group(function () {
 
             Route::get('/', 'ProfileController@index')->name('profile');

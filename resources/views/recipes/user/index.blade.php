@@ -55,8 +55,8 @@
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6> --}}
                   </div>
                   <div class="col-3 card-body d-flex flex-column">
-                    <a href="#" class="card-link align-self-center d-flex flex-column">
-                      <i class="material-icons align-self-center">favorite</i>
+                    <a href="{{route('favorite.store',$recipe->id)}}" class="card-link align-self-center d-flex flex-column">
+                      <i class="material-icons align-self-center">favorite_border</i>
                     </a>
                   </div>
                 <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
