@@ -31,16 +31,16 @@
             <h4>{{$provider->name}}</h4>
         </div>
 
-        <div>
-            <h5 class="py-3">Informações da empresa</h5>
+        <div class="mt-5">
+            <h5 class="pb-3">Informações da empresa</h5>
             <p>E-mail : {{$user->email}}</p>
             <p>CPNJ : {{$provider->cnpj}}</p>
             <p>Telefone : {{$user->phone}}</p>
             <p>Data de Abertura : {{date('d/m/Y', strtotime($provider->date_opening))}}</p>
         <a href="{{route('profile.provider.edit')}}">Editar informações</a>
         </div>
-        <div class="pt-3">
-            <h5 class="pb-3">Minhas Receitas</h5>
+        <div class="mt-5">
+            <h5 class="pb-3">Minhas receitas</h5>
             @if($recipes->all())
             @foreach ($recipes->all() as $recipe)
             <a class="btn btn-link p-0 my-1" target="_blank"
@@ -50,15 +50,11 @@
             Não tem receitas
             @endif
         </div>
-        <div class="pt-4 pb-5">
-            <h5 class="pb-3">Endereço Pricipal</h5>
+        <div class="my-5">
+            <h5 class="pb-3">Endereço da empresa</h5>
             @if (!empty($address))
-            <p>Cep : {{$address->zip_code}}</p>
-            <p>Rua : {{$address->street}}</p>
-            <p>Bairro : {{$address->neighborhood}}</p>
-            <p>Número : {{$address->number}}</p>
-            <p>Cidade : {{$address->county}}</p>
-            <p>UF : {{$state->state}}</p>
+            <p>{{ucfirst(strtolower($address->street))}}, {{$address->number}}, {{ucfirst(strtolower($address->complement))}} - {{ucfirst(strtolower($address->neighborhood))}}</p>
+            <p>{{ucfirst(strtolower($address->county))}} - {{$state->state}} - CEP {{str_replace('.','',$address->zip_code)}}</p>
             @else
             Não tem endereço
             @endif
