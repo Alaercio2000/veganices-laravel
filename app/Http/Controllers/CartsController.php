@@ -72,12 +72,12 @@ class CartsController extends Controller
         $zipCodeSource = "04705000";
         $zipCodeDestiny = $zip_code;
 
-        $weight          = 2;
-        $value         = 100;
-        $typeShipping = '41106'; //Sedex: 40010   |  Pac: 41106
-        $height        = 6;
-        $width       = 20;
-        $length   = 20;
+        $weight          = 1;
+        $value         = 0;
+        $typeShipping = '40010'; //Sedex: 40010   |  Pac: 41106
+        $height        = 5;
+        $width       = 15;
+        $length   = 16;
 
 
         $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?";
