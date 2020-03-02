@@ -6,14 +6,15 @@ use SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class TagCommunityPost extends Model
 {
-    protected $table = 'tags';
+    protected $table = 'tags_posts';
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
-        'slug'
+        'user_id',
+        'community_id'
     ];
 
     public function user(){

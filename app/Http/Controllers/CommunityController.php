@@ -72,9 +72,12 @@ class CommunityController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function show(Community $community)
+    public function show($id)
     {
-        //
+        $post = CommunityPost::find($id);
+        return view('community.show', [
+            'post' => $post
+        ]);
     }
 
     /**
