@@ -23,7 +23,7 @@
                 
                     <div class="form-group">
                         <label for="corpo">Corpo</label>
-                        <textarea class="form-control" name="content" id="corpo" rows="3"></textarea>
+                        <textarea class="form-control bodyfield" name="content" id="corpo" rows="10"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -31,11 +31,29 @@
                         <input type="text" class="form-control" name="slug" id="tags" placeholder="Digite aqui as tags">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary mb-5">Enviar</button>
                 </form>
 
 
             </div>
         </div>
 
+    @endsection
+
+    @section('js')
+    <script src="https://cdn.tiny.cloud/1/nw92m4glyqmatdeftsi104kh1e3jrv6j06325f26zpl8ys6v/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector:'textarea.bodyfield',
+        height:800,
+        menubar:false,
+        plugins:['link', 'table', 'image', 'autoresize' , 'lists'],
+        toolbar:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link image | bullist numlist',
+        
+        images_upload_credentials:true,
+        convert_urls:false
+    });
+</script>
     @endsection
