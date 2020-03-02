@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Community;
+use App\Models\CommunityPost;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CommunityController extends Controller
@@ -14,7 +15,24 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+
+        $communityPosts = CommunityPost::select()
+            ->with('user')
+            ->where('type', '=', '0')
+            ->orderBy('created_at', 'DESC')
+            ->limit(6)
+            ->get()->toArray();
+
+        foreach($communityPosts as $communityPost) {
+            $date = $communityPost['created_at'];
+            
+            $communityPost['date'] = date("d/m/Y H:i", strtotime($date));
+
+            $data[] = $communityPost;
+        }
+
+        return view('community.index', ['communityPosts' => $data]);
     }
 
     /**
@@ -24,7 +42,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        //
+        return view('community.create');
     }
 
     /**
@@ -35,7 +53,15 @@ class CommunityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        unset($data['slug']);
+        unset($data['_token']);
+
+        $data['user_id'] = Auth::user()->id;
+
+        // dd($data);
+        return CommunityPost::create($data);
     }
 
     /**

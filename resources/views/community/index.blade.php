@@ -7,25 +7,29 @@
         <link rel="stylesheet" href="{{asset('assets/css/community/style.css')}}">
     @endsection
 
+    {{-- {{dd($communityPost)}} --}}
+
     @section('content')
    <div class="container-fluid corpoConteudo">
         <div class="row">
             <div class="col-lg">
                 <div class="media">
                     <ul class="list-unstylied">
+                        @foreach($communityPosts as $communityPost)
                         <li class="list-group">
                             <a class="media d-flex flex-row-reverse mb-3 linkComunidadecor"
                                 style="text-decoration: none" href="#">
                                 <img src="{{asset('assets/img/community/batman.jpg')}}" alt="batman"
                                     class="img-thumbnail rounded  imgComunidadePessoas ml-2 shadow ">
                                 <div class="media-body align-self-center col-lg">
-                                    <h6><strong> Eu sou o Batman!!! </strong> </h6>
-                                    <small class=" text-muted">Batman</small>
+                                    <h6><strong> {{$communityPost['title']}} </strong> </h6>
+                                    <small class=" text-muted">{{$communityPost['user']['name']}}</small>
                                     <br>
-                                    <small class=" text-muted">Faz 4 Horas</small>
+                                <small class=" text-muted">{{$communityPost['date']}}</small>
                                 </div>
                             </a>
                         </li>
+                        @endforeach 
                         <li class="list-group ">
                             <a class="media mb-3 linkComunidadecor" style="text-decoration: none" href="#">
                                 <img src="{{asset('assets/img/community/deadpool.jpg')}}" alt="batman"
