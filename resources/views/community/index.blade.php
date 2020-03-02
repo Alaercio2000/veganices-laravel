@@ -7,118 +7,47 @@
         <link rel="stylesheet" href="{{asset('assets/css/community/style.css')}}">
     @endsection
 
-    {{-- {{dd($communityPost)}} --}}
-
     @section('content')
-   <div class="container-fluid corpoConteudo">
-        <div class="row">
-            <div class="col-lg">
-                <div class="media">
-                    <ul class="list-unstylied">
-                        @foreach($communityPosts as $communityPost)
-                        <li class="list-group">
-                            <a class="media d-flex flex-row-reverse mb-3 linkComunidadecor"
-                                style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/batman.jpg')}}" alt="batman"
-                                    class="img-thumbnail rounded  imgComunidadePessoas ml-2 shadow ">
-                                <div class="media-body align-self-center col-lg">
-                                    <h6><strong> {{$communityPost['title']}} </strong> </h6>
-                                    <small class=" text-muted">{{$communityPost['user']['name']}}</small>
-                                    <br>
-                                <small class=" text-muted">{{$communityPost['date']}}</small>
-                                </div>
-                            </a>
-                        </li>
-                        @endforeach 
-                        <li class="list-group ">
-                            <a class="media mb-3 linkComunidadecor" style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/deadpool.jpg')}}" alt="batman"
-                                    class="img-thumbnail rounded  imgComunidadePessoas mr-2  shadow">
-                                <div class="media-body align-self-center col-lg">
-                                    <h6> <strong> acredite sou vegano, só mato gente =) </strong> </h6>
-                                    <small class=" text-muted">DeadPool</small>
-                                    <br>
-                                    <small class=" text-muted">Faz 1 Horas</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group">
-                            <a class="media d-flex flex-row-reverse mb-3 linkComunidadecor"
-                                style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/wonderwoman.jpg')}}" alt="batman"
-                                    class="img-thumbnail rounded  imgComunidadePessoas shadow">
-                                <div class="media-body align-self-center col-lg">
-                                    <h6> <strong> Só comemmos frutas frescas da árvore dos Deuses </strong> </h6>
-                                    <small class=" text-muted">Wonder Woman </small>
-                                    <br>
-                                    <small class=" text-muted">Faz 3 Horas</small>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="banner">
+        <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
+        <div class="container searchBlock">
+            <div class="col-lg  ">
+                <h2 class="text-center font-weight-bold "> Comunidade </h2>
+                <p class="text-justify text-center"> 
+                    Compartilhe e resolva suas dúvidas com a ajuda de outros veganos
+                </p>
             </div>
-
-            <div class="col-lg-5 d-flex align-items-center">
-                <div class="d-flex align-items-center bordaComunidade rounded">
-                    <div class="col-lg  ">
-                        <h2 class="text-center font-weight-bold "> Comunidade </h2>
-                        <p class="text-justify text-center"> Compartilhe e resolva suas dúvidas com a ajuda de outros
-                            veganos</p>
-                        <form method="POST" class="d-flex justify-content-center ">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <input type="text" name="pesquisa" class="form-group btn-lg "
-                                    placeholder="O que procurar?">
-                                <button type="button" class="btn btn-sm form-group corbuttonComunidade"> busca </button>
-                            </div>
-                        </form>
+            <div class="row">
+                <div class="input-group mb-3 searchInput">
+                    <input type="text" class="form-control" placeholder="Restaurantes" aria-label="Restaurantes" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="col-lg ">
+   <div class="container corpoConteudo">
+        <div class="row">
+            <div class="col-lg">
                 <div class="media">
-                    <ul class="list-unstylied">
-                        <li class="list-group">
+                    <div class="list-unstylied row">
+                        @foreach($communityPosts as $communityPost)
+                        <div class="list-group col-6">
                             <a class="media mb-3 linkComunidadecor" style="text-decoration: none" href="#">
-                                <div>
-                                    <img src="{{asset('assets/img/community/ironman.jpg')}}" alt="batman"
-                                        class="img-thumbnail rounded  imgComunidadePessoas mr-2 shadow">
-                                </div>
+                                <img src="{{asset('app/avatar/' . $communityPost['user']['avatar'])}}" alt="{{$communityPost['user']['avatar']}}"
+                                    class="img-thumbnail imgComunidadePessoas mr-2  shadow">
                                 <div class="media-body align-self-center col-lg">
-                                    <h6> <strong> Só uso óleo de coco na armadura </strong> </h6>
-                                    <small class=" text-muted">Iron Man</small>
+                                    <h6> <strong>{{$communityPost['title']}}</strong> </h6>
+                                    <small class=" text-muted">{{$communityPost['user']['name']}}</small>
                                     <br>
-                                    <small class=" text-muted">Faz 3 Horas</small>
+                                    <small class=" text-muted">{{$communityPost['date']}}</small>
                                 </div>
                             </a>
-                        </li>
-                        <li class="list-group">
-                            <a class="media d-flex flex-row-reverse mb-3 linkComunidadecor"
-                                style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/super.jpg')}}" alt="batman"
-                                    class="img-thumbnail rounded imgComunidadePessoas shadow">
-                                <div class="media-body align-self-center col-lg">
-                                    <h6><strong> Vitamina b12 que nada... quero é vitamina D </strong> </h6>
-                                    <small class=" text-muted">Kal-El</small>
-                                    <br>
-                                    <small class=" text-muted">Faz 0:30 Horas</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group">
-                            <a class="media mb-3 linkComunidadecor" style="text-decoration: none" href="#">
-                                <img src="{{asset('assets/img/community/lobo.jpg')}}" alt="batman"
-                                    class="img-thumbnail rounded  imgComunidadePessoas mr-2 shadow">
-                                <div class="media-body align-self-center col-lg">
-                                    <h6> <strong> Vegano é uma MER.... </strong> </h6>
-                                    <small class=" text-muted">Maioral</small>
-                                    <br>
-                                    <small class=" text-muted">Faz 10 Horas</small>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                        </div>
+                        @endforeach 
+                    </div>
                 </div>
             </div>
         </div>

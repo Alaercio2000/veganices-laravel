@@ -32,6 +32,8 @@ class CommunityController extends Controller
             $data[] = $communityPost;
         }
 
+        // dd($data);
+
         return view('community.index', ['communityPosts' => $data]);
     }
 
