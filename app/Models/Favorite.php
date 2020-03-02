@@ -20,10 +20,10 @@ class Favorite extends Model
     ];
 
     public function recipe(){
-        return $this->belongsTo(Recipe::class,'recipe_id','id');
+        return $this->belongsToMany(Recipe::class,'id','recipe_id');
     }
 
     public function user(){
-        return $this->belongsTo(User::class , 'user_id', 'id');
+        return $this->belongsTo(User::class , 'id', 'user_id');
     }
 }

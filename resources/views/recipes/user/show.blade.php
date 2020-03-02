@@ -51,7 +51,7 @@
                         <button type="button" class="btn btn-primary">Avaliar</button>
                     </div>
                     <div class="col-1 card-body d-flex flex-column align-self-center">
-                        <a href="javascript:void('')" id="favorite-button" onClick="setFavorite({{$recipe->id .','.Auth::user()->id }})" class="card-link align-self-center d-flex flex-column">
+                        <a href="javascript:void('')" id="favorite-button" @if(!Auth::guest()) onClick="setFavorite({{$recipe->id .','.Auth::user()->id }})"@else title="Você precisa está logado para adicionar favorito" @endif class="card-link align-self-center d-flex flex-column">
                             <i id="favorite-icon{{$recipe->id}}" class="material-icons text-danger align-self-center">{{($isFavorite == true)?'favorite':'favorite_border'}}</i>
                         </a>
                     </div>
