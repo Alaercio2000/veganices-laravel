@@ -35,6 +35,8 @@ class RecipesUsersController extends Controller
     {
         // dd ($recipe);
 
+        $favorites  = false;
+
         $existCart = false;
         if(!Auth::guest()){
             $carts = Auth::user()->cart()->get();
@@ -44,23 +46,14 @@ class RecipesUsersController extends Controller
                     $existCart = true;
                 }
             }
-        }
-
-        $favoriteRecipes = false;
-        if(!Auth::guest()){
-            $recipes = Auth::user()->recipe()->get();
-
-            foreach($recipes as $recipe){
-                if ($recipe->recipe_id == $id && !$recipe->concluded) {
-                    $favoriteRecipes = true;
-                }
-            }
+            $favorites = Auth::user()->favorite()->where('recipe_id',$id)->first();
         }
 
         $recipe = Recipe::find($id);
         return view('recipes.user.show', [
             'recipe' => $recipe,
-            'existCart' => $existCart
+            'existCart' => $existCart,
+            'favorites' => $favorites
         ]);
 
     }

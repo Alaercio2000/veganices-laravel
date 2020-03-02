@@ -3,6 +3,13 @@
 
   @section('title','Receitas')
 
+  @section('js')
+
+  <script src="{{asset('assets/js/filter/filter.js')}}"></script>
+  <script src="{{asset('assets/js/favorite/favorite.js')}}"></script>
+
+  @endsection
+
   @section('content')
 
   <link rel="stylesheet" href="{{asset('assets/css/recipes/style.css')}}">
@@ -91,8 +98,7 @@
     </div>
   </div>
 
-  <script src="{{asset('assets/js/filter/filter.js')}}"></script>
-  <script src="{{asset('assets/js/favorite/favorite.js')}}"></script>
+
 
   @endSection
 
