@@ -19,4 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/filter/{category}', 'FilterController@filter');
 
+Route::prefix('favorite')->group(function () {
+
+    Route::get('create/{recipe}/{user}', 'FavoritesController@store');
+    Route::get('destroy/{recipe}/{user}', 'FavoritesController@destroy');
+
+});
+
 Route::get('/calculate-shipping/{zip_code}','CartsController@calculateShipping');

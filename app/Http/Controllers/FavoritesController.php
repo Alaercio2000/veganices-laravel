@@ -11,26 +11,26 @@ use App\User;
 
 class FavoritesController extends Controller
 {
-    public function store($recipe_id){
-        $user_id = Auth::user()->id;
+    public function store($recipe_id , $user_id){
+        // $user_id = Auth::user()->id;
 
-        Favorite::create([
+        $favorite = Favorite::create([
             'user_id' => $user_id,
             'recipe_id' => $recipe_id
         ]);
 
-        return $favorite = true;
+        return json_encode($favorite);
     }
 
-    public function destroy($recipe_id){
+    public function destroy($recipe_id,$user_id){
 
-        Favorite::where([
-            ['user_id',Auth::user()->id],
+        $favorite = Favorite::where([
+            ['user_id',$user_id],
             ['recipe_id' , $recipe_id]
         ])->update([
             'deleted_at' => NOW()
         ]);
 
-        return $favorite = false;
+        return json_encode($favorite);
     }
 }

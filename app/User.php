@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Favorite;
 
 class User extends Authenticatable
 {
@@ -63,5 +64,9 @@ class User extends Authenticatable
 
     public function cart(){
         return $this->hasMany(Cart::class , 'user_id' , 'id');
+    }
+
+    public function favorite(){
+        return $this->hasMany(Favorite::class , 'user_id' , 'id');
     }
 }
