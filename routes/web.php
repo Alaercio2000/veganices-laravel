@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/address', 'AddressController');
 
+        Route::resource('/community', 'CommunityController');
+
     });
     //
 
