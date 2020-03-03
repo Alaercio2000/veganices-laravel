@@ -13,7 +13,7 @@ function menuScroll() {
 
 $(document).ready(function(){
 
-    if ($('body').height() < $(window).height() - 150) {
+    if ($('body').height() < $(window).height()) {
         $('#rodape').addClass('fixed-bottom');
     }
 

@@ -7,6 +7,7 @@ use App\Models\CategoryRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+//use App\Models\Favorite;
 
 class RecipesUsersController extends Controller
 {
@@ -15,9 +16,16 @@ class RecipesUsersController extends Controller
         $recipes = Recipe::all();
         $categoryRecipes = CategoryRecipe::all();
 
+        $favorites  = false;
+
+        if (!Auth::guest()) {
+            $favorites = Auth::user()->favorite()->get();
+        }
+
         $data = [
             'recipes' => $recipes,
-            'categoryRecipes' => $categoryRecipes
+            'categoryRecipes' => $categoryRecipes,
+            'favorites' => $favorites,
         ];
 
         return view('recipes.user.index', $data);
@@ -26,6 +34,8 @@ class RecipesUsersController extends Controller
     public function show( $id)
     {
         // dd ($recipe);
+
+        $favorites  = false;
 
         $existCart = false;
         if(!Auth::guest()){
@@ -36,12 +46,14 @@ class RecipesUsersController extends Controller
                     $existCart = true;
                 }
             }
+            $favorites = Auth::user()->favorite()->where('recipe_id',$id)->first();
         }
 
         $recipe = Recipe::find($id);
         return view('recipes.user.show', [
             'recipe' => $recipe,
-            'existCart' => $existCart
+            'existCart' => $existCart,
+            'favorites' => $favorites
         ]);
 
     }

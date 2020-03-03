@@ -30,4 +30,8 @@ class Recipe extends Model
     public function provider(){
         return $this->belongsTo(Provider::class , 'provider_id' , 'id');
     }
+
+    public function favorite(){
+        return $this->hasMany(Favorite::class , 'recipe_id' , 'id');
+    }
 }

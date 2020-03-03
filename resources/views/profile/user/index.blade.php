@@ -79,6 +79,17 @@
             @endif
         </div>
 
+        <div class="my-5">
+            <h5>Minhas receitas favoritas</h5>
+            @if ($myFavorites)
+            @foreach ($myFavorites as $myFavorite)
+                {{$myFavorite->name}}<br>
+            @endforeach
+            @else
+            <p class="py-2">Você não tem favoritos</p>
+            @endif
+        </div>
+
     </div>
 </div>
 

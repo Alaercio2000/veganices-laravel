@@ -6,7 +6,21 @@
 <link rel="stylesheet" href="{{asset('assets/css/recipes/item/item.css')}}">
 @endsection
 
+@section('js')
+
+<script src="{{asset('assets/js/filter/filter.js')}}"></script>
+<script src="{{asset('assets/js/favorite/favorite.js')}}"></script>
+
+@endsection
+
 @section('content')
+
+@php
+    $isFavorite = false;
+    if(!empty($favorite)){
+        $isFavorite = true;
+    }
+@endphp
 
 <div class="space">
 </div>
@@ -37,8 +51,8 @@
                         <button type="button" class="btn btn-primary">Avaliar</button>
                     </div>
                     <div class="col-1 card-body d-flex flex-column align-self-center">
-                        <a href="#" class="card-link align-self-center d-flex flex-column">
-                            <i class="material-icons align-self-center">favorite</i>
+                        <a href="javascript:void('')" id="favorite-button" @if(!Auth::guest()) onClick="setFavorite({{$recipe->id .','.Auth::user()->id }})"@else title="Você precisa está logado para adicionar favorito" @endif class="card-link align-self-center d-flex flex-column">
+                            <i id="favorite-icon{{$recipe->id}}" class="material-icons text-danger align-self-center">{{($isFavorite == true)?'favorite':'favorite_border'}}</i>
                         </a>
                     </div>
                     <div id="recipeImage" class="col-12 col-md-9" data-ride="carousel">
