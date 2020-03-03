@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsPostsTable extends Migration
+class CreateTagsCommunityPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTagsPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags_posts', function (Blueprint $table) {
+        Schema::create('tags_community_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('communnity_id');
+            $table->unsignedBigInteger('tags_id');
+            $table->unsignedBigInteger('community_post_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTagsPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags_posts');
+        Schema::dropIfExists('tags_community_posts');
     }
 }
