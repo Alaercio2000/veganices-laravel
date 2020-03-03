@@ -8,7 +8,7 @@ use App\Models\TagCommunityPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class CommunityController extends Controller
+class CommunityPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -95,9 +95,31 @@ class CommunityController extends Controller
      */
     public function show($id)
     {
+        $dataAnswer = [];
         $post = CommunityPost::find($id);
+
+        $answers = CommunityPost::select()
+            ->with('user')
+            ->where('type', '=', '1')
+            ->where('parent_id', '=', $id)
+            ->orderBy('created_at', 'DESC')
+            ->limit(10)
+            ->get()->toArray();
+
+        
+        foreach($answers as $answer) {
+        
+            $date = $answer['created_at'];
+            
+            $answer['date'] = date("d/m/Y H:i", strtotime($date));
+
+            $dataAnswer[] = $answer;
+
+        }
+        
         return view('community.show', [
-            'post' => $post
+            'post' => $post,
+            'answers' => $dataAnswer
         ]);
     }
 
