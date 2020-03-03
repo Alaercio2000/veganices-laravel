@@ -2,22 +2,25 @@
 
 namespace App\Models;
 use App\User;
-use SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
 class TagCommunityPost extends Model
 {
-    protected $table = 'tags_posts';
+    protected $table = 'tags_community_posts';
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at'];
 
     protected $fillable = [
-        'user_id',
-        'community_id'
+        'tags_id',
+        'community_post_id'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class , 'user_id' , 'id');
+    public function tags(){
+        return $this->belongsTo(Tag::class , 'tags_id' , 'id');
+    }
+
+    public function community_posts(){
+        return $this->belongsTo(CommunityPost::class , 'community_id' , 'id');
     }
 }

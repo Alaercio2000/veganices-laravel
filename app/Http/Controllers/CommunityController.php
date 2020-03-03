@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CommunityPost;
+use App\Models\Tag;
+use App\Models\TagCommunityPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -57,13 +59,32 @@ class CommunityController extends Controller
     {
         $data = $request->all();
 
+        $str = str_replace(' ', '', $data['slug']);
+
+        $tags = explode(',', $str);
+
         unset($data['slug']);
         unset($data['_token']);
 
         $data['user_id'] = Auth::user()->id;
 
         // dd($data);
-        return CommunityPost::create($data);
+        $communityPost = CommunityPost::create($data);
+
+        foreach($tags as $tag){
+            $slug = strtolower($this->removeSpecialCharacters($tag));
+
+            $result = Tag::select()->where('slug', '=', $slug)->get()->toArray();
+
+            if(empty($result)) {
+                $createdTag = Tag::create(['slug' => $slug]);
+                TagCommunityPost::create(['tags_id' => $createdTag->id, 'community_post_id' => $communityPost->id]);
+            } else {
+                TagCommunityPost::create(['tags_id' => current($result)['id'], 'community_post_id' => $communityPost->id]);
+            }
+        }
+
+        return redirect('/community/' . $communityPost->id);
     }
 
     /**
@@ -112,5 +133,11 @@ class CommunityController extends Controller
     public function destroy(Community $community)
     {
         //
+    }
+
+    private function removeSpecialCharacters($str) 
+    {
+        return preg_replace("[^a-zA-Z0-9_]", "", strtr($str, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC"));
+
     }
 }

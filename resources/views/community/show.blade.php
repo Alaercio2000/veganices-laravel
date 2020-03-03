@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="post">
-                    <div class="row pb-4 mt-3">
+                    <div class="row">
                         <div class=" row col-lg-2">
                             <a class="linkComunidadecor" href="#">
                                 <img src="http://127.0.0.1:8000/assets/img/community/mulherGato.jpg" alt="Mulher Gato" class="img-thumbnail  rounded-circle imgUsuarioRedonda ml-2 shadow ">
@@ -52,8 +52,8 @@
                     </div>
                 </div>
 
+                <h3 class="mt-4">Respostas</h3>
                 <div class="answer border-bottom">
-                    <h3 class="mt-4">Respostas</h3>
                     <div class="row pb-4 mt-5">
                         <div class=" row col-lg-2">
                             <a class="linkComunidadecor" href="#">

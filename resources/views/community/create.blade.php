@@ -8,7 +8,13 @@
 
     @section('content')
 
-        <div class="container corpoConteudo">
+        <div class="banner">
+            <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
+            <div class="container">
+            </div>
+        </div>
+
+        <div class="container mt-5">
             <div class="">
                 <form method="POST" action="{{route('community.store')}}">
                     @csrf
@@ -23,7 +29,7 @@
                 
                     <div class="form-group">
                         <label for="corpo">Corpo</label>
-                        <textarea class="form-control bodyfield" name="content" id="corpo" rows="10"></textarea>
+                        <textarea class="form-control bodyfield" name="content" id="content" rows="10"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -33,8 +39,6 @@
 
                     <button type="submit" class="btn btn-primary mb-5">Enviar</button>
                 </form>
-
-
             </div>
         </div>
 
