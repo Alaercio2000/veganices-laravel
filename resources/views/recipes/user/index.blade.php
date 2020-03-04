@@ -92,6 +92,9 @@
               </div>
             </div>
           @endforeach
+          <div class="d-flex flex-row-reverse mt-5">
+          {{ $recipes->links() }}
+          </div>
         </main>
         <input type="hidden" id="categoryFilter">
       </div>

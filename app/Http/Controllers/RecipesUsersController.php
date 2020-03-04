@@ -13,7 +13,7 @@ class RecipesUsersController extends Controller
 {
     public function index()
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::paginate(5);
         $categoryRecipes = CategoryRecipe::all();
 
         $favorites  = false;
