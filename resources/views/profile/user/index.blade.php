@@ -57,17 +57,6 @@
         <a href="{{route('profile.edit')}}" class="btn btn-link pl-0">Editar informacões</a>
         </div>
 
-        <div class="mt-5">
-            <h5>Minhas Compras</h5>
-            @if (!empty($myRequests->all()))
-            @foreach ($myRequests as $myRequest)
-                Tem
-            @endforeach
-            @else
-            <p class="pt-2">Você não fez nenhum pedido</p>
-            @endif
-        </div>
-
         <div class="my-5">
             <h5>Minhas Postagens</h5>
             @if (!empty($myPosts->all()))
@@ -81,9 +70,9 @@
 
         <div class="my-5">
             <h5>Minhas receitas favoritas</h5>
-            @if ($myFavorites)
-            @foreach ($myFavorites as $myFavorite)
-                {{$myFavorite->name}}<br>
+            @if ($favorites)
+            @foreach ($favorites as $favorite)
+            <a href="{{route('user.recipe.show',$favorite->id)}}">{{$favorite->name}}</a>
             @endforeach
             @else
             <p class="py-2">Você não tem favoritos</p>

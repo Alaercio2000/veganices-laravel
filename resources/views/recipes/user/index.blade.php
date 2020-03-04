@@ -53,11 +53,11 @@
         @php
             $isFavorite = false;
         @endphp
-         @if(!empty($favorites))
+         @if(!empty($favorites->all()))
 
-         @foreach($favorites as $favorite)
+         @foreach($favorites->all() as $favorite)
 
-         @if($favorite->recipe_id == $recipe->id)
+         @if($favorite->id == $recipe->id)
             @php
                 $isFavorite = true;
             @endphp

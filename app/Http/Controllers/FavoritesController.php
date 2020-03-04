@@ -12,7 +12,6 @@ use App\User;
 class FavoritesController extends Controller
 {
     public function store($recipe_id , $user_id){
-        // $user_id = Auth::user()->id;
 
         $favorite = Favorite::create([
             'user_id' => $user_id,
@@ -27,9 +26,7 @@ class FavoritesController extends Controller
         $favorite = Favorite::where([
             ['user_id',$user_id],
             ['recipe_id' , $recipe_id]
-        ])->update([
-            'deleted_at' => NOW()
-        ]);
+        ])->delete();
 
         return json_encode($favorite);
     }

@@ -15,13 +15,6 @@
 
 @section('content')
 
-@php
-    $isFavorite = false;
-    if(!empty($favorite)){
-        $isFavorite = true;
-    }
-@endphp
-
 <div class="space">
 </div>
 <div class="banner">

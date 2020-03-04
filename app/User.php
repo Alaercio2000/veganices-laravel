@@ -7,6 +7,7 @@ use App\Models\Provider;
 use App\Models\Requests;
 use App\Models\Post;
 use App\Models\Cart;
+use App\Models\Recipe;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,7 +67,7 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class , 'user_id' , 'id');
     }
 
-    public function favorite(){
-        return $this->hasMany(Favorite::class , 'user_id' , 'id');
+    public function favorites(){
+        return $this->belongsToMany(Recipe::class , 'favorites' , 'user_id' , 'recipe_id');
     }
 }
