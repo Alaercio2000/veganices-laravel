@@ -70,9 +70,9 @@
 
         <div class="my-5">
             <h5>Minhas receitas favoritas</h5>
-            @if ($favorites)
+            @if ($favorites->all())
             @foreach ($favorites as $favorite)
-            <a href="{{route('user.recipe.show',$favorite->id)}}">{{$favorite->name}}</a>
+            <a href="{{route('user.recipe.show',$favorite->id)}}">{{$favorite->name}}</a><br>
             @endforeach
             @else
             <p class="py-2">Você não tem favoritos</p>
