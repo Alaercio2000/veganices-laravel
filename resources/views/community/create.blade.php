@@ -23,18 +23,27 @@
                     <input type="hidden" name="type" value="0">
 
                     <div class="form-group">
-                      <label for="titulo">Título</label>
-                      <input type="text" class="form-control" name="title" id="titulo" placeholder="Digite aqui sua pergunta">
+                        <label for="title">Título</label>
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Digite aqui sua pergunta" value="{{old('title')}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('title')}}
+                        </div>
                     </div>
                 
                     <div class="form-group">
-                        <label for="corpo">Corpo</label>
-                        <textarea class="form-control bodyfield" name="content" id="content" rows="10"></textarea>
+                        <label for="content">Corpo</label>
+                        <textarea class="form-control bodyfield @error('content') is-invalid @enderror" name="content" id="content" rows="10" value="{{old('content')}}"></textarea>
+                        <div class="invalid-feedback">
+                            {{$errors->first('content')}}
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="tags">Tags</label>
-                        <input type="text" class="form-control" name="slug" id="tags" placeholder="Digite aqui as tags">
+                        <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" id="tags" placeholder="Ex.: receitas, ajuda, duvida" value="{{old('slug')}}">
+                        <div class="invalid-feedback">
+                            {{$errors->first('slug')}}
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary mb-5">Enviar</button>

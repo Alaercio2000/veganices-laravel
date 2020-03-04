@@ -1,5 +1,5 @@
     
-        <div class="container mt-5 answer-form" style="display:none">
+        <div class="container mt-5 answer-form">
             <div>
                 <form method="POST" action="{{route('answer.store')}}">
                     @csrf
@@ -10,7 +10,10 @@
                     
                     <div class="form-group">
                         <label for="corpo"></label>
-                        <textarea class="form-control bodyfield" name="content" id="content" rows="10"></textarea>
+                        <textarea class="form-control bodyfield @error('content') is-invalid @enderror" name="content" id="content" rows="10" value="{{old('content')}}"></textarea>
+                        <div class="invalid-feedback">
+                            {{$errors->first('content')}}
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary d-flex ml-auto">Publicar resposta</button>

@@ -36,6 +36,12 @@ class CommunityAnswerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'content' => 'required|string'
+        ], [
+            'required' => 'Esse campo é obrigatório'
+        ]);
+
         $data = $request->all();
 
         unset($data['_token']);

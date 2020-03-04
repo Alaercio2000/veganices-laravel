@@ -27,10 +27,25 @@ class CommunityPostController extends Controller
             ->get()->toArray();
 
         foreach($communityPosts as $communityPost) {
-            $date = $communityPost['created_at'];
-            
-            $communityPost['date'] = date("d/m/Y H:i", strtotime($date));
 
+            $totalComments = CommunityPost::select()
+                ->where('type', '=', '1')
+                ->where('parent_id', '=', $communityPost['id'])
+                ->orderBy('created_at', 'DESC')
+                ->limit(10)
+                ->count();
+            
+                
+            if($totalComments == 1) {
+                $communityPost['totalComments'] = $totalComments .' Comentário';
+            } elseif ($totalComments == 0) {
+                $communityPost['totalComments'] = 'Sem comentários';
+            } else {
+                $communityPost['totalComments'] = $totalComments .' Comentários';
+            }
+
+            $date = $communityPost['created_at'];
+            $communityPost['date'] = date("d/m/Y H:i", strtotime($date));
             $data[] = $communityPost;
         }
 
@@ -57,6 +72,15 @@ class CommunityPostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'content' => 'required|string',
+            'slug' => 'required|string'
+        ], [
+            'max' => 'O número máximo de caracteres é :max',
+            'required' => 'Campo obrigatório'
+        ]);
+
         $data = $request->all();
 
         $str = str_replace(' ', '', $data['slug']);
@@ -98,6 +122,9 @@ class CommunityPostController extends Controller
         $dataAnswer = [];
         $post = CommunityPost::find($id);
 
+        $datePost = $post['created_at'];
+        $post['date'] = date("d/m/Y H:i", strtotime($datePost));
+
         $answers = CommunityPost::select()
             ->with('user')
             ->where('type', '=', '1')
@@ -110,7 +137,6 @@ class CommunityPostController extends Controller
         foreach($answers as $answer) {
         
             $date = $answer['created_at'];
-            
             $answer['date'] = date("d/m/Y H:i", strtotime($date));
 
             $dataAnswer[] = $answer;
