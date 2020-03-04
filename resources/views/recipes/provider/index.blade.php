@@ -42,11 +42,7 @@
                     <h5 class="card-title mt-2">{{$recipe['name']}}</h5>
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Um breve descrição do produto</h6> --}}
                   </div>
-                  <div class="col-3 card-body d-flex flex-column">
-                    <a href="#" class="card-link align-self-center d-flex flex-column">
-                      <i class="material-icons align-self-center">favorite</i>
-                    </a>
-                  </div>
+
                 <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
                   <div class="col-12 d-flex justify-content-between my-3">
                     <span style="font-size:20px" class="font-weight-bolder text-warning">R$ {{str_replace('.',',',$recipe->price)}}</span>
