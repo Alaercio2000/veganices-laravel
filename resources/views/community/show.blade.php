@@ -15,7 +15,7 @@
         </div>
 
         <div class="container">
-            <div class="post">
+            <div class="post border-bottom pb-5">
                 <div class="row">
                     <div class=" row col-lg-2">
                         <a class="linkComunidadecor" href="#">
@@ -38,37 +38,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="border-bottom">
-                    <button class="btn btn-primary mb-4 d-flex ml-auto btn-answer">Responder</button>
-                </div>
             </div>
 
             @include('community.create-answer')
 
-            <h3 class="mt-4 pt-3 answer-block">Respostas</h3>
-            @foreach($answers as $answer)
-            <div class="answer border-bottom">
-                <div class="row pb-4 mt-5">
-                    <div class=" row col-lg-2">
-                        <a class="linkComunidadecor" href="#">
-                            <img src="{{asset('app/avatar/' . $answer['user']['avatar'])}}" alt="alt="{{$answer['user']['avatar']}}" class="img-thumbnail  rounded-circle imgUsuarioRedonda ml-2 shadow ">
-                        </a>
+            <h3 class="mt-4 pt-3 answer-block border-top">Respostas</h3>
+            
+            @if(empty($answers))
+                <div class="answer border-bottom">
+                    <div class="row pb-4 mt-5 col-lg-10 mb-2">
+                        Nenhuma resposta encontrada
                     </div>
-                    <div class="col-lg-10">
-                        <div class="mb-2">
-                            <a href="#" style="text-decoration: none" class="LinksForunUsuario">
-                                <strong>‎{{$answer['user']['name']}}</strong>
+                </div>
+            @else 
+                @foreach($answers as $answer)
+                <div class="answer border-bottom">
+                    <div class="row pb-4 mt-5">
+                        <div class=" row col-lg-2">
+                            <a class="linkComunidadecor" href="#">
+                                <img src="{{asset('app/avatar/' . $answer['user']['avatar'])}}" alt="alt="{{$answer['user']['avatar']}}" class="img-thumbnail  rounded-circle imgUsuarioRedonda ml-2 shadow ">
                             </a>
-                            <small class=" text-muted">em</small>
-                            <small class="text-muted">{{$answer['date']}}</small>
                         </div>
-                        <div class="mb-2">
-                            {!!$answer['content']!!}
+                        <div class="col-lg-10">
+                            <div class="mb-2">
+                                <a href="#" style="text-decoration: none" class="LinksForunUsuario">
+                                    <strong>‎{{$answer['user']['name']}}</strong>
+                                </a>
+                                <small class=" text-muted">em</small>
+                                <small class="text-muted">{{$answer['date']}}</small>
+                            </div>
+                            <div class="mb-2">
+                                {!!$answer['content']!!}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
         @endsection
 
