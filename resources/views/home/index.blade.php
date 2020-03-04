@@ -29,10 +29,10 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-9 col-lg-6">
             <h4 class="text-center pb-3 text-light font-weight-bold">
-                Aqui você encontra tudo para uma rotina vegana
+                Aqui você encontra inúmeras receitas e ainda pode recebê-las em casa!
             </h4>
             <form id="buscaSlide" method="GET" class="form-inline">
-                <input class="form-control w-75" type="search" placeholder="O que você procura ?" aria-label="Search">
+                <input class="form-control w-75" type="search" placeholder="Que receita você procura?" aria-label="Search">
                 <button class="btn btn-warning w-25 px-0 px-pq-1" type="submit">Pesquisar</button>
             </form>
         </div>
@@ -45,32 +45,32 @@
         <div id="recomendacoesPai" class="container-fluid">
             <div class="row">
                 <div class="col-12 col-pq-6 col-md-3 text-center elementoHover">
-                    <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/restauranteImagemTeste.jpg')}}"
+                    <a href="{{route('user.recipes')}}">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/icons_2.png')}}"
                             alt="Restaurantes veganos">
                     </a>
-                    <h6 class="py-3 textElemento">Encontre Restaurantes</h6>
+                    <h6 class="py-3 textElemento">Receitas veganas deliciosas</h6>
                 </div>
                 <div class="col-12 col-pq-6 col-md-3 text-center">
-                    <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/diarioImagemTeste.jpg')}}"
+                    <a href="{{route('user.recipes')}}">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/icons_3.png')}}"
                             alt="Diario vegano">
                     </a>
-                    <h6 class="py-3">Organize seu diario vegano</h6>
+                    <h6 class="py-3">Ingredientes recebidos em casa</h6>
                 </div>
                 <div class="col-12 col-pq-6 col-md-3 text-center">
-                    <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/comunidadeImagemTeste.jpg')}}"
+                    <a href="{{route('cart.index')}}">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/icons_1.png')}}"
                             alt="Comunidade">
                     </a>
-                    <h6 class="py-3">Comunidade de veganos</h6>
+                    <h6 class="py-3">Encha seu carrinho</h6>
                 </div>
                 <div class="col-12 col-pq-6 col-md-3 text-center">
-                    <a href="#">
-                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/dicasImagemTeste.jpg')}}"
+                    <a href="{{route('community.index')}}">
+                        <img class="recomendacoesImagem" src="{{asset('assets/img/home/icons_4.png')}}"
                             alt="Dicas de um vegano">
                     </a>
-                    <h6 class="py-3">Encontre dicas importantes</h6>
+                    <h6 class="py-3">Troca de experiências</h6>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
     <hr>
 
     <section class="pt-4 pb-5">
-        <h3 class="text-center pb-5">Destaques</h3>
+        <h3 class="text-center pb-5">Últimas receitas adicionadas</h3>
 
         <div class="container-fluid">
             <div class="row">
@@ -93,7 +93,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Conhecer</a>
+                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus
                                 tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Conhecer</a>
+                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Conhecer</a>
+                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Conhecer</a>
+                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -144,63 +144,6 @@
     </section>
 
     <hr>
-
-    <section class="py-4">
-        <h3 class="text-center py-4">Dicas</h3>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 p-3">
-                    <a href="#">
-                        <figure class="figureDicas m-3">
-                            <img class="w-100 img-resposive" src="{{asset('assets/img/home/testeImagemDicas.jpg')}}">
-                            <figcaption class="text-center legendaImagemDicas">Dicas Veganas</figcaption>
-                        </figure>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
 </main>
 
