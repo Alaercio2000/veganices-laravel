@@ -14,17 +14,13 @@ class ProfileController extends Controller
         $user = Auth::user();
         $myRequests = $user->requests()->get();
         $myPosts = $user->post()->get();
-        $favorite = $user->favorite()->get();
-        $myFavorites = false;
-        if (!empty($favorite->all())) {
-            $myFavorites = $user->favorite()->recipe()->get();
-        }
+        $favorites = $user->favorites()->get();
 
         return view('profile.user.index', [
             'user' => $user,
             'myRequests' => $myRequests,
             'myPosts' => $myPosts,
-            'myFavorites' => $myFavorites,
+            'favorites' => $favorites,
         ]);
     }
 

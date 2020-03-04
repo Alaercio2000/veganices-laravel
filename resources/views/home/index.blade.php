@@ -28,13 +28,9 @@
 <div id="buscarGeral" class="container position-relative">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-9 col-lg-6">
-            <h4 class="text-center pb-3 text-light font-weight-bold">
+            <h4 class="text-center pb-3 text-light font-weight-bold ">
                 Aqui você encontra inúmeras receitas e ainda pode recebê-las em casa!
             </h4>
-            <form id="buscaSlide" method="GET" class="form-inline">
-                <input class="form-control w-75" type="search" placeholder="Que receita você procura?" aria-label="Search">
-                <button class="btn btn-warning w-25 px-0 px-pq-1" type="submit">Pesquisar</button>
-            </form>
         </div>
     </div>
 </div>
@@ -93,7 +89,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
+                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +104,7 @@
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus
                                 tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
+                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +118,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
+                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +132,7 @@
                                 deserunt numquam facere
                                 ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
                                 temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-primary mt-3">Ver mais</a>
+                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
