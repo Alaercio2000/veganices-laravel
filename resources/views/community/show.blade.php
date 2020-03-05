@@ -26,8 +26,10 @@
                         <div class="mb-2 d-flex justify-content-between">
                             <h4><strong>{{$post['title']}}</strong></h4>
                             @if($post['user_id'] == $userId)
-                                <div class=" ">
-                                    <a href="{{route('community.edit',$post['id'])}}" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                <div>
+                                    <a href="{{route('community.edit',$post['id'])}}" 
+                                        data-toggle="tooltip" data-placement="bottom" title="Editar"
+                                    >
                                         <i class="far fa-edit fa-1x" style="font-size: 20px"></i>
                                     </a>
     
@@ -36,7 +38,7 @@
                                         data-toggle="modal" 
                                         data-target="#exampleModal"
                                         class="delete"
-                                        data-toggle="tooltip" data-placement="top" title="Excluir"
+                                        data-toggle="tooltip" data-placement="left" title="Excluir"
                                     >
                                         <i class="far fa-times-circle text-danger" style="font-size: 20px"></i>
                                     </a>
@@ -45,7 +47,7 @@
                                         action="{{route('community.destroy', $post['id'])}}" 
                                         method="POST"
                                         enctype="multipart/form-data" 
-                                        id="{{$post['id']}}"
+                                        id="delete-post-{{$post['id']}}"
                                     >
                                         @csrf
                                         @method('DELETE')
@@ -116,7 +118,7 @@
                                             data-target="#exampleModal"
                                             class="delete"
                                         >
-                                            <i class="far fa-times-circle"></i>
+                                            <i class="far fa-times-circle text-danger"></i>
                                         </a>
                                             
                                         <form 
@@ -171,8 +173,8 @@
                 selector:'textarea.bodyfield',
                 height:800,
                 menubar:false,
-                plugins:['link', 'table', 'image', 'autoresize' , 'lists'],
-                toolbar:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link image | bullist numlist',
+                plugins:['link', 'table', 'autoresize' , 'lists'],
+                toolbar:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link | bullist numlist',
                 
                 images_upload_credentials:true,
                 convert_urls:false

@@ -62,8 +62,8 @@
                 selector:'textarea.bodyfield',
                 height:800,
                 menubar:false,
-                plugins:['link', 'table', 'image', 'autoresize' , 'lists'],
-                toolbar:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link image | bullist numlist',
+                plugins:['link', 'table', 'autoresize' , 'lists'],
+                toolbar:'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link | bullist numlist',
                 
                 images_upload_credentials:true,
                 convert_urls:false
