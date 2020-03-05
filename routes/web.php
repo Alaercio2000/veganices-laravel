@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/answer', 'CommunityAnswerController');
 
+        Route::get('/community/list/{slug}', 'CommunityPostController@list');
+
     });
     //
 

@@ -23,8 +23,35 @@
                         </a>
                     </div>
                     <div class="col-lg-10">
-                        <div class="mb-2">
+                        <div class="mb-2 d-flex justify-content-between">
                             <h4><strong>{{$post['title']}}</strong></h4>
+                            @if($post['user_id'] == $userId)
+                                <div class=" ">
+                                    <a href="{{route('community.edit',$post['id'])}}" data-toggle="tooltip" data-placement="bottom" title="Editar">
+                                        <i class="far fa-edit fa-1x" style="font-size: 20px"></i>
+                                    </a>
+    
+                                    <a href="javascript:void()" 
+                                        id="{{$post['id']}}" 
+                                        data-toggle="modal" 
+                                        data-target="#exampleModal"
+                                        class="delete"
+                                        data-toggle="tooltip" data-placement="top" title="Excluir"
+                                    >
+                                        <i class="far fa-times-circle text-danger" style="font-size: 20px"></i>
+                                    </a>
+                                        
+                                    <form 
+                                        action="{{route('community.destroy', $post['id'])}}" 
+                                        method="POST"
+                                        enctype="multipart/form-data" 
+                                        id="{{$post['id']}}"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </div>
+                            @endif
                         </div>
                         <div class="mb-2">
                             <a href="#" style="text-decoration: none" class="LinksForunUsuario">
@@ -36,33 +63,11 @@
                         <div class="mb-2">
                             {!!$post['content']!!}
                         </div>
-
-                        @if($post['user_id'] == $userId)
-                            <div class="mt-5">
-                                <a href="{{route('community.edit',$post['id'])}}">
-                                    <i class="far fa-edit"></i>
-                                </a>
-
-                                <a href="javascript:void()" 
-                                    id="{{$post['id']}}" 
-                                    data-toggle="modal" 
-                                    data-target="#exampleModal"
-                                    class="delete"
-                                >
-                                    <i class="far fa-times-circle"></i>
-                                </a>
-                                    
-                                <form 
-                                    action="{{route('community.destroy', $post['id'])}}" 
-                                    method="POST"
-                                    enctype="multipart/form-data" 
-                                    id="{{$post['id']}}"
-                                >
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </div>
-                        @endif
+                        <div class="mt-5">
+                            @foreach($tags as $tag)
+                                <a href="/community/list/{{$tag['slug']}}" class="badge badge-secondary">{{$tag['slug']}}</a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,6 +180,14 @@
         </script>
 
         <script src="{{asset('assets/js/community/show.js')}}"></script>
+
+        <script>  
+            $(document).ready(function(){
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+            })
+        </script>
 
     @endsection
         

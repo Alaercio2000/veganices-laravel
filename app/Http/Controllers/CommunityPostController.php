@@ -127,6 +127,11 @@ class CommunityPostController extends Controller
         $datePost = $post['created_at'];
         $post['date'] = date("d/m/Y H:i", strtotime($datePost));
 
+        $tags = Tag::select('slug', 'tags.id')
+            ->join('tags_community_posts', 'tags.id', '=', 'tags_community_posts.tags_id')
+            ->where('community_post_id', '=', $id)
+            ->get()->toArray();
+
         $answers = CommunityPost::select()
             ->with('user')
             ->where('type', '=', '1')
@@ -148,7 +153,8 @@ class CommunityPostController extends Controller
         return view('community.show', [
             'post' => $post,
             'answers' => $dataAnswer,
-            'userId' => $userId
+            'userId' => $userId,
+            'tags' => $tags
         ]);
     }
 
@@ -250,5 +256,51 @@ class CommunityPostController extends Controller
     {
         return preg_replace("[^a-zA-Z0-9_]", "", strtr($str, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC"));
 
+    }
+
+    public function list($slug)
+    {
+        $tags = Tag::select('id')
+            ->where('slug', '=', $slug)
+            ->get()->toArray();
+
+        if(empty($tags)){
+            return false;
+        }
+
+        $resTags = TagCommunityPost::select('community_post_id')
+            ->whereIn('tags_id', $tags)->get()->toArray();
+
+        $communityPosts = CommunityPost::select()
+            ->with('user')
+            ->whereIn('id', $resTags)->get()->toArray();
+
+        $user = Auth::user()->id;
+
+        foreach($communityPosts as $communityPost) {
+
+            $totalComments = CommunityPost::select()
+                ->where('type', '=', '1')
+                ->where('parent_id', '=', $communityPost['id'])
+                ->orderBy('created_at', 'DESC')
+                ->limit(10)
+                ->count();
+            
+                
+            if($totalComments == 1) {
+                $communityPost['totalComments'] = $totalComments .' Comentário';
+            } elseif ($totalComments == 0) {
+                $communityPost['totalComments'] = 'Sem comentários';
+            } else {
+                $communityPost['totalComments'] = $totalComments .' Comentários';
+            }
+
+            $date = $communityPost['created_at'];
+            $communityPost['date'] = date("d/m/Y H:i", strtotime($date));
+            $posts[] = $communityPost;
+        }
+
+        
+        return view('community.list-post', ['posts' => $posts, 'user' => $user]);
     }
 }
