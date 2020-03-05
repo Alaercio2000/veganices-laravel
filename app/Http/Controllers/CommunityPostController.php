@@ -23,8 +23,7 @@ class CommunityPostController extends Controller
             ->with('user')
             ->where('type', '=', '0')
             ->orderBy('created_at', 'DESC')
-            ->limit(6)
-            ->get()->toArray();
+            ->paginate(5);
 
         foreach($communityPosts as $communityPost) {
 
@@ -32,10 +31,8 @@ class CommunityPostController extends Controller
                 ->where('type', '=', '1')
                 ->where('parent_id', '=', $communityPost['id'])
                 ->orderBy('created_at', 'DESC')
-                ->limit(10)
                 ->count();
-            
-                
+               
             if($totalComments == 1) {
                 $communityPost['totalComments'] = $totalComments .' Comentário';
             } elseif ($totalComments == 0) {
@@ -252,10 +249,20 @@ class CommunityPostController extends Controller
         return redirect()->route('community.index');
     }
 
-    private function removeSpecialCharacters($str) 
+    private function removeSpecialCharacters($text) 
     {
-        return preg_replace("[^a-zA-Z0-9_]", "", strtr($str, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC"));
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        $text = preg_replace('[^-\w]+', '', $text);
+        $text = trim($text, '-');
+        $text = preg_replace('-+', '-', $text);
+        $text = strtolower($text);
 
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
     public function list($slug)
