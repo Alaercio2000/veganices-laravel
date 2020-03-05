@@ -14,4 +14,9 @@ class Tag extends Model
     protected $fillable = [
         'slug'
     ];
+
+    public function tagsCommunityPost(){
+        return $this->hasMany(TagCommunityPost::class , 'tags_id' , 'id');
+    }
+
 }

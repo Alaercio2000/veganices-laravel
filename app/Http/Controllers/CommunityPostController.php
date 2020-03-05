@@ -119,6 +119,8 @@ class CommunityPostController extends Controller
      */
     public function show($id)
     {
+        $userId = Auth::user()->id;
+
         $dataAnswer = [];
         $post = CommunityPost::find($id);
 
@@ -145,7 +147,8 @@ class CommunityPostController extends Controller
         
         return view('community.show', [
             'post' => $post,
-            'answers' => $dataAnswer
+            'answers' => $dataAnswer,
+            'userId' => $userId
         ]);
     }
 
@@ -155,9 +158,27 @@ class CommunityPostController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function edit(Community $community)
+    public function edit($id)
     {
-        //
+        $post = CommunityPost::find($id);
+        $tags = Tag::select('slug')
+            ->join('tags_community_posts', 'tags.id', '=', 'tags_community_posts.tags_id')
+            ->where('community_post_id', '=', $id)
+            ->get()->toArray();
+
+        foreach($tags as $tag) {
+            $dataTags[] = $tag['slug'];
+        }
+
+        $post['slug'] = implode(", ", $dataTags);
+
+        if (Auth::user()->id != $post->user_id) {
+            return redirect()->route('community.index');
+        }
+
+        return view('community.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -167,9 +188,48 @@ class CommunityPostController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Community $community)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'content' => 'required|string',
+            'slug' => 'required|string'
+        ], [
+            'max' => 'O número máximo de caracteres é :max',
+            'required' => 'Campo obrigatório'
+        ]);
+
+        $data = $request->all();
+
+        TagCommunityPost::where('community_post_id', '=', $id)->delete();
+
+        $str = str_replace(' ', '', $data['slug']);
+
+        $tags = explode(',', $str);
+
+        unset($data['slug']);
+        unset($data['_token']);
+        unset($data['_method']);
+
+        $data['user_id'] = Auth::user()->id;
+
+        // dd($data);
+        $communityPost = CommunityPost::where('id', '=', $id)->update($data);
+
+        foreach($tags as $tag){
+            $slug = strtolower($this->removeSpecialCharacters($tag));
+
+            $result = Tag::select()->where('slug', '=', $slug)->get()->toArray();
+
+            if(empty($result)) {
+                $createdTag = Tag::create(['slug' => $slug]);
+                TagCommunityPost::create(['tags_id' => $createdTag->id, 'community_post_id' => $id]);
+            } else {
+                TagCommunityPost::create(['tags_id' => current($result)['id'], 'community_post_id' => $id]);
+            }
+        }
+
+        return redirect('/community/' . $id);
     }
 
     /**
@@ -178,9 +238,11 @@ class CommunityPostController extends Controller
      * @param  \App\Community  $community
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Community $community)
+    public function destroy($id)
     {
-        //
+        CommunityPost::where('id', '=', $id)->delete();
+
+        return redirect()->route('community.index');
     }
 
     private function removeSpecialCharacters($str) 
