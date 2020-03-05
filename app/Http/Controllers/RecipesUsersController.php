@@ -13,13 +13,13 @@ class RecipesUsersController extends Controller
 {
     public function index()
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::paginate(5);
         $categoryRecipes = CategoryRecipe::all();
 
         $favorites  = false;
 
         if (!Auth::guest()) {
-            $favorites = Auth::user()->favorite()->get();
+            $favorites = Auth::user()->favorites()->get();
         }
 
         $data = [
@@ -35,7 +35,7 @@ class RecipesUsersController extends Controller
     {
         // dd ($recipe);
 
-        $favorites  = false;
+        $isFavorite  = false;
 
         $existCart = false;
         if(!Auth::guest()){
@@ -46,14 +46,18 @@ class RecipesUsersController extends Controller
                     $existCart = true;
                 }
             }
-            $favorites = Auth::user()->favorite()->where('recipe_id',$id)->first();
+            $favorites = Auth::user()->favorites()->where('id' , $id)->first();
+        }
+
+        if ($favorites) {
+            $isFavorite = true;
         }
 
         $recipe = Recipe::find($id);
         return view('recipes.user.show', [
             'recipe' => $recipe,
             'existCart' => $existCart,
-            'favorites' => $favorites
+            'isFavorite' => $isFavorite
         ]);
 
     }

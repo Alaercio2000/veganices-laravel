@@ -15,13 +15,6 @@
 
 @section('content')
 
-@php
-    $isFavorite = false;
-    if(!empty($favorite)){
-        $isFavorite = true;
-    }
-@endphp
-
 <div class="space">
 </div>
 <div class="banner">
@@ -43,52 +36,24 @@
         <div class="row mt-5">
             <main class="col-12">
                 <div class="row">
-                    <div class="col-7 card-body d-flex flex-column pl-0">
-                        <h5 class="card-title mt-2">{{$recipe->name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Número de estrelas</h6>
-                    </div>
-                    <div class="col-4 col-md-2 card-body d-flex flex-column align-self-center">
-                        <button type="button" class="btn btn-primary">Avaliar</button>
+                    <div class="col-8 card-body d-flex flex-column pl-0">
+                        <h4 class="card-title mt-2">{{$recipe->name}}</h4>
                     </div>
                     <div class="col-1 card-body d-flex flex-column align-self-center">
                         <a href="javascript:void('')" id="favorite-button" @if(!Auth::guest()) onClick="setFavorite({{$recipe->id .','.Auth::user()->id }})"@else title="Você precisa está logado para adicionar favorito" @endif class="card-link align-self-center d-flex flex-column">
                             <i id="favorite-icon{{$recipe->id}}" class="material-icons text-danger align-self-center">{{($isFavorite == true)?'favorite':'favorite_border'}}</i>
                         </a>
                     </div>
-                    <div id="recipeImage" class="col-12 col-md-9" data-ride="carousel">
+                    <div id="recipeImage" class="col-12 col-md-9 pl-0" data-ride="carousel">
                         <img src="{{asset('app/imageRecipes/'.$recipe->image)}}" class="d-block w-100">
                     </div>
-                    <aside class="col-12 col-md-3">
-                        <h4>Entrar em contato </h4>
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control mb-3 mt-5" id="nome" aria-describedby="nome"
-                                    placeholder="Nome">
-                                <input type="text" class="form-control mb-3" id="sobrenome" aria-describedby="sobrenome"
-                                    placeholder="Sobrenome">
-                                <input type="email" class="form-control mb-3" id="email" aria-describedby="emai"
-                                    placeholder="Email">
-                                <input type="text" class="form-control mb-3" id="telefone" placeholder="Telefone">
-                                <textarea class="form-control" id="telefone"> Comentário</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </form>
-                    </aside>
-                    <div class="d-flex">
-                        <div class="col-12 col-md-8 my-5">
-                            <h4>Informações sobre a receita</h4>
-                            <h6 class="mt-3">Ingredientes</h6>
-                            <p class="card-text align-self-center m-0">{{$recipe->ingredients}}</p>
-                            <h6 class="mt-3">Modo de preparo</h6>
-                            <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
-                            <span style="font-size:30px" class="font-weight-bolder text-warning pt-4 d-block">R$
-                                {{str_replace('.',',',$recipe->price)}}</span>
+                    <aside class="col-12 col-md-3 bg-light pt-2">
+                        <h4>Preço:</h4>
+                        <span style="font-size:26px" class="font-weight-bolder text-warning pt-2 d-block">R$
+                            {{str_replace('.',',',$recipe->price)}}</span>
 
-                            <div class="pt-3">Em estoque : {{$recipe->stock}}</div>
-                        </div>
-                    </div>
-                </div>
-                @if(!Auth::guest())
+                        <div class="pt-3 text-secondary mb-4">Em estoque : {{$recipe->stock}}</div>
+                        @if(!Auth::guest())
                     @if(!Auth::user()->provider)
                         @if ($existCart)
                             <form action="{{route('cart.destroy.recipe',$recipe->id)}}" method="post">
@@ -106,8 +71,20 @@
 
                 @else
                 <button disabled class="btn btn-warning mb-4"
-                    title="Você precisa está logado para adicionar no carrinho">Adicionar no carrinho</button>
+                    title="Você precisa estar logado para adicionar no carrinho">Adicionar no carrinho</button>
                 @endif
+                    </aside>
+                    <div class="d-flex">
+                        <div class="col-12 col-md-8 my-5">
+                            <h4>Informações sobre a receita</h4>
+                            <h6 class="mt-3">Ingredientes</h6>
+                            <p class="card-text align-self-center m-0">{{$recipe->ingredients}}</p>
+                            <h6 class="mt-3">Modo de preparo</h6>
+                            <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
+                        </div>
+                    </div>
+                </div>
+
         </div>
         </main>
     </div>

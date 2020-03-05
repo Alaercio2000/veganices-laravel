@@ -53,11 +53,11 @@
         @php
             $isFavorite = false;
         @endphp
-         @if(!empty($favorites))
+         @if(!empty($favorites->all()))
 
-         @foreach($favorites as $favorite)
+         @foreach($favorites->all() as $favorite)
 
-         @if($favorite->recipe_id == $recipe->id)
+         @if($favorite->id == $recipe->id)
             @php
                 $isFavorite = true;
             @endphp
@@ -92,6 +92,9 @@
               </div>
             </div>
           @endforeach
+          <div class="d-flex flex-row-reverse mt-5">
+          {{ $recipes->links() }}
+          </div>
         </main>
         <input type="hidden" id="categoryFilter">
       </div>
