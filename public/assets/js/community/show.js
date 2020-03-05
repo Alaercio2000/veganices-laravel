@@ -1,5 +1,9 @@
 $(document).ready(function(){
+    $(".delete").on("click", function(){
+        $("#to-delete").val(this.id);
+    })
+
     $("#deleteYes").on("click", function(){
-        $("#deletePost").submit();
+        $("#delete-post-" + $("#to-delete").val()).submit();
     })
 })

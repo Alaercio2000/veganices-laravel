@@ -241,6 +241,7 @@ class CommunityPostController extends Controller
     public function destroy($id)
     {
         CommunityPost::where('id', '=', $id)->delete();
+        TagCommunityPost::where('community_post_id', '=', $id)->delete();
 
         return redirect()->route('community.index');
     }

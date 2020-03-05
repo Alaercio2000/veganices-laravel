@@ -75,8 +75,18 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="d-flex ml-auto">
+                <a href="{{route('community.create')}}" data-toggle="tooltip" data-placement="left" title="Nova Postagem">
+                    <i class="far fa-plus-square fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
     @foreach($communityPosts as $communityPost)
-        <div class="container mt-5 ">
+        <div class="container mt-3 ">
             <div class="row">
                 <div class="col-lg ">
                     <div class="row border-bottom pb-4 mt-5">
@@ -135,6 +145,18 @@
 
 
     </div>
+
+    @endsection
+
+    @section('js')
+
+        <script>  
+            $(document).ready(function(){
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+            })
+        </script>
 
     @endsection
 

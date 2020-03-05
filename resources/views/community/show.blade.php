@@ -1,6 +1,6 @@
     @extends('layouts.template')
 
-    @section('title','Comunidade')
+    @section('title','Post')
 
     @section('css')
         <link rel="stylesheet" href="{{asset('assets/css/community/style.css')}}">
@@ -36,6 +36,33 @@
                         <div class="mb-2">
                             {!!$post['content']!!}
                         </div>
+
+                        @if($post['user_id'] == $userId)
+                            <div class="mt-5">
+                                <a href="{{route('community.edit',$post['id'])}}">
+                                    <i class="far fa-edit"></i>
+                                </a>
+
+                                <a href="javascript:void()" 
+                                    id="{{$post['id']}}" 
+                                    data-toggle="modal" 
+                                    data-target="#exampleModal"
+                                    class="delete"
+                                >
+                                    <i class="far fa-times-circle"></i>
+                                </a>
+                                    
+                                <form 
+                                    action="{{route('community.destroy', $post['id'])}}" 
+                                    method="POST"
+                                    enctype="multipart/form-data" 
+                                    id="{{$post['id']}}"
+                                >
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -70,13 +97,66 @@
                             <div class="mb-2">
                                 {!!$answer['content']!!}
                             </div>
+
+                            <div class="mt-5">
+                                @if($answer['user_id'] == $userId)
+                                    <div class="mt-5">
+                                        <a href="{{route('answer.edit',$answer['id'])}}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+
+                                        <a href="javascript:void()" 
+                                            id="{{$answer['id']}}" 
+                                            data-toggle="modal" 
+                                            data-target="#exampleModal"
+                                            class="delete"
+                                        >
+                                            <i class="far fa-times-circle"></i>
+                                        </a>
+                                            
+                                        <form 
+                                            action="{{route('answer.destroy', $answer['id'])}}" 
+                                            method="POST" 
+                                            enctype="multipart/form-data" 
+                                            id="delete-post-{{$answer['id']}}"                                        
+                                        >
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="parent_id" value="{{$answer['parent_id']}}">
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
             @endif
         </div>
-        @endsection
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Apagar Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja apagar esse post?
+                        <input type="hidden" id="to-delete">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                        <button type="button" class="btn btn-primary" id="deleteYes">Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endsection
 
     @section('js')
         <script src="https://cdn.tiny.cloud/1/nw92m4glyqmatdeftsi104kh1e3jrv6j06325f26zpl8ys6v/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -94,6 +174,7 @@
             });
         </script>
 
-        <script src="{{asset('assets/js/community/create.js')}}"></script>
+        <script src="{{asset('assets/js/community/show.js')}}"></script>
+
     @endsection
         
