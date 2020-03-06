@@ -136,8 +136,9 @@ class CommunityPostController extends Controller
             ->where('type', '=', '1')
             ->where('parent_id', '=', $id)
             ->orderBy('created_at', 'DESC')
-            ->limit(10)
-            ->get()->toArray();
+            ->paginate(5);
+        
+        $links = $answers->links();
 
         
         foreach($answers as $answer) {
@@ -153,7 +154,8 @@ class CommunityPostController extends Controller
             'post' => $post,
             'answers' => $dataAnswer,
             'userId' => $userId,
-            'tags' => $tags
+            'tags' => $tags,
+            'links' => $links
         ]);
     }
 

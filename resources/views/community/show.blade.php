@@ -138,6 +138,10 @@
                     </div>
                 </div>
                 @endforeach
+
+                <div class="d-flex justify-content-center mb-4">
+                    {!! $links !!}
+                </div>
             @endif
         </div>
         
