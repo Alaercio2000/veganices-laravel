@@ -10,7 +10,7 @@
     @section('content')
         <div class="banner">
             <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
-            <div class="container searchBlock border">
+            <div class="container searchBlock">
                 <div class="col-lg  ">
                     <h2 class="text-center font-weight-bold "> Comunidade </h2>
                     <p class="text-justify text-center"> 
