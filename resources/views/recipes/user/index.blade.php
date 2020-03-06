@@ -19,14 +19,14 @@
   <div class="banner">
     <img class="bannerImg" src="{{asset('assets/img/recipes/banner.jpg')}}" />
     <div class="container">
-      <div class="row">
+      {{-- <div class="row">
         <div class="input-group mb-3 searchInput">
           <input type="text" class="form-control" placeholder="Receitas" aria-label="Receitas" aria-describedby="button-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
   </div>
   <div class="content">
@@ -53,6 +53,7 @@
         @php
             $isFavorite = false;
         @endphp
+        @if(!Auth::guest())
          @if(!empty($favorites->all()))
 
          @foreach($favorites->all() as $favorite)
@@ -65,6 +66,7 @@
 
          @endforeach
 
+         @endif
          @endif
             <div class="row border-top ml-3">
               <div class="col-12 col-md-5">
