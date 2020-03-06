@@ -23,7 +23,7 @@ class CommunityPostController extends Controller
             ->with('user')
             ->where('type', '=', '0')
             ->orderBy('created_at', 'DESC')
-            ->paginate(1);
+            ->paginate(5);
 
         $links = $communityPosts->links();
 
