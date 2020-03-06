@@ -40,42 +40,52 @@
                 </div>
             </div>
         </div>
-    
-        @foreach($posts as $post)
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg ">
-                        <div class="row border-bottom pb-4 mt-5">
-                            <div class=" row col-lg-2">
-                                <img src="{{asset('app/avatar/' . $post['user']['avatar'])}}" alt="{{$post['user']['avatar']}}" class="img-thumbnail  rounded-circle imgUsuarioRedonda ml-2 shadow ">
-                            </div>
-                            <div class="col-lg">
-                                <div class="mb-2">
-                                    <a href="/community/{{$post['id']}}" style="text-decoration: none" class="LinksForunUsuario"> 
-                                        <strong>{{$post['title']}}</strong> 
-                                    </a>
-                                </div>
-                                <div class="mb-2">
-                                    <strong>‎{{$post['user']['name']}}</strong>
-                                    <small class=" text-muted">em</small>
-                                    <small class="text-muted">{{$post['date']}}</small>
-                                </div>
-                                <div class="mb-2">
-                                    <a href="/community/{{$post['id']}}" style="text-decoration: none" class="LinksForun">
-                                        {!!substr($post['content'], 0, 180)!!}
-                                    </a>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-lg-4">
-                                    <small class="text-muted">{{$post['totalComments']}}</small>
+
+        <div class="container">
+            @if(empty($posts))
+                <div class="answer">
+                    <div class="row pb-4 mt-5 col-lg-10 mb-2">
+                        Ooops.. Nada foi encontrado! :(
+                    </div>
+                </div>
+            @else 
+                @foreach($posts as $post)
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg ">
+                                <div class="row border-bottom pb-4 mt-5">
+                                    <div class=" row col-lg-2">
+                                        <img src="{{asset('app/avatar/' . $post['user']['avatar'])}}" alt="{{$post['user']['avatar']}}" class="img-thumbnail  rounded-circle imgUsuarioRedonda ml-2 shadow ">
+                                    </div>
+                                    <div class="col-lg">
+                                        <div class="mb-2">
+                                            <a href="/community/{{$post['id']}}" style="text-decoration: none" class="LinksForunUsuario"> 
+                                                <strong>{{$post['title']}}</strong> 
+                                            </a>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>‎{{$post['user']['name']}}</strong>
+                                            <small class=" text-muted">em</small>
+                                            <small class="text-muted">{{$post['date']}}</small>
+                                        </div>
+                                        <div class="mb-2">
+                                            <a href="/community/{{$post['id']}}" style="text-decoration: none" class="LinksForun">
+                                                {!!substr($post['content'], 0, 180)!!}
+                                            </a>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-lg-4">
+                                            <small class="text-muted">{{$post['totalComments']}}</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        @endforeach
+                @endforeach
+            @endif
+        </div>
 
         <div class="d-flex justify-content-center mb-4">
             {!! $links !!}
