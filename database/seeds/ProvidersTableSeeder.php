@@ -20,6 +20,14 @@ class ProvidersTableSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
+            [
+                'cnpj' => '075696510010-37',
+                'user_id' => 18,
+                'name' => 'Spermercado Nações Unidas',
+                'date_opening' => '2010-06-29',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ]
         ]);
     }
 }

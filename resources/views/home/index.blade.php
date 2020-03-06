@@ -79,63 +79,19 @@
 
         <div class="container-fluid">
             <div class="row">
+                @foreach($recipes as $recipe)
                 <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
                     <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/restauranteImagemTeste.jpg')}}"
-                            class="card-img-top imagemCard" alt="Melhor Restaurante Mês">
+                        <img height="200" src="{{asset('app/imageRecipes/'.$recipe['image'])}}"
+                            class="card-img-top imagemCard" alt="Receita">
                         <div class="card-body">
-                            <h5 class="card-title">Restaurantes</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
-                                deserunt numquam facere
-                                ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
-                                temporibus tenetur earum harum assumenda porro?</p>
+                            <h5 class="card-title">{{$recipe['name']}}</h5>
+                            <p class="card-text" style="max-width:100ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{$recipe->preparation_method}}</p>
                             <a href="#" class="btn btn-warning mt-3">Ver mais</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
-                    <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/nutricionistaImagemTeste.jpg')}}"
-                            class="card-img-top imagemCard2" alt="Melhor Nutricionista Mês">
-                        <div class="card-body">
-                            <h5 class="card-title">Nutricionistas</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
-                                deserunt numquam facere
-                                ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
-                                temporibus
-                                tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
-                    <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/postImagemTeste.jpg')}}"
-                            class="card-img-top imagemCard" alt="Melhor Postagem Mês">
-                        <div class="card-body">
-                            <h5 class="card-title">Postagens</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
-                                deserunt numquam facere
-                                ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
-                                temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3 pb-4 cardDestaques">
-                    <div class="card">
-                        <img height="200" src="{{asset('assets/img/home/fazerCasa.jfif')}}"
-                            class="card-img-top imagemCard" alt="Melhor Receita Mês">
-                        <div class="card-body">
-                            <h5 class="card-title">Receitas</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum alias
-                                deserunt numquam facere
-                                ipsam porro, molestiae est placeat totam ipsum autem! Provident expedita repellendus
-                                temporibus tenetur earum harum assumenda porro?</p>
-                            <a href="#" class="btn btn-warning mt-3">Ver mais</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
     </section>
 

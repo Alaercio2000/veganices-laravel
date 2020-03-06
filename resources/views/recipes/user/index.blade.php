@@ -83,7 +83,7 @@
                   <i id="favorite-icon{{$recipe->id}}" class="material-icons text-danger align-self-center">{{($isFavorite == true)?'favorite':'favorite_border'}}</i>
                     </a>
                   </div>
-                <p class="card-text align-self-center m-0">{{$recipe->preparation_method}}</p>
+                <p class="card-text align-self-center m-0" style="max-width:100ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{$recipe->preparation_method}}</p>
                   <div class="col-12 d-flex justify-content-between my-3">
                     <span style="font-size:20px" class="font-weight-bolder text-warning">R$ {{str_replace('.',',',$recipe->price)}}</span>
                   <a class="text-light btn btn-primary" href="{{route('user.recipe.show',['id'=> $recipe->id ])}}">Ver receita</a>

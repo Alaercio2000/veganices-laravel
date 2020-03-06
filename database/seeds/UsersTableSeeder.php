@@ -71,7 +71,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Jorge',
                 'email' => 'jorge@veganices.com.br',
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],  
+            ],
             [
                 'name' => 'Marco Antonio',
                 'email' => 'marcoantonio@veganices.com.br',
@@ -91,7 +91,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],        
+            ],
             [
                 'name' => 'Pedro',
                 'email' => 'pedro@veganices.com.br',
@@ -101,7 +101,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Victória',
                 'email' => 'vic@veganices.com.br',
@@ -111,7 +111,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Gabriela',
                 'email' => 'gabrila@veganices.com.br',
@@ -121,7 +121,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Angelica',
                 'email' => 'angelica@veganices.com.br',
@@ -131,7 +131,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Lucas',
                 'email' => 'lucasa@veganices.com.br',
@@ -141,7 +141,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Isabelly',
                 'email' => 'isaisa@veganices.com.br',
@@ -151,7 +151,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Enzo',
                 'email' => 'enzo@veganices.com.br',
@@ -161,7 +161,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],     
+            ],
             [
                 'name' => 'Guilherme',
                 'email' => 'guilherme@veganices.com.br',
@@ -171,7 +171,7 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ], 
+            ],
             [
                 'name' => 'Luana',
                 'email' => 'luana@veganices.com.br',
@@ -181,7 +181,17 @@ class UsersTableSeeder extends Seeder
                 'provider' => false,
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
-            ],         
+            ],
+            [
+                'name' => 'Felipe',
+                'email' => 'felipe@veganices.com.br',
+                'password' => Hash::make('1234'),
+                'avatar' => '16.jpg',
+                'phone' => null,
+                'provider' => true,
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
         ]);
     }
 }
