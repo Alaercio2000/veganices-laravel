@@ -255,12 +255,14 @@ class CommunityPostController extends Controller
 
     public function list($slug)
     {
+        $slugs = explode(' ', $slug);
+
         $tags = Tag::select('id')
-            ->where('slug', '=', $slug)
+            ->whereIn('slug', $slugs)
             ->get()->toArray();
 
         if(empty($tags)){
-            return false;
+            return  view('community.list-post', ['posts' => [], 'user' => [], 'links' => '']);
         }
 
         $resTags = TagCommunityPost::select('community_post_id')
