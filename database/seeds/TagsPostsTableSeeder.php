@@ -11,7 +11,7 @@ class TagsPostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tags_community_post')->insert([
+        DB::table('tags_community_posts')->insert([
             [
                 'tags_id' => '1',
                 'community_post_id' => '1',

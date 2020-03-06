@@ -268,9 +268,12 @@ class CommunityPostController extends Controller
 
         $communityPosts = CommunityPost::select()
             ->with('user')
-            ->whereIn('id', $resTags)->get()->toArray();
+            ->whereIn('id', $resTags)
+            ->paginate(5);
 
         $user = Auth::user()->id;
+
+        $links = $communityPosts->links();
 
         foreach($communityPosts as $communityPost) {
 
@@ -295,7 +298,7 @@ class CommunityPostController extends Controller
             $posts[] = $communityPost;
         }
         
-        return view('community.list-post', ['posts' => $posts, 'user' => $user]);
+        return view('community.list-post', ['posts' => $posts, 'user' => $user, 'links' => $links]);
     }
 
     private function slugify($string) 

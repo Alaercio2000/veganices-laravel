@@ -19,10 +19,12 @@
             </div>
             <div class="row">
                 <div class="input-group mb-3 searchInput">
-                    <input type="text" class="form-control" placeholder="O que procura? " aria-label=" " aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
-                    </div>
+                    <form action="">
+                        <input type="text" class="form-control" placeholder="O que procura? " aria-label=" " aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
