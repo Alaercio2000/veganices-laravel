@@ -226,7 +226,7 @@ class PostsTableSeeder extends Seeder
                 'created_at' => '2020-03-03 22:37:03',
                 'updated_at' => NOW(),
             ],
-            //post 6
+            //post 6 
             [
                 'user_id' => '17',
                 'type' => '0',

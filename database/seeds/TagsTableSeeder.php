@@ -78,7 +78,18 @@ class TagsTableSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
-
+            //12
+            [
+                'slug' => 'indicações',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
+            //13
+            [
+                'slug' => 'nutricionista',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
         ]);
     }
 }

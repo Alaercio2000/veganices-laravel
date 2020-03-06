@@ -90,6 +90,24 @@ class TagsPostsTableSeeder extends Seeder
                 'created_at' => NOW(),
                 'updated_at' => NOW(),
             ],
+            [
+                'tags_id' => '9',
+                'community_post_id' => '21',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
+            [
+                'tags_id' => '12',
+                'community_post_id' => '18',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
+            [
+                'tags_id' => '13',
+                'community_post_id' => '18',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ],
         ]);
     }
 }
