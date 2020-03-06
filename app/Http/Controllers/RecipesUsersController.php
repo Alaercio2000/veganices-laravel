@@ -33,7 +33,6 @@ class RecipesUsersController extends Controller
 
     public function show( $id)
     {
-        // dd ($recipe);
 
         $isFavorite  = false;
 
@@ -49,7 +48,7 @@ class RecipesUsersController extends Controller
             $favorites = Auth::user()->favorites()->where('id' , $id)->first();
         }
 
-        if ($favorites) {
+        if (!empty($favorites)) {
             $isFavorite = true;
         }
 
