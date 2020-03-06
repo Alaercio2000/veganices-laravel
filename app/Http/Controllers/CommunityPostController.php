@@ -271,6 +271,7 @@ class CommunityPostController extends Controller
         $communityPosts = CommunityPost::select()
             ->with('user')
             ->whereIn('id', $resTags)
+            ->orderBy('created_at', 'DESC')
             ->paginate(5);
 
         $user = Auth::user()->id;
